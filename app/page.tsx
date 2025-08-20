@@ -12,13 +12,107 @@ import Autoplay from "embla-carousel-autoplay"
 export default function GazellaVisionLanding() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrollPosition, setScrollPosition] = useState(0)
+  const [isMounted, setIsMounted] = useState(false)
   const targetRef = useRef<HTMLDivElement>(null)
+
+  // Solo usar useScroll después de que el componente esté montado
   const { scrollYProgress } = useScroll({
-    target: targetRef,
+    target: isMounted ? targetRef : undefined,
     offset: ["start end", "end start"]
   })
 
   const parallaxY = useTransform(scrollYProgress, [0, 1], ["-50%", "50%"])
+
+  // Marcar como montado al inicializar
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  // Datos estáticos de tecnologías
+  const technologies = [
+    {
+      name: "React",
+      description: "Biblioteca de JavaScript para construir interfaces de usuario",
+      icon: <Code className="w-8 h-8" />,
+      logo: "/react-svg-logo.svg",
+      color: "from-blue-500 to-blue-600",
+      bgColor: "bg-blue-50"
+    },
+    {
+      name: "Next.js",
+      description: "Framework de React para aplicaciones web de producción",
+      icon: <Zap className="w-8 h-8" />,
+      logo: "/nextjs-icon-svgrepo-com.svg",
+      color: "from-gray-800 to-black",
+      bgColor: "bg-gray-50"
+    },
+    {
+      name: "JavaScript",
+      description: "Lenguaje de programación moderno y versátil",
+      icon: <Target className="w-8 h-8" />,
+      logo: "/js-logo.svg",
+      color: "from-yellow-500 to-yellow-600",
+      bgColor: "bg-yellow-50"
+    },
+    {
+      name: "Tailwind CSS",
+      description: "Framework de CSS para diseño rápido y responsive",
+      icon: <DiamondPlus className="w-8 h-8" />,
+      logo: "/tailwindcss-logo.svg",
+      color: "from-cyan-500 to-blue-500",
+      bgColor: "bg-cyan-50"
+    },
+    {
+      name: "Supabase",
+      description: "Base de datos y backend como servicio",
+      icon: <Users className="w-8 h-8" />,
+      logo: "/supabase-logo-icon.svg",
+      color: "from-green-500 to-green-600",
+      bgColor: "bg-green-50"
+    },
+    {
+      name: "Zustand",
+      description: "Gestión de estado simple y poderosa",
+      icon: <Star className="w-8 h-8" />,
+      logo: "/zustand.svg",
+      color: "from-purple-500 to-purple-600",
+      bgColor: "bg-purple-50"
+    }
+  ]
+
+  // Datos estáticos de testimonios
+  const testimonials = [
+    {
+      name: "María González",
+      role: "Frontend Developer",
+      company: "TechCorp",
+      testimonial: "El programa de Gazella Vision transformó completamente mi carrera. Ahora trabajo como desarrolladora frontend en una empresa líder.",
+      quote: "El programa de Gazella Vision transformó completamente mi carrera. Ahora trabajo como desarrolladora frontend en una empresa líder.",
+      rating: 5,
+      avatar: "/professional-woman-avatar.png",
+      gradient: "from-pink-50 to-rose-50"
+    },
+    {
+      name: "Carlos Ruiz",
+      role: "Full Stack Developer",
+      company: "StartupXYZ",
+      testimonial: "Excelente metodología y mentores. En 8 semanas logré desarrollar proyectos que antes me parecían imposibles.",
+      quote: "Excelente metodología y mentores. En 8 semanas logré desarrollar proyectos que antes me parecían imposibles.",
+      rating: 5,
+      avatar: "/professional-man-avatar.png",
+      gradient: "from-blue-50 to-indigo-50"
+    },
+    {
+      name: "Ana Torres",
+      role: "React Developer",
+      company: "InnovateLab",
+      testimonial: "La combinación de teoría y práctica es perfecta. Los proyectos son retadores y preparan para el mundo real.",
+      quote: "La combinación de teoría y práctica es perfecta. Los proyectos son retadores y preparan para el mundo real.",
+      rating: 5,
+      avatar: "/professional-woman-designer-avatar.png",
+      gradient: "from-green-50 to-emerald-50"
+    }
+  ]
 
   // Función para generar enlaces de WhatsApp con mensajes predeterminados
   const getWhatsAppLink = (action: string) => {
@@ -588,64 +682,7 @@ export default function GazellaVisionLanding() {
               className="w-full"
             >
               <CarouselContent className="-ml-2 md:-ml-4">
-                {[
-                  {
-                    name: "React",
-                    logo: "/react-svg-logo.svg",
-                    description: "Biblioteca UI líder",
-                    color: "from-gv-blue-primary to-gv-blue-light",
-                    bgColor: "bg-gv-blue-light/10"
-                  },
-                  {
-                    name: "Next.js",
-                    logo: "/nextjs-icon-svgrepo-com.svg",
-                    description: "Framework React",
-                    color: "from-gray-700 to-gray-900",
-                    bgColor: "bg-gray-50"
-                  },
-                  {
-                    name: "JavaScript",
-                    logo: "/js-logo.svg",
-                    description: "Lenguaje fundamental",
-                    color: "from-yellow-400 to-orange-500",
-                    bgColor: "bg-yellow-50"
-                  },
-                  {
-                    name: "Supabase",
-                    logo: "/supabase-logo-icon.svg",
-                    description: "Backend as a Service",
-                    color: "from-green-400 to-emerald-500",
-                    bgColor: "bg-green-50"
-                  },
-                  {
-                    name: "Tailwind CSS",
-                    logo: "/tailwindcss-logo.svg",
-                    description: "Utility-first CSS",
-                    color: "from-gv-blue-light to-gv-blue-primary",
-                    bgColor: "bg-gv-blue-light/10"
-                  },
-                  {
-                    name: "React Query",
-                    logo: "/react-query-seeklogo.svg",
-                    description: "State Management",
-                    color: "from-red-400 to-pink-500",
-                    bgColor: "bg-red-50"
-                  },
-                  {
-                    name: "Zustand",
-                    logo: "/zustand.svg",
-                    description: "State Management",
-                    color: "from-purple-400 to-indigo-500",
-                    bgColor: "bg-purple-50"
-                  },
-                  {
-                    name: "Vercel",
-                    logo: "/vercel-seeklogo.svg",
-                    description: "Deployment Platform",
-                    color: "from-gray-700 to-gray-900",
-                    bgColor: "bg-gray-50"
-                  }
-                ].map((tech, index) => (
+                {technologies.map((tech, index) => (
                   <CarouselItem key={tech.name} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                     <motion.div
                       initial={{ opacity: 0, y: 50, scale: 0.8 }}
@@ -705,7 +742,8 @@ export default function GazellaVisionLanding() {
                       </Card>
                     </motion.div>
                   </CarouselItem>
-                ))}
+                ))
+                }
               </CarouselContent>
             </Carousel>
 
@@ -1103,53 +1141,7 @@ export default function GazellaVisionLanding() {
               className="w-full"
             >
               <CarouselContent className="-ml-2 md:-ml-4">
-                {[
-                  {
-                    quote: "En 8 semanas lancé mi app de reservas y la usé como carta de presentación en entrevistas. ¡Funcionó!",
-                    name: "Fiorella R.",
-                    role: "Frontend Jr.",
-                    avatar: "/professional-woman-avatar.png",
-                    rating: 5,
-                    company: "Startup Tech",
-                    gradient: "from-pink-500/10 to-purple-500/10"
-                  },
-                  {
-                    quote: "La mentoría 1:1 marcó la diferencia. Pasé de ver tutoriales a tener un proyecto real publicado y funcionando.",
-                    name: "Jorge M.",
-                    role: "Dev en transición",
-                    avatar: "/professional-man-avatar.png",
-                    rating: 5,
-                    company: "Freelance",
-                    gradient: "from-gv-blue-primary/10 to-gv-blue-light/10"
-                  },
-                  {
-                    quote: "El enfoque práctico me ayudó a entender React y Next.js desde el día uno. Ahora desarrollo con confianza.",
-                    name: "Carla T.",
-                    role: "Diseñadora → Dev",
-                    avatar: "/professional-woman-designer-avatar.png",
-                    rating: 5,
-                    company: "Agencia Digital",
-                    gradient: "from-green-500/10 to-emerald-500/10"
-                  },
-                  {
-                    quote: "De cero conocimiento a tener mi primera app web publicada. El método paso a paso es perfecto para principiantes.",
-                    name: "Miguel S.",
-                    role: "Estudiante",
-                    avatar: "/professional-man-avatar.png",
-                    rating: 5,
-                    company: "Universidad",
-                    gradient: "from-blue-500/10 to-cyan-500/10"
-                  },
-                  {
-                    quote: "Los proyectos reales me dieron la experiencia práctica que necesitaba. Ahora trabajo como fullstack developer.",
-                    name: "Ana L.",
-                    role: "Fullstack Developer",
-                    avatar: "/professional-woman-designer-avatar.png",
-                    rating: 5,
-                    company: "Tech Company",
-                    gradient: "from-indigo-500/10 to-violet-500/10"
-                  }
-                ].map((testimonial, index) => (
+                {testimonials.map((testimonial, index) => (
                   <CarouselItem key={index} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
                     <motion.div
                       initial={{ opacity: 0, y: 50 }}
@@ -1235,7 +1227,8 @@ export default function GazellaVisionLanding() {
                       </Card>
                     </motion.div>
                   </CarouselItem>
-                ))}
+                ))
+                }
               </CarouselContent>
             </Carousel>
 

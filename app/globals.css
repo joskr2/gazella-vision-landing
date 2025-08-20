@@ -10,12 +10,17 @@
 
 @layer base {
   :root {
-    /* Custom Gazella Vision color scheme */
-    --primary: 198 75% 65%;
-    /* #6EC1E4 */
+    /* Gazella Vision Brand Colors */
+    --gv-blue-primary: #2563EB;
+    --gv-blue-dark: #1E3A8A;
+    --gv-blue-light: #60A5FA;
+
+    /* Updated color scheme with Gazella Vision blues */
+    --primary: 218 85% 58%;
+    /* #2563EB - Azul primario brillante */
     --primary-foreground: 0 0% 100%;
     --accent: 134 51% 58%;
-    /* #61CE70 */
+    /* #61CE70 - Mantiene el verde para contraste */
     --accent-foreground: 0 0% 100%;
     --foreground: 210 7% 35%;
     /* #54595F */
@@ -32,7 +37,8 @@
     --muted: 0 0% 96.1%;
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
-    --ring: 198 75% 65%;
+    --ring: 218 85% 58%;
+    /* #2563EB - Ring con el nuevo azul primario */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --radius: 0.75rem;
@@ -67,6 +73,43 @@
 
   .btn-secondary {
     @apply border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-6 py-3 rounded-xl font-medium transition-colors;
+  }
+
+  /* Gazella Vision Brand Color Utilities */
+  .bg-gv-blue-primary {
+    background-color: var(--gv-blue-primary);
+  }
+
+  .bg-gv-blue-dark {
+    background-color: var(--gv-blue-dark);
+  }
+
+  .bg-gv-blue-light {
+    background-color: var(--gv-blue-light);
+  }
+
+  .text-gv-blue-primary {
+    color: var(--gv-blue-primary);
+  }
+
+  .text-gv-blue-dark {
+    color: var(--gv-blue-dark);
+  }
+
+  .text-gv-blue-light {
+    color: var(--gv-blue-light);
+  }
+
+  .border-gv-blue-primary {
+    border-color: var(--gv-blue-primary);
+  }
+
+  .border-gv-blue-dark {
+    border-color: var(--gv-blue-dark);
+  }
+
+  .border-gv-blue-light {
+    border-color: var(--gv-blue-light);
   }
 
   .section-padding {

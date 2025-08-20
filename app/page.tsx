@@ -184,7 +184,7 @@ export default function GazellaVisionLanding() {
       {/* Hero Section with Parallax */}
       <motion.section
         ref={targetRef}
-        className="section-padding bg-gradient-to-br from-blue-50 to-green-50 pt-24 lg:pt-32 relative overflow-hidden"
+        className="section-padding bg-gradient-to-br from-blue-50 via-white to-blue-100 pt-24 lg:pt-32 relative overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -257,7 +257,7 @@ export default function GazellaVisionLanding() {
               >
                 <Button
                   size="lg"
-                  className="btn-primary text-lg px-8 py-4 w-full sm:w-auto"
+                  className="bg-gv-blue-primary hover:bg-gv-blue-dark text-white text-lg px-8 py-4 w-full sm:w-auto transition-all duration-300 shadow-lg hover:shadow-xl"
                   onClick={() => window.open(getWhatsAppLink("reservar"), '_blank')}
                 >
                   Reserva tu cupo
@@ -270,7 +270,7 @@ export default function GazellaVisionLanding() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="btn-secondary text-lg px-8 py-4 bg-transparent w-full sm:w-auto"
+                  className="border-gv-blue-primary text-gv-blue-primary hover:bg-gv-blue-primary hover:text-white text-lg px-8 py-4 bg-transparent w-full sm:w-auto transition-all duration-300"
                   onClick={downloadTemario}
                 >
                   Descargar temario (PDF)
@@ -385,7 +385,7 @@ export default function GazellaVisionLanding() {
                 >
                   <Button
                     size="lg"
-                    className="btn-primary text-lg px-8 py-4 w-full sm:w-auto"
+                    className="bg-gv-blue-primary hover:bg-gv-blue-dark text-white text-lg px-8 py-4 w-full sm:w-auto transition-all duration-300 shadow-lg hover:shadow-xl"
                     onClick={() => window.open(getWhatsAppLink("reservar"), '_blank')}
                   >
                     Reserva tu cupo
@@ -398,7 +398,7 @@ export default function GazellaVisionLanding() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="btn-secondary text-lg px-8 py-4 bg-transparent w-full sm:w-auto"
+                    className="border-gv-blue-primary text-gv-blue-primary hover:bg-gv-blue-primary hover:text-white text-lg px-8 py-4 bg-transparent w-full sm:w-auto transition-all duration-300"
                     onClick={downloadTemario}
                   >
                     Descargar temario (PDF)
@@ -523,8 +523,8 @@ export default function GazellaVisionLanding() {
                 title: "Aprende construyendo",
                 description: "Menos pizarra, más código. Cada semana un entregable real que puedes mostrar en entrevistas.",
                 color: "text-primary",
-                gradient: "from-blue-500/10 via-primary/5 to-transparent",
-                bgIcon: "bg-blue-500/10"
+                gradient: "from-gv-blue-light/10 via-primary/5 to-transparent",
+                bgIcon: "bg-gv-blue-light/10"
               },
               {
                 icon: Target,
@@ -633,7 +633,7 @@ export default function GazellaVisionLanding() {
       <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-10 left-10 w-32 h-32 bg-gv-blue-light/10 rounded-full blur-3xl" />
           <div className="absolute bottom-10 right-10 w-40 h-40 bg-green-500/10 rounded-full blur-3xl" />
           <div className="absolute top-1/2 left-1/2 w-36 h-36 bg-purple-500/10 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2" />
         </div>
@@ -665,8 +665,8 @@ export default function GazellaVisionLanding() {
                 name: "React",
                 logo: "/react-svg-logo.svg",
                 description: "Biblioteca UI líder",
-                color: "from-blue-400 to-cyan-500",
-                bgColor: "bg-blue-50"
+                color: "from-gv-blue-primary to-gv-blue-light",
+                bgColor: "bg-gv-blue-light/10"
               },
               {
                 name: "Next.js",
@@ -693,8 +693,8 @@ export default function GazellaVisionLanding() {
                 name: "Tailwind CSS",
                 logo: "/tailwindcss-logo.svg",
                 description: "Utility-first CSS",
-                color: "from-cyan-400 to-blue-500",
-                bgColor: "bg-cyan-50"
+                color: "from-gv-blue-light to-gv-blue-primary",
+                bgColor: "bg-gv-blue-light/10"
               },
               {
                 name: "React Query",
@@ -832,14 +832,14 @@ export default function GazellaVisionLanding() {
                 subtitle: "React + Tailwind CSS",
                 description: "Domina los componentes de React, hooks esenciales, y crea interfaces modernas con Tailwind CSS. Tu primera app funcional lista.",
                 technologies: [
-                  { name: "React", logo: "/react-svg-logo.svg", color: "text-blue-500" },
-                  { name: "Tailwind CSS", logo: "/tailwindcss-logo.svg", color: "text-cyan-500" },
+                  { name: "React", logo: "/react-svg-logo.svg", color: "text-gv-blue-primary" },
+                  { name: "Tailwind CSS", logo: "/tailwindcss-logo.svg", color: "text-gv-blue-light" },
                   { name: "JavaScript", logo: "/js-logo.svg", color: "text-yellow-500" }
                 ],
                 skills: ["Componentes", "Hooks", "Estado", "Estilos"],
                 project: "To-Do App + Landing Page",
-                gradient: "from-blue-500/5 via-cyan-500/5 to-blue-500/5",
-                borderColor: "border-blue-500/20"
+                gradient: "from-gv-blue-primary/5 via-gv-blue-light/5 to-gv-blue-primary/5",
+                borderColor: "border-gv-blue-primary/20"
               },
               {
                 weeks: "Semanas 3-4",
@@ -848,11 +848,11 @@ export default function GazellaVisionLanding() {
                 description: "Construye aplicaciones de nivel empresarial con Next.js. Rutas, layouts, componentes server y client. Dashboard completo.",
                 technologies: [
                   { name: "Next.js", logo: "/nextjs-icon-svgrepo-com.svg", color: "text-gray-800" },
-                  { name: "React", logo: "/react-svg-logo.svg", color: "text-blue-500" }
+                  { name: "React", logo: "/react-svg-logo.svg", color: "text-gv-blue-primary" }
                 ],
                 skills: ["App Router", "Layouts", "SSR", "Componentes UI"],
                 project: "Dashboard MVP Profesional",
-                gradient: "from-gray-500/5 via-blue-500/5 to-gray-500/5",
+                gradient: "from-gray-500/5 via-gv-blue-primary/5 to-gray-500/5",
                 borderColor: "border-gray-500/20"
               },
               {
@@ -1018,14 +1018,14 @@ export default function GazellaVisionLanding() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
-                  className="btn-primary px-8 py-3"
+                  className="bg-gv-blue-primary hover:bg-gv-blue-dark text-white px-8 py-3 transition-all duration-300 shadow-lg hover:shadow-xl"
                   onClick={() => window.open(getWhatsAppLink("reservar"), '_blank')}
                 >
                   Reservar mi cupo
                 </Button>
                 <Button
                   variant="outline"
-                  className="px-8 py-3"
+                  className="border-gv-blue-primary text-gv-blue-primary hover:bg-gv-blue-primary hover:text-white px-8 py-3 transition-all duration-300"
                   onClick={downloadTemario}
                 >
                   Ver temario completo
@@ -1077,7 +1077,7 @@ export default function GazellaVisionLanding() {
                 avatar: "/professional-man-avatar.png",
                 rating: 5,
                 company: "Freelance",
-                gradient: "from-blue-500/10 to-cyan-500/10"
+                gradient: "from-gv-blue-primary/10 to-gv-blue-light/10"
               },
               {
                 quote: "El enfoque práctico me ayudó a entender React y Next.js desde el día uno. Ahora desarrollo con confianza.",

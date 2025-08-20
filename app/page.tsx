@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { CheckCircle, Star, Users, Code, Zap, Target, MessageCircle, Menu, X, Award } from "lucide-react"
 import { motion, useScroll, useTransform } from "framer-motion"
@@ -87,13 +87,17 @@ export default function GazellaVisionLanding() {
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-20">
+          <div className="flex items-center justify-between h-20 lg:h-24">
             <motion.div
-              className="font-heading font-bold text-xl lg:text-2xl text-foreground"
-              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-3"
+              whileHover={{ scale: 1.08 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              Gazella Vision
+              <img
+                src="/gazella-vision-svg-logo.svg"
+                alt="Gazella Vision Logo"
+                className="h-12 sm:h-14 lg:h-16 w-auto drop-shadow-lg"
+              />
             </motion.div>
 
             {/* Desktop Navigation */}
@@ -798,162 +802,237 @@ export default function GazellaVisionLanding() {
         </div>
       </section>
 
-      {/* Program Section with Enhanced Mobile Layout */}
-      <section id="programa" className="section-padding bg-gray-50">
-        <div className="max-w-4xl mx-auto">
+      {/* Program Section with Enhanced Design */}
+      <section id="programa" className="section-padding bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
+        <div className="max-w-7xl mx-auto">
           <motion.div
-            className="text-center mb-12"
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              Programa de 8 semanas
+            <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 px-4 py-2">
+              <Code className="w-4 h-4 mr-2" />
+              Programa Intensivo
+            </Badge>
+            <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-6">
+              8 Semanas • 5 Tecnologías • 1 MVP Real
             </h2>
-            <p className="text-lg sm:text-xl text-muted-foreground">De fundamentos a MVP en producción</p>
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
+              De fundamentos a producción. Cada semana dominas nuevas tecnologías y construyes proyectos reales.
+            </p>
           </motion.div>
 
-          <div className="space-y-6">
+          <div className="grid lg:grid-cols-2 gap-8">
             {[
               {
-                weeks: "Semana 1–2",
-                title: "Fundamentos de React + Tailwind",
-                subtitle: "To-Do App & Landing Page",
-                description: "Aprende los componentes de React, hooks básicos, y estiliza con Tailwind CSS. Crea tu primera aplicación funcional.",
-                color: "border-primary",
-                gradient: "from-blue-500/10 to-primary/5",
-                icon: (
-                  <div className="flex items-center gap-1">
-                    <img src="/react-svg-logo.svg" alt="React" className="w-4 h-4" />
-                    <img src="/tailwindcss-logo.svg" alt="Tailwind CSS" className="w-4 h-4" />
-                  </div>
-                ),
-                skills: ["JSX", "useState", "useEffect", "Tailwind CSS"],
-                project: "To-Do App interactiva + Landing responsiva"
+                weeks: "Semanas 1-2",
+                title: "Fundamentos Sólidos",
+                subtitle: "React + Tailwind CSS",
+                description: "Domina los componentes de React, hooks esenciales, y crea interfaces modernas con Tailwind CSS. Tu primera app funcional lista.",
+                technologies: [
+                  { name: "React", logo: "/react-svg-logo.svg", color: "text-blue-500" },
+                  { name: "Tailwind CSS", logo: "/tailwindcss-logo.svg", color: "text-cyan-500" },
+                  { name: "JavaScript", logo: "/js-logo.svg", color: "text-yellow-500" }
+                ],
+                skills: ["Componentes", "Hooks", "Estado", "Estilos"],
+                project: "To-Do App + Landing Page",
+                gradient: "from-blue-500/5 via-cyan-500/5 to-blue-500/5",
+                borderColor: "border-blue-500/20"
               },
               {
-                weeks: "Semana 3–4",
-                title: "Next.js, rutas y UI",
-                subtitle: "Dashboard MVP",
-                description: "Domina Next.js App Router, navegación, layouts y componentes UI. Construye dashboards profesionales.",
-                color: "border-accent",
-                gradient: "from-green-500/10 to-accent/5",
-                icon: <img src="/nextjs-icon-svgrepo-com.svg" alt="Next.js" className="w-6 h-6" />,
-                skills: ["App Router", "Layouts", "Componentes UI", "Server Components"],
-                project: "Dashboard MVP con navegación completa"
+                weeks: "Semanas 3-4",
+                title: "Framework Profesional",
+                subtitle: "Next.js App Router",
+                description: "Construye aplicaciones de nivel empresarial con Next.js. Rutas, layouts, componentes server y client. Dashboard completo.",
+                technologies: [
+                  { name: "Next.js", logo: "/nextjs-icon-svgrepo-com.svg", color: "text-gray-800" },
+                  { name: "React", logo: "/react-svg-logo.svg", color: "text-blue-500" }
+                ],
+                skills: ["App Router", "Layouts", "SSR", "Componentes UI"],
+                project: "Dashboard MVP Profesional",
+                gradient: "from-gray-500/5 via-blue-500/5 to-gray-500/5",
+                borderColor: "border-gray-500/20"
               },
               {
-                weeks: "Semana 5–6",
-                title: "Supabase (Auth + CRUD) + React Query",
-                subtitle: "Task Manager real",
-                description: "Integra base de datos real, autenticación y gestión de estado. Tu app cobra vida con datos reales.",
-                color: "border-primary",
-                gradient: "from-purple-500/10 to-primary/5",
-                icon: (
-                  <div className="flex items-center gap-1">
-                    <img src="/supabase-logo-icon.svg" alt="Supabase" className="w-4 h-4" />
-                    <img src="/react-query-seeklogo.svg" alt="React Query" className="w-4 h-4" />
-                  </div>
-                ),
-                skills: ["Supabase Auth", "PostgreSQL", "React Query", "Estado global"],
-                project: "Task Manager con usuarios y persistencia"
+                weeks: "Semanas 5-6",
+                title: "Backend & Estado",
+                subtitle: "Supabase + React Query",
+                description: "Integra base de datos real, autenticación segura y gestión de estado avanzada. Tu app cobra vida con datos reales.",
+                technologies: [
+                  { name: "Supabase", logo: "/supabase-logo-icon.svg", color: "text-green-500" },
+                  { name: "React Query", logo: "/react-query-seeklogo.svg", color: "text-red-500" }
+                ],
+                skills: ["PostgreSQL", "Auth", "Queries", "Caché"],
+                project: "Task Manager con Usuarios",
+                gradient: "from-green-500/5 via-emerald-500/5 to-green-500/5",
+                borderColor: "border-green-500/20"
               },
               {
                 weeks: "Semana 7",
-                title: "Zustand + validaciones + API Routes",
-                subtitle: "React Hook Form & estado global",
-                description: "Optimiza la gestión de estado, validaciones robustas y APIs propias. Nivel profesional alcanzado.",
-                color: "border-accent",
-                gradient: "from-orange-500/10 to-accent/5",
-                icon: <img src="/zustand.svg" alt="Zustand" className="w-6 h-6" />,
-                skills: ["Zustand", "React Hook Form", "Zod", "API Routes"],
-                project: "App completa con formularios y validaciones"
+                title: "Estado Global",
+                subtitle: "Zustand + Validaciones",
+                description: "Optimiza el estado global, implementa validaciones robustas y APIs propias. Nivel profesional alcanzado.",
+                technologies: [
+                  { name: "Zustand", logo: "/zustand.svg", color: "text-orange-500" }
+                ],
+                skills: ["Estado Global", "React Hook Form", "Zod", "API Routes"],
+                project: "App con Formularios Avanzados",
+                gradient: "from-orange-500/5 via-amber-500/5 to-orange-500/5",
+                borderColor: "border-orange-500/20"
               },
               {
                 weeks: "Semana 8",
-                title: "Deploy en Vercel + Demo Day",
-                subtitle: "Proyecto final presentado",
-                description: "Lleva tu MVP a producción con Vercel. Presenta tu proyecto y recibe feedback de la comunidad.",
-                color: "border-primary",
-                gradient: "from-indigo-500/10 to-primary/5",
-                icon: <img src="/vercel-seeklogo.svg" alt="Vercel" className="w-6 h-6" />,
-                skills: ["Vercel Deploy", "Environment Variables", "Presentación", "Demo"],
-                project: "MVP SaaS funcionando en producción"
+                title: "Producción & Demo",
+                subtitle: "Deploy en Vercel",
+                description: "Lleva tu MVP a producción con Vercel. Configura dominios, variables de entorno y presenta tu proyecto al mundo.",
+                technologies: [
+                  { name: "Vercel", logo: "/vercel-seeklogo.svg", color: "text-gray-800" }
+                ],
+                skills: ["Deploy", "Dominios", "ENV Variables", "Presentación"],
+                project: "MVP SaaS en Producción",
+                gradient: "from-purple-500/5 via-indigo-500/5 to-purple-500/5",
+                borderColor: "border-purple-500/20"
               }
             ].map((week, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                whileHover={{ scale: 1.02, x: 10 }}
                 className="group"
               >
-                <Card className={`bg-gradient-to-br ${week.gradient} backdrop-blur-sm border-l-4 ${week.color} hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 relative overflow-hidden`}>
-                  {/* Glassmorphism overlay */}
-                  <div className="absolute inset-0 bg-white/70 backdrop-blur-xl border border-white/20 rounded-lg" />
+                <Card className={`relative border-2 ${week.borderColor} hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 bg-gradient-to-br ${week.gradient} backdrop-blur-sm overflow-hidden h-full`}>
+                  {/* Glassmorphism background */}
+                  <div className="absolute inset-0 bg-white/90 backdrop-blur-xl" />
 
-                  {/* Content */}
-                  <CardContent className="relative z-10 p-6">
-                    <div className="flex items-start gap-4">
-                      {/* Icon & Week */}
-                      <div className="flex-shrink-0">
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center text-2xl mb-2 group-hover:scale-110 transition-transform duration-300">
-                          {week.icon}
-                        </div>
-                        <Badge variant="outline" className="text-xs font-mono bg-white/80">
-                          {week.weeks}
-                        </Badge>
+                  {/* Decorative element */}
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-accent/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
+
+                  <CardHeader className="relative z-10 pb-4">
+                    {/* Week Badge */}
+                    <div className="flex items-center justify-between mb-4">
+                      <Badge variant="outline" className="font-mono text-xs bg-white/80">
+                        {week.weeks}
+                      </Badge>
+                      <div className="flex items-center gap-1">
+                        {week.technologies.map((tech, techIndex) => (
+                          <div key={techIndex} className="w-2 h-2 rounded-full bg-primary/20" />
+                        ))}
                       </div>
+                    </div>
 
-                      {/* Main Content */}
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-heading font-bold text-lg sm:text-xl mb-2 text-foreground group-hover:text-primary transition-colors">
-                          {week.title}
-                        </h3>
-                        <p className="text-primary/80 font-medium text-sm sm:text-base mb-3">
-                          {week.subtitle}
-                        </p>
-                        <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                          {week.description}
-                        </p>
+                    {/* Technology Logos - Prominent Display */}
+                    <div className="flex items-center justify-center gap-4 mb-6 p-4 bg-white/50 rounded-xl border border-white/20">
+                      {week.technologies.map((tech, techIndex) => (
+                        <motion.div
+                          key={techIndex}
+                          className="group/tech"
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
+                          <div className="relative">
+                            <img
+                              src={tech.logo}
+                              alt={tech.name}
+                              className="w-12 h-12 lg:w-16 lg:h-16 object-contain group-hover/tech:drop-shadow-lg transition-all duration-300"
+                            />
+                            {/* Tech name tooltip */}
+                            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover/tech:opacity-100 transition-opacity">
+                              <div className="bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+                                {tech.name}
+                              </div>
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
 
-                        {/* Skills Tags */}
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {week.skills.map((skill, skillIndex) => (
-                            <motion.span
-                              key={skillIndex}
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              whileInView={{ opacity: 1, scale: 1 }}
-                              transition={{ delay: index * 0.1 + skillIndex * 0.05 }}
-                              className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-md font-medium hover:bg-primary/20 transition-colors"
-                            >
-                              {skill}
-                            </motion.span>
-                          ))}
-                        </div>
+                    <CardTitle className="font-heading text-xl lg:text-2xl mb-2 group-hover:text-primary transition-colors">
+                      {week.title}
+                    </CardTitle>
+                    <CardDescription className="text-primary font-semibold text-base mb-3">
+                      {week.subtitle}
+                    </CardDescription>
+                  </CardHeader>
 
-                        {/* Project Outcome */}
-                        <div className="flex items-center gap-2 text-sm">
-                          <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
-                          <span className="text-muted-foreground">
-                            <strong className="text-foreground">Proyecto:</strong> {week.project}
-                          </span>
-                        </div>
-                      </div>
+                  <CardContent className="relative z-10 space-y-4">
+                    <p className="text-muted-foreground leading-relaxed">
+                      {week.description}
+                    </p>
+
+                    {/* Skills Grid */}
+                    <div className="grid grid-cols-2 gap-2">
+                      {week.skills.map((skill, skillIndex) => (
+                        <motion.div
+                          key={skillIndex}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: index * 0.1 + skillIndex * 0.05 }}
+                          className="flex items-center gap-2 p-2 bg-primary/5 rounded-lg hover:bg-primary/10 transition-colors"
+                        >
+                          <CheckCircle className="w-3 h-3 text-accent flex-shrink-0" />
+                          <span className="text-xs lg:text-sm font-medium">{skill}</span>
+                        </motion.div>
+                      ))}
                     </div>
                   </CardContent>
 
-                  {/* Animated border effect */}
-                  <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 blur-sm" />
+                  <CardFooter className="relative z-10 pt-4">
+                    <div className="w-full p-3 bg-accent/10 rounded-lg border border-accent/20">
+                      <div className="flex items-center gap-2">
+                        <Target className="w-4 h-4 text-accent flex-shrink-0" />
+                        <div>
+                          <p className="text-xs text-muted-foreground">Proyecto Final:</p>
+                          <p className="text-sm font-semibold text-foreground">{week.project}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </CardFooter>
+
+                  {/* Shine effect */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-full group-hover:-translate-x-full transition-transform duration-1000" />
                   </div>
                 </Card>
               </motion.div>
             ))}
           </div>
+
+          {/* Final CTA for Program Section */}
+          <motion.div
+            className="mt-16 text-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-2xl p-8 border border-primary/10">
+              <h3 className="font-heading text-xl lg:text-2xl font-bold mb-4">
+                ¿Listo para construir tu MVP en 8 semanas?
+              </h3>
+              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Únete a desarrolladores que ya están trabajando con estas tecnologías en empresas reales.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  className="btn-primary px-8 py-3"
+                  onClick={() => window.open(getWhatsAppLink("reservar"), '_blank')}
+                >
+                  Reservar mi cupo
+                </Button>
+                <Button
+                  variant="outline"
+                  className="px-8 py-3"
+                  onClick={downloadTemario}
+                >
+                  Ver temario completo
+                </Button>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

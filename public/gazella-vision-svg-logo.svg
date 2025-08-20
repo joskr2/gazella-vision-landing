@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 100" role="img" aria-labelledby="title desc">
+  <title>Gazella Vision Logo</title>
+  <desc>Logo con silueta estilizada de gacela y texto Gazella Vision</desc>
+  <style>
+    .primary { fill:#2563EB; }
+    .dark { stroke:#1E3A8A; }
+    .light { fill:#60A5FA; }
+    .text { font-family: 'Poppins', sans-serif; }
+  </style>
+
+  <!-- Silueta de la gacela -->
+  <path class="primary" d="M40 80 C20 55, 25 30, 55 20 
+                           C85 10, 110 25, 125 45
+                           C140 65, 150 80, 160 82
+                           L145 78 C130 65, 105 48, 80 50
+                           C65 52, 55 65, 48 82 Z"></path>
+  <!-- Cuernos -->
+  <path d="M65 12 C63 22, 68 30, 70 36" class="dark" stroke-width="3" fill="none" stroke-linecap="round"></path>
+  <path d="M75 10 C74 20, 76 30, 78 36" class="dark" stroke-width="3" fill="none" stroke-linecap="round"></path>
+  <!-- Ojo -->
+  <circle cx="95" cy="42" r="3" class="light"></circle>
+
+  <!-- Texto Gazella Vision -->
+  <text x="190" y="55" font-size="32" class="text" fill="#2563EB" font-weight="700">Gazella</text>
+  <text x="190" y="85" font-size="28" class="text" fill="#1E3A8A" font-weight="500">Vision</text>
+</svg>

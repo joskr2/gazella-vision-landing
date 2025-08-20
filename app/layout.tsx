@@ -22,6 +22,11 @@ export const metadata: Metadata = {
   description:
     "Publica tu primer MVP SaaS en producción y compártelo en entrevistas o lánzalo como negocio. Clases limitadas a 15 alumnos.",
   generator: "v0.app",
+  icons: {
+    icon: "/favicon-gazella-vision.svg",
+    shortcut: "/favicon-gazella-vision.svg",
+    apple: "/favicon-gazella-vision.svg",
+  },
 }
 
 export default function RootLayout({

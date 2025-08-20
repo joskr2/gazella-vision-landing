@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Gazella Vision Favicon">
+  <style>
+    .primary { fill:#2563EB; }
+    .dark { stroke:#1E3A8A; }
+    .light { fill:#60A5FA; }
+  </style>
+
+  <!-- Cabeza circular estilizada -->
+  <circle cx="32" cy="32" r="20" class="primary"></circle>
+  <!-- Cuernos -->
+  <path d="M24 12 C22 18, 26 24, 28 28" class="dark" stroke-width="3" fill="none" stroke-linecap="round"></path>
+  <path d="M40 12 C42 18, 38 24, 36 28" class="dark" stroke-width="3" fill="none" stroke-linecap="round"></path>
+  <!-- Ojo -->
+  <circle cx="34" cy="28" r="2.5" class="light"></circle>
+</svg>

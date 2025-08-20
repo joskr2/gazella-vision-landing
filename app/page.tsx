@@ -1534,7 +1534,13 @@ export default function GazellaVisionLanding() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <div className="font-heading font-bold text-xl mb-4">Gazella Vision</div>
+              <div className="flex items-center mb-4">
+                <img
+                  src="/gazella-vision-svg-logo.svg"
+                  alt="Gazella Vision"
+                  className="h-12 w-auto mr-3 filter brightness-0 invert opacity-75"
+                />
+              </div>
               <p className="text-gray-400">Formamos desarrolladores fullstack con proyectos reales en producción.</p>
             </motion.div>
 

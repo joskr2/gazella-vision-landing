@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { CheckCircle, Star, Users, Code, Zap, Target, MessageCircle, Menu, X } from "lucide-react"
+import { CheckCircle, Star, Users, Code, Zap, Target, MessageCircle, Menu, X, Award } from "lucide-react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
 
@@ -51,6 +51,34 @@ export default function GazellaVisionLanding() {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      {/* Floating WhatsApp Button */}
+      <motion.div
+        className="fixed bottom-6 right-6 z-50"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 2, duration: 0.5 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <button
+          onClick={() => window.open(getWhatsAppLink("consultar"), '_blank')}
+          className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+        >
+          <img
+            src="/whatsapp-icon-seeklogo.svg"
+            alt="WhatsApp"
+            className="w-7 h-7 group-hover:scale-110 transition-transform duration-300"
+          />
+
+          {/* Tooltip */}
+          <div className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <div className="bg-gray-800 text-white text-sm px-3 py-2 rounded-lg whitespace-nowrap shadow-lg">
+              ¡Chatea con nosotros!
+              <div className="absolute left-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-l-gray-800"></div>
+            </div>
+          </div>
+        </button>
+      </motion.div>
       {/* Enhanced Header with Glassmorphism */}
       <motion.header
         className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-xl border-b border-white/20 shadow-lg"
@@ -256,7 +284,8 @@ export default function GazellaVisionLanding() {
               {[
                 { icon: Users, text: "Clases limitadas a 15 alumnos" },
                 { icon: Zap, text: "Clases en vivo" },
-                { icon: Target, text: "Proyecto final publicado en Vercel" }
+                { icon: Target, text: "Proyecto final publicado en Vercel" },
+                { icon: Award, text: "Docentes de alto nivel" }
               ].map((badge, index) => (
                 <motion.div
                   key={index}
@@ -270,6 +299,46 @@ export default function GazellaVisionLanding() {
                   </Badge>
                 </motion.div>
               ))}
+            </motion.div>
+
+            {/* Tech Stack Preview - Mobile */}
+            <motion.div
+              className="mt-8 text-center"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.2 }}
+            >
+              <p className="text-sm text-muted-foreground mb-4">Stack que aprenderás:</p>
+              <div className="flex justify-center items-center gap-4 flex-wrap">
+                {[
+                  { name: "React", logo: "/react-svg-logo.svg" },
+                  { name: "Next.js", logo: "/nextjs-icon-svgrepo-com.svg" },
+                  { name: "Supabase", logo: "/supabase-logo-icon.svg" },
+                  { name: "Tailwind", logo: "/tailwindcss-logo.svg" }
+                ].map((tech, index) => (
+                  <motion.div
+                    key={tech.name}
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                      duration: 0.4,
+                      delay: 1.3 + index * 0.1,
+                      type: "spring",
+                      stiffness: 200
+                    }}
+                    whileHover={{ scale: 1.1 }}
+                    className="group"
+                  >
+                    <div className="w-10 h-10 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200 shadow-sm group-hover:shadow-md group-hover:border-primary/30 transition-all duration-300">
+                      <img
+                        src={tech.logo}
+                        alt={`${tech.name} logo`}
+                        className="w-6 h-6 object-contain group-hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </motion.div>
           </div>
 
@@ -342,7 +411,8 @@ export default function GazellaVisionLanding() {
                 {[
                   { icon: Users, text: "Clases limitadas a 15 alumnos" },
                   { icon: Zap, text: "Clases en vivo" },
-                  { icon: Target, text: "Proyecto final publicado en Vercel" }
+                  { icon: Target, text: "Proyecto final publicado en Vercel" },
+                  { icon: Award, text: "Docentes de alto nivel" }
                 ].map((badge, index) => (
                   <motion.div
                     key={index}
@@ -356,6 +426,47 @@ export default function GazellaVisionLanding() {
                     </Badge>
                   </motion.div>
                 ))}
+              </motion.div>
+
+              {/* Tech Stack Preview - Desktop */}
+              <motion.div
+                className="mt-6"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.1 }}
+              >
+                <p className="text-sm text-muted-foreground mb-4">Stack que aprenderás:</p>
+                <div className="flex items-center gap-4">
+                  {[
+                    { name: "React", logo: "/react-svg-logo.svg" },
+                    { name: "Next.js", logo: "/nextjs-icon-svgrepo-com.svg" },
+                    { name: "Supabase", logo: "/supabase-logo-icon.svg" },
+                    { name: "Tailwind", logo: "/tailwindcss-logo.svg" },
+                    { name: "JavaScript", logo: "/js-logo.svg" }
+                  ].map((tech, index) => (
+                    <motion.div
+                      key={tech.name}
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{
+                        duration: 0.4,
+                        delay: 1.2 + index * 0.1,
+                        type: "spring",
+                        stiffness: 200
+                      }}
+                      whileHover={{ scale: 1.1 }}
+                      className="group"
+                    >
+                      <div className="w-12 h-12 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200 shadow-sm group-hover:shadow-md group-hover:border-primary/30 transition-all duration-300">
+                        <img
+                          src={tech.logo}
+                          alt={`${tech.name} logo`}
+                          className="w-7 h-7 object-contain group-hover:scale-110 transition-transform duration-300"
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
             </motion.div>
 
@@ -429,8 +540,8 @@ export default function GazellaVisionLanding() {
               },
               {
                 icon: Zap,
-                title: "Stack empleable",
-                description: "React, Next.js, Supabase, React Query, Tailwind, Zustand. Las tecnologías que buscan las empresas.",
+                title: "Proyecto Real",
+                description: "Construye un dashboard completo con autenticación, CRUD, estado global y deploy profesional.",
                 color: "text-accent",
                 gradient: "from-orange-500/10 via-accent/5 to-transparent",
                 bgIcon: "bg-orange-500/10"
@@ -514,6 +625,179 @@ export default function GazellaVisionLanding() {
         </div>
       </section>
 
+      {/* Technology Stack Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-green-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 w-36 h-36 bg-purple-500/10 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2" />
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <Badge className="mb-4 bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 px-4 py-2">
+              <Code className="w-4 h-4 mr-2" />
+              Stack Tecnológico
+            </Badge>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-primary to-accent bg-clip-text text-transparent">
+              Tecnologías que <span className="text-accent">buscan las empresas</span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Domina el stack completo de desarrollo moderno con las herramientas más demandadas del mercado
+            </p>
+          </motion.div>
+
+          {/* Technology Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8">
+            {[
+              {
+                name: "React",
+                logo: "/react-svg-logo.svg",
+                description: "Biblioteca UI líder",
+                color: "from-blue-400 to-cyan-500",
+                bgColor: "bg-blue-50"
+              },
+              {
+                name: "Next.js",
+                logo: "/nextjs-icon-svgrepo-com.svg",
+                description: "Framework React",
+                color: "from-gray-700 to-gray-900",
+                bgColor: "bg-gray-50"
+              },
+              {
+                name: "JavaScript",
+                logo: "/js-logo.svg",
+                description: "Lenguaje fundamental",
+                color: "from-yellow-400 to-orange-500",
+                bgColor: "bg-yellow-50"
+              },
+              {
+                name: "Supabase",
+                logo: "/supabase-logo-icon.svg",
+                description: "Backend as a Service",
+                color: "from-green-400 to-emerald-500",
+                bgColor: "bg-green-50"
+              },
+              {
+                name: "Tailwind CSS",
+                logo: "/tailwindcss-logo.svg",
+                description: "Utility-first CSS",
+                color: "from-cyan-400 to-blue-500",
+                bgColor: "bg-cyan-50"
+              },
+              {
+                name: "React Query",
+                logo: "/react-query-seeklogo.svg",
+                description: "State Management",
+                color: "from-red-400 to-pink-500",
+                bgColor: "bg-red-50"
+              }
+            ].map((tech, index) => (
+              <motion.div
+                key={tech.name}
+                initial={{ opacity: 0, y: 50, scale: 0.8 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.1,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                viewport={{ once: true }}
+                className="group"
+              >
+                <Card className={`relative h-full border-2 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 overflow-hidden ${tech.bgColor}/50 backdrop-blur-sm`}>
+                  {/* Glassmorphism background */}
+                  <div className="absolute inset-0 bg-white/80 backdrop-blur-xl" />
+
+                  {/* Gradient overlay on hover */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+
+                  <CardContent className="relative z-10 p-6 text-center h-full flex flex-col justify-center">
+                    {/* Logo */}
+                    <motion.div
+                      className="mb-4 mx-auto"
+                      whileHover={{ scale: 1.2, rotate: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <div className="w-16 h-16 lg:w-20 lg:h-20 mx-auto flex items-center justify-center">
+                        <img
+                          src={tech.logo}
+                          alt={`${tech.name} logo`}
+                          className="w-full h-full object-contain group-hover:drop-shadow-lg transition-all duration-300"
+                        />
+                      </div>
+                    </motion.div>
+
+                    {/* Technology Name */}
+                    <h3 className="font-bold text-lg lg:text-xl mb-2 group-hover:text-primary transition-colors duration-300">
+                      {tech.name}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-sm text-muted-foreground group-hover:text-gray-700 transition-colors duration-300">
+                      {tech.description}
+                    </p>
+
+                    {/* Progress bar on hover */}
+                    <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className={`h-1 bg-gradient-to-r ${tech.color} rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`} />
+                    </div>
+                  </CardContent>
+
+                  {/* Shine effect */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 translate-x-full group-hover:-translate-x-full transition-transform duration-1000" />
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Additional Technologies */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="mt-12 text-center"
+          >
+            <p className="text-muted-foreground mb-6">También aprenderás:</p>
+            <div className="flex flex-wrap justify-center gap-3">
+              {[
+                { name: "Zustand", logo: "/zustand.svg" },
+                { name: "Vercel", logo: "/vercel-seeklogo.svg" }
+              ].map((tool, index) => (
+                <motion.div
+                  key={tool.name}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all duration-300 group"
+                >
+                  <img
+                    src={tool.logo}
+                    alt={`${tool.name} logo`}
+                    className="w-5 h-5 group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <span className="text-sm font-medium text-gray-700 group-hover:text-primary transition-colors duration-300">
+                    {tool.name}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Program Section with Enhanced Mobile Layout */}
       <section id="programa" className="section-padding bg-gray-50">
         <div className="max-w-4xl mx-auto">
@@ -539,7 +823,12 @@ export default function GazellaVisionLanding() {
                 description: "Aprende los componentes de React, hooks básicos, y estiliza con Tailwind CSS. Crea tu primera aplicación funcional.",
                 color: "border-primary",
                 gradient: "from-blue-500/10 to-primary/5",
-                icon: "⚛️",
+                icon: (
+                  <div className="flex items-center gap-1">
+                    <img src="/react-svg-logo.svg" alt="React" className="w-4 h-4" />
+                    <img src="/tailwindcss-logo.svg" alt="Tailwind CSS" className="w-4 h-4" />
+                  </div>
+                ),
                 skills: ["JSX", "useState", "useEffect", "Tailwind CSS"],
                 project: "To-Do App interactiva + Landing responsiva"
               },
@@ -550,7 +839,7 @@ export default function GazellaVisionLanding() {
                 description: "Domina Next.js App Router, navegación, layouts y componentes UI. Construye dashboards profesionales.",
                 color: "border-accent",
                 gradient: "from-green-500/10 to-accent/5",
-                icon: "🚀",
+                icon: <img src="/nextjs-icon-svgrepo-com.svg" alt="Next.js" className="w-6 h-6" />,
                 skills: ["App Router", "Layouts", "Componentes UI", "Server Components"],
                 project: "Dashboard MVP con navegación completa"
               },
@@ -561,7 +850,12 @@ export default function GazellaVisionLanding() {
                 description: "Integra base de datos real, autenticación y gestión de estado. Tu app cobra vida con datos reales.",
                 color: "border-primary",
                 gradient: "from-purple-500/10 to-primary/5",
-                icon: "🗄️",
+                icon: (
+                  <div className="flex items-center gap-1">
+                    <img src="/supabase-logo-icon.svg" alt="Supabase" className="w-4 h-4" />
+                    <img src="/react-query-seeklogo.svg" alt="React Query" className="w-4 h-4" />
+                  </div>
+                ),
                 skills: ["Supabase Auth", "PostgreSQL", "React Query", "Estado global"],
                 project: "Task Manager con usuarios y persistencia"
               },
@@ -572,7 +866,7 @@ export default function GazellaVisionLanding() {
                 description: "Optimiza la gestión de estado, validaciones robustas y APIs propias. Nivel profesional alcanzado.",
                 color: "border-accent",
                 gradient: "from-orange-500/10 to-accent/5",
-                icon: "⚡",
+                icon: <img src="/zustand.svg" alt="Zustand" className="w-6 h-6" />,
                 skills: ["Zustand", "React Hook Form", "Zod", "API Routes"],
                 project: "App completa con formularios y validaciones"
               },
@@ -583,7 +877,7 @@ export default function GazellaVisionLanding() {
                 description: "Lleva tu MVP a producción con Vercel. Presenta tu proyecto y recibe feedback de la comunidad.",
                 color: "border-primary",
                 gradient: "from-indigo-500/10 to-primary/5",
-                icon: "🎯",
+                icon: <img src="/vercel-seeklogo.svg" alt="Vercel" className="w-6 h-6" />,
                 skills: ["Vercel Deploy", "Environment Variables", "Presentación", "Demo"],
                 project: "MVP SaaS funcionando en producción"
               }
@@ -844,7 +1138,7 @@ export default function GazellaVisionLanding() {
                 <CardContent className="space-y-4">
                   <div className="space-y-3">
                     {[
-                      { included: true, text: "2 clases semanales en vivo (Mar-Jue 7-9PM, 1h cada una)" },
+                      { included: true, text: "2 clases semanales en vivo", schedule: "(Mar-Jue 7-8PM • Sáb 1-3PM)" },
                       { included: true, text: "Acceso a clases grabadas" },
                       { included: true, text: "Comunidad privada" },
                       { included: true, text: "Actualizaciones del curso" },
@@ -856,7 +1150,14 @@ export default function GazellaVisionLanding() {
                         ) : (
                           <span className="w-5 h-5 text-center flex-shrink-0 text-muted-foreground">✗</span>
                         )}
-                        <span className={feature.included ? "" : "text-muted-foreground text-sm"}>{feature.text}</span>
+                        <div className="flex flex-col">
+                          <span className={feature.included ? "" : "text-muted-foreground text-sm"}>
+                            {feature.text}
+                          </span>
+                          {feature.schedule && (
+                            <span className="text-xs text-gray-500">{feature.schedule}</span>
+                          )}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -895,7 +1196,7 @@ export default function GazellaVisionLanding() {
                 <CardContent className="space-y-4">
                   <div className="space-y-3">
                     {[
-                      "5 clases semanales en vivo (Lun-Vie 7-9PM, 2h cada una)",
+                      { text: "5 clases semanales en vivo", schedule: "(Lun-Vie 7-9PM • Sáb 8AM-1PM)" },
                       "Proyectos semanales guiados",
                       "Feedback grupal de código",
                       "Proyecto final publicado en Vercel",
@@ -904,7 +1205,14 @@ export default function GazellaVisionLanding() {
                     ].map((feature, index) => (
                       <div key={index} className="flex items-center gap-3">
                         <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                        <span className="text-sm lg:text-base">{feature}</span>
+                        {typeof feature === 'string' ? (
+                          <span className="text-sm lg:text-base">{feature}</span>
+                        ) : (
+                          <div className="flex flex-col">
+                            <span className="text-sm lg:text-base">{feature.text}</span>
+                            <span className="text-xs text-gray-500">{feature.schedule}</span>
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>
@@ -1045,7 +1353,7 @@ export default function GazellaVisionLanding() {
                 className="border-white text-white hover:bg-white hover:text-primary px-8 py-4 text-lg bg-transparent w-full sm:w-auto"
                 onClick={() => window.open(getWhatsAppLink("consultar"), '_blank')}
               >
-                <MessageCircle className="w-5 h-5 mr-2" />
+                <img src="/whatsapp-icon-seeklogo.svg" alt="WhatsApp" className="w-5 h-5 mr-2" />
                 Hablar por WhatsApp
               </Button>
             </motion.div>
@@ -1100,10 +1408,10 @@ export default function GazellaVisionLanding() {
                   href="https://josue-patricio.vercel.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors py-1"
+                  className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors py-1 group"
                   whileHover={{ x: 5 }}
                 >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM3 5h18v2.4L12 13 3 7.4V5zm0 4.6l9 5.4 9-5.4V19H3V9.6z" />
                   </svg>
                   <span>Sitio Web</span>
@@ -1112,10 +1420,10 @@ export default function GazellaVisionLanding() {
                   href="https://www.linkedin.com/in/josue-retamozo/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors py-1"
+                  className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors py-1 group"
                   whileHover={{ x: 5 }}
                 >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                   </svg>
                   <span>LinkedIn</span>
@@ -1124,10 +1432,10 @@ export default function GazellaVisionLanding() {
                   href={`https://wa.me/983765362?text=${encodeURIComponent("¡Hola! Tengo algunas preguntas sobre el programa Gazella Vision. ¿Podrían ayudarme con más información?")}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors py-1"
+                  className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors py-1 group"
                   whileHover={{ x: 5 }}
                 >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488" />
                   </svg>
                   <span>WhatsApp</span>

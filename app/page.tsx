@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
-import { CheckCircle, Star, Users, Code, Zap, Target, MessageCircle, Menu, X, Award, Calendar, DiamondPlus, FileText } from "lucide-react"
+import { CheckCircle, Star, Users, Code, Zap, Target, MessageCircle, Menu, X, Award, Calendar, DiamondPlus, FileText, BookOpen } from "lucide-react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
 import Autoplay from "embla-carousel-autoplay"
@@ -354,74 +354,61 @@ export default function GazellaVisionLanding() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-2xl" />
 
-                {/* Floating Elements */}
+                {/* Date Banner - Positioned inside top right corner, blue and larger */}
                 <motion.div
-                  className="absolute -top-4 -right-4 bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-lg border border-gv-blue-primary/10"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                  className="absolute top-4 right-4 p-3"
                 >
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                    <span className="text-sm font-medium text-gray-700">En producción</span>
+                  <div className="bg-gradient-to-r from-gv-blue-primary to-gv-blue-dark backdrop-blur-sm text-white rounded-xl px-6 py-3 shadow-xl border border-gv-blue-primary/30">
+                    <div className="flex items-center gap-3">
+                      <Calendar className="w-5 h-5 text-white" />
+                      <div className="text-sm">
+                        <p className="font-medium opacity-90">Próximo Grupo</p>
+                        <p className="font-bold text-white">1 Sept 2025</p>
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
 
-              </motion.div>
-            </motion.div>
-
-            {/* Date Banner */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="inline-block"
-            >
-              <div className="bg-gradient-to-r from-gv-blue-primary to-gv-blue-dark text-white rounded-2xl px-8 py-4 shadow-xl border border-white/20">
-                <div className="flex items-center justify-center gap-3">
-                  <Calendar className="w-6 h-6" />
-                  <div className="text-center">
-                    <p className="text-sm font-semibold uppercase tracking-wider opacity-90">Próximo Grupo</p>
-                    <p className="text-xl font-bold">Inicia el 1 de Septiembre 2025</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto"
-            >
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto"
-              >
-                <Button
-                  size="lg"
-                  className="bg-gv-blue-primary hover:bg-gv-blue-dark text-white text-lg font-semibold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 w-full sm:w-auto"
-                  onClick={() => window.open(getWhatsAppLink("reservar"), '_blank')}
+                {/* CTA Buttons - Positioned in bottom-right corner of image, horizontal layout */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1 }}
+                  className="absolute bottom-4 right-4 flex flex-row gap-3 p-3"
                 >
-                  <Users className="w-5 h-5 mr-2" />
-                  Reserva tu cupo
-                </Button>
-              </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button
+                      size="sm"
+                      className="bg-gv-blue-primary hover:bg-gv-blue-dark text-white text-sm font-semibold px-4 py-2 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 whitespace-nowrap"
+                      onClick={() => window.open(getWhatsAppLink("reservar"), '_blank')}
+                    >
+                      <Users className="w-4 h-4 mr-2" />
+                      Reserva
+                    </Button>
+                  </motion.div>
 
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto"
-              >
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-gv-blue-primary text-gv-blue-primary hover:bg-gv-blue-primary hover:text-white text-lg font-semibold px-8 py-4 rounded-xl transition-all duration-300 w-full sm:w-auto"
-                  onClick={downloadTemario}
-                >
-                  Ver temario (PDF)
-                </Button>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="border-2 border-white text-white hover:bg-white hover:text-gv-blue-primary text-sm font-semibold px-4 py-2 rounded-xl transition-all duration-300 whitespace-nowrap bg-transparent backdrop-blur-sm"
+                      onClick={downloadTemario}
+                    >
+                      <BookOpen className="w-4 h-4 mr-2" />
+                      Ver temario
+                    </Button>
+                  </motion.div>
+                </motion.div>
+
               </motion.div>
             </motion.div>
 

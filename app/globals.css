@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    /* Custom Gazella Vision color scheme */
+    --primary: 198 75% 65%;
+    /* #6EC1E4 */
+    --primary-foreground: 0 0% 100%;
+    --accent: 134 51% 58%;
+    /* #61CE70 */
+    --accent-foreground: 0 0% 100%;
+    --foreground: 210 7% 35%;
+    /* #54595F */
+    --muted-foreground: 0 0% 48%;
+    /* #7A7A7A */
+
+    --background: 0 0% 100%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 7% 35%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 7% 35%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 210 7% 35%;
+    --muted: 0 0% 96.1%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 198 75% 65%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --radius: 0.75rem;
+
+    /* Font family variables for Roboto and Roboto Slab */
+    --font-sans: var(--font-roboto);
+    --font-heading: var(--font-roboto-slab);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Heading font family utility */
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer components {
+
+  /* Custom component styles for Gazella Vision */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 rounded-xl font-medium transition-colors;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-6 py-3 rounded-xl font-medium transition-colors;
+  }
+
+  .section-padding {
+    @apply py-16 px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Glassmorphism utilities */
+  .glass {
+    @apply bg-white/10 backdrop-blur-xl border border-white/20;
+  }
+
+  .glass-strong {
+    @apply bg-white/20 backdrop-blur-2xl border border-white/30 shadow-xl;
+  }
+
+  .glass-header {
+    @apply bg-white/5 backdrop-blur-3xl border-b border-white/10 shadow-lg;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom animations */
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .section-padding {
+      @apply py-12 px-4;
+    }
+  }
+}

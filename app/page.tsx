@@ -10,6 +10,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
 import Autoplay from "embla-carousel-autoplay"
 import { ModeToggle } from "@/components/mode-toggle"
+import TypingAnimation from "@/components/molecules/typing-animation"
 
 export default function GazellaVisionLanding() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -325,20 +326,13 @@ export default function GazellaVisionLanding() {
                 Desarrollador Web Completo en
                 <span className="bg-gradient-to-r from-gv-blue-primary to-gv-blue-dark bg-clip-text text-transparent"> 8 semanas</span>
               </h1>
-              <p className="text-xl sm:text-2xl lg:text-3xl font-medium text-gv-blue-dark max-w-4xl mx-auto">
+              <p className="text-md sm:text-lg lg:text-xl text-gv-blue-dark max-w-4xl mx-auto">
                 Frontend + Backend + Base de Datos
               </p>
             </motion.div>
 
             {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg sm:text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto"
-            >
-              Lanza tu primera aplicación web profesional y úsala para conseguir trabajo o crear tu propio negocio.
-            </motion.p>
+            <TypingAnimation />
 
             {/* Dashboard Image Section */}
             <motion.div
@@ -371,51 +365,51 @@ export default function GazellaVisionLanding() {
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className="relative"
               >
-                <Image
-                  src="/modern-dashboard-mockup.png"
-                  alt="Dashboard MVP mockup showing a modern SaaS application interface"
-                  width={1200}
-                  height={800}
-                  className="w-full h-auto rounded-2xl shadow-2xl border border-white/20"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-2xl" />
-
-                {/* CTA Buttons - Only overlay on desktop */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1 }}
-                  className="hidden sm:flex absolute bottom-4 right-4 flex-row gap-3 p-2"
-                >
+                <div className="w-full aspect-[16/9] relative">
+                  <Image
+                    src="/modern-dashboard-mockup.png"
+                    alt="Dashboard MVP mockup showing a modern SaaS application interface"
+                    fill
+                    className="object-cover rounded-2xl shadow-2xl border border-white/20"
+                    sizes="(min-width: 1024px) 1200px, 100vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-2xl" />
+                  {/* CTA Buttons - Only overlay on desktop */}
                   <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 1 }}
+                    className="hidden sm:flex absolute bottom-4 right-4 flex-row gap-3 p-2"
                   >
-                    <Button
-                      size="sm"
-                      className="bg-gv-blue-primary hover:bg-gv-blue-dark text-white text-sm font-semibold px-4 py-2 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300"
-                      onClick={() => window.open(getWhatsAppLink("reservar"), '_blank')}
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      <Users className="w-4 h-4 mr-2" />
-                      Reserva
-                    </Button>
-                  </motion.div>
-
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="border-2 border-white text-white hover:bg-white hover:text-gv-blue-primary text-sm font-semibold px-4 py-2 rounded-xl transition-all duration-300 bg-transparent backdrop-blur-sm"
-                      onClick={downloadTemario}
+                      <Button
+                        size="sm"
+                        className="bg-gv-blue-primary hover:bg-gv-blue-dark text-white text-sm font-semibold px-4 py-2 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300"
+                        onClick={() => window.open(getWhatsAppLink("reservar"), '_blank')}
+                      >
+                        <Users className="w-4 h-4 mr-2" />
+                        Reserva
+                      </Button>
+                    </motion.div>
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      <BookOpen className="w-4 h-4 mr-2" />
-                      Ver temario
-                    </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="border-2 border-white text-white hover:bg-white hover:text-gv-blue-primary text-sm font-semibold px-4 py-2 rounded-xl transition-all duration-300 bg-transparent backdrop-blur-sm"
+                        onClick={downloadTemario}
+                      >
+                        <BookOpen className="w-4 h-4 mr-2" />
+                        Ver temario
+                      </Button>
+                    </motion.div>
                   </motion.div>
-                </motion.div>
+                </div>
               </motion.div>
 
               {/* CTA Buttons - Below image on mobile only */}

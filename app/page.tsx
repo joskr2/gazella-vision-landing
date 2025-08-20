@@ -116,7 +116,7 @@ export default function GazellaVisionLanding() {
 
   // Función para generar enlaces de WhatsApp con mensajes predeterminados
   const getWhatsAppLink = (action: string) => {
-    const phoneNumber = "983765362"
+    const phoneNumber = "51983765362"
     const messages = {
       "postular": "¡Hola! Me interesa postular al programa Gazella Vision de React + Next.js. ¿Podrían darme más información sobre el proceso de inscripción?",
       "starter": "¡Hola! Me interesa el plan Starter de Gazella Vision. ¿Podrían darme más detalles sobre qué incluye y cómo comenzar?",
@@ -1598,7 +1598,7 @@ export default function GazellaVisionLanding() {
                   <span>LinkedIn</span>
                 </motion.a>
                 <motion.a
-                  href={`https://wa.me/983765362?text=${encodeURIComponent("¡Hola! Tengo algunas preguntas sobre el programa Gazella Vision. ¿Podrían ayudarme con más información?")}`}
+                  href={`https://wa.me/51983765362?text=${encodeURIComponent("¡Hola! Tengo algunas preguntas sobre el programa Gazella Vision. ¿Podrían ayudarme con más información?")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors py-1 group"

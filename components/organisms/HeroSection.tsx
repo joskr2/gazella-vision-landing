@@ -31,7 +31,10 @@ export function HeroSection({ onReservar, onDownloadTemario }: HeroSectionProps)
     { name: "React", logo: "/react-svg-logo.svg" },
     { name: "Next.js", logo: "/nextjs-icon-svgrepo-com.svg" },
     { name: "Supabase", logo: "/supabase-logo-icon.svg" },
-    { name: "Tailwind", logo: "/tailwindcss-logo.svg" }
+    { name: "Tailwind", logo: "/tailwindcss-logo.svg" },
+    { name: "Java", logo: "/java-svg.svg" },
+    { name: "Spring Boot", logo: "/spring-boot-svg.svg" },
+    { name: "AWS", logo: "/aws-logo-svg.svg" }
   ]
 
   const features = [

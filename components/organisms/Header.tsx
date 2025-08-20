@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { useState } from "react"
 import { NavigationMenu } from "@/components/molecules/NavigationMenu"
+import Image from "next/image"
 
 interface HeaderProps {
   onPostular: () => void
@@ -25,9 +26,11 @@ export function Header({ onPostular }: HeaderProps) {
             whileHover={{ scale: 1.08 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            <img
+            <Image
               src="/gazella-vision-svg-logo.svg"
               alt="Gazella Vision Logo"
+              width={64}
+              height={64}
               className="h-12 sm:h-14 lg:h-16 w-auto drop-shadow-lg"
             />
           </motion.div>

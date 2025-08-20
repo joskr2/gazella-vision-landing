@@ -1,6 +1,7 @@
-"use client"
+'use client'
 
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 interface FloatingWhatsAppProps {
   onClick: () => void
@@ -20,9 +21,11 @@ export function FloatingWhatsApp({ onClick }: FloatingWhatsAppProps) {
         onClick={onClick}
         className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
       >
-        <img
+        <Image
           src="/whatsapp-icon-seeklogo.svg"
           alt="WhatsApp"
+          width={28}
+          height={28}
           className="w-7 h-7 group-hover:scale-110 transition-transform duration-300"
         />
 

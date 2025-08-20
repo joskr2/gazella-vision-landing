@@ -1,6 +1,7 @@
-"use client"
+'use client'
 
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 interface TechIconProps {
   name: string
@@ -23,9 +24,11 @@ export function TechIcon({ name, logo, index = 0 }: TechIconProps) {
       className="group"
     >
       <div className="w-16 h-16 flex items-center justify-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg group-hover:shadow-xl group-hover:border-gv-blue-primary/30 transition-all duration-300">
-        <img
+        <Image
           src={logo}
           alt={`${name} logo`}
+          width={32}
+          height={32}
           className="w-8 h-8 object-contain group-hover:scale-110 transition-transform duration-300"
         />
       </div>

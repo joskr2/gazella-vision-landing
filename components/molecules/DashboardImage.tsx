@@ -1,8 +1,10 @@
-"use client"
+'use client'
 
-import { motion } from "framer-motion"
-import { Calendar, Users, FileText } from "lucide-react"
-import { CTAButton } from "@/components/atoms/CTAButton"
+import { motion } from 'framer-motion'
+import { Calendar, Users, BarChart3, Target, FileText } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import Image from 'next/image'
 
 interface DashboardImageProps {
   onReservar: () => void
@@ -22,9 +24,11 @@ export function DashboardImage({ onReservar, onDownloadTemario }: DashboardImage
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         className="relative"
       >
-        <img
+        <Image
           src="/modern-dashboard-mockup.png"
           alt="Dashboard MVP mockup showing a modern SaaS application interface"
+          width={1200}
+          height={600}
           className="w-full h-auto min-h-[600px] object-cover rounded-2xl shadow-2xl border border-white/20"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10 rounded-2xl" />
@@ -63,25 +67,26 @@ export function DashboardImage({ onReservar, onDownloadTemario }: DashboardImage
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-row gap-4 z-10 px-4 w-full max-w-2xl"
         >
           <div className="flex-1">
-            <CTAButton
-              variant="primary"
+            <Button
               size="lg"
-              icon={Users}
+              className="w-full bg-primary hover:bg-primary/90 text-white"
               onClick={onReservar}
             >
+              <Users className="w-4 h-4 mr-2" />
               Reserva tu cupo
-            </CTAButton>
+            </Button>
           </div>
 
           <div className="flex-1">
-            <CTAButton
-              variant="secondary"
+            <Button
+              variant="outline"
               size="lg"
-              icon={FileText}
+              className="w-full bg-white/90 backdrop-blur-sm border-white/50 hover:bg-white"
               onClick={onDownloadTemario}
             >
+              <FileText className="w-4 h-4 mr-2" />
               Ver temario (PDF)
-            </CTAButton>
+            </Button>
           </div>
         </motion.div>
       </motion.div>

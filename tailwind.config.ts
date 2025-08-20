@@ -14,10 +14,10 @@ const config: Config = {
     extend: {
       colors: {
         // Gazella Vision Brand Colors
-        'gv-blue': {
-          primary: '#2563EB',  // Azul primario brillante
-          dark: '#1E3A8A',     // Azul oscuro para contraste
-          light: '#60A5FA',    // Azul claro para detalles/acentos
+        "gv-blue": {
+          primary: "#2563EB", // Azul primario brillante
+          dark: "#1E3A8A", // Azul oscuro para contraste
+          light: "#60A5FA", // Azul claro para detalles/acentos
         },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

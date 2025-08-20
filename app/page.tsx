@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { CheckCircle, Star, Users, Code, Zap, Target, MessageCircle, Menu, X, Award } from "lucide-react"
+import { CheckCircle, Star, Users, Code, Zap, Target, MessageCircle, Menu, X, Award, Calendar, DiamondPlus } from "lucide-react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
 
@@ -181,139 +181,158 @@ export default function GazellaVisionLanding() {
         </motion.div>
       </motion.header>
 
-      {/* Hero Section with Parallax */}
+      {/* Hero Section - Redesigned */}
       <motion.section
         ref={targetRef}
-        className="section-padding bg-gradient-to-br from-blue-50 via-white to-blue-100 pt-24 lg:pt-32 relative overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        {/* Parallax Background Elements */}
-        <motion.div
-          className="absolute inset-0 opacity-20"
-          style={{ y: parallaxY }}
-        >
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-        </motion.div>
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/80 to-gv-blue-primary/10" />
+          <motion.div
+            className="absolute inset-0 opacity-30"
+            style={{ y: parallaxY }}
+          >
+            <div className="absolute top-20 left-10 w-72 h-72 bg-gv-blue-primary/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-gv-blue-light/10 rounded-full blur-3xl" />
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-gv-blue-primary/5 to-transparent rounded-full blur-3xl" />
+          </motion.div>
+        </div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
-          {/* Mobile Layout */}
-          <div className="lg:hidden space-y-8">
-            {/* 1. Título */}
+        {/* Main Content */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-12">
+          <div className="text-center space-y-8">
+
+            {/* Title */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="space-y-4"
             >
-              <h1 className="font-heading text-3xl sm:text-4xl font-bold text-foreground leading-tight text-center">
-                Fullstack en 8 semanas: React + Supabase + Next.js
+              <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight max-w-5xl mx-auto">
+                Fullstack en
+                <span className="bg-gradient-to-r from-gv-blue-primary to-gv-blue-dark bg-clip-text text-transparent"> 8 semanas</span>
               </h1>
+              <p className="text-xl sm:text-2xl lg:text-3xl font-medium text-gv-blue-dark max-w-4xl mx-auto">
+                React + Supabase + Next.js
+              </p>
             </motion.div>
 
-            {/* 2. Imagen */}
-            <motion.div
-              className="relative"
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-lg sm:text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto"
+            >
+              Publica tu primer MVP SaaS en producción y compártelo en entrevistas o lánzalo como negocio.
+            </motion.p>
+
+            {/* Dashboard Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.6 }}
+              className="relative max-w-4xl mx-auto"
             >
               <motion.div
-                className="relative"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="relative"
               >
                 <img
                   src="/modern-dashboard-mockup.png"
                   alt="Dashboard MVP mockup showing a modern SaaS application interface"
-                  className="w-full h-auto rounded-2xl shadow-2xl"
+                  className="w-full h-auto rounded-2xl shadow-2xl border border-white/20"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent rounded-2xl" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-2xl" />
+
+                {/* Floating Elements */}
+                <motion.div
+                  className="absolute -top-4 -right-4 bg-white/90 backdrop-blur-sm rounded-xl p-3 shadow-lg border border-gv-blue-primary/10"
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                    <span className="text-sm font-medium text-gray-700">En producción</span>
+                  </div>
+                </motion.div>
+
               </motion.div>
             </motion.div>
 
-            {/* 3. Descripción */}
+            {/* Date Banner */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="inline-block"
             >
-              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed text-center">
-                Publica tu primer MVP SaaS en producción y compártelo en entrevistas o lánzalo como negocio.
-              </p>
+              <div className="bg-gradient-to-r from-gv-blue-primary to-gv-blue-dark text-white rounded-2xl px-8 py-4 shadow-xl border border-white/20">
+                <div className="flex items-center justify-center gap-3">
+                  <Calendar className="w-6 h-6" />
+                  <div className="text-center">
+                    <p className="text-sm font-semibold uppercase tracking-wider opacity-90">Próximo Grupo</p>
+                    <p className="text-xl font-bold">Inicia el 1 de Septiembre 2025</p>
+                  </div>
+                </div>
+              </div>
             </motion.div>
 
-            {/* 4. Botones */}
+            {/* CTA Buttons */}
             <motion.div
-              className="flex flex-col sm:flex-row gap-4"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 1 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto"
             >
               <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full sm:w-auto"
               >
                 <Button
                   size="lg"
-                  className="bg-gv-blue-primary hover:bg-gv-blue-dark text-white text-lg px-8 py-4 w-full sm:w-auto transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="bg-gv-blue-primary hover:bg-gv-blue-dark text-white text-lg font-semibold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 w-full sm:w-auto"
                   onClick={() => window.open(getWhatsAppLink("reservar"), '_blank')}
                 >
+                  <Users className="w-5 h-5 mr-2" />
                   Reserva tu cupo
                 </Button>
               </motion.div>
+
               <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full sm:w-auto"
               >
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-gv-blue-primary text-gv-blue-primary hover:bg-gv-blue-primary hover:text-white text-lg px-8 py-4 bg-transparent w-full sm:w-auto transition-all duration-300"
+                  className="border-2 border-gv-blue-primary text-gv-blue-primary hover:bg-gv-blue-primary hover:text-white text-lg font-semibold px-8 py-4 rounded-xl transition-all duration-300 w-full sm:w-auto"
                   onClick={downloadTemario}
                 >
-                  Descargar temario (PDF)
+                  Ver temario (PDF)
                 </Button>
               </motion.div>
             </motion.div>
 
-            {/* Badges */}
+            {/* Tech Stack */}
             <motion.div
-              className="flex flex-wrap gap-3 justify-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+              className="pt-8"
             >
-              {[
-                { icon: Users, text: "Clases limitadas a 15 alumnos" },
-                { icon: Zap, text: "Clases en vivo" },
-                { icon: Target, text: "Proyecto final publicado en Vercel" },
-                { icon: Award, text: "Docentes de alto nivel" }
-              ].map((badge, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
-                >
-                  <Badge variant="secondary" className="px-3 py-2 hover:scale-105 transition-transform">
-                    <badge.icon className="w-4 h-4 mr-2" />
-                    {badge.text}
-                  </Badge>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* Tech Stack Preview - Mobile */}
-            <motion.div
-              className="mt-8 text-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
-            >
-              <p className="text-sm text-muted-foreground mb-4">Stack que aprenderás:</p>
-              <div className="flex justify-center items-center gap-4 flex-wrap">
+              <p className="text-sm text-muted-foreground mb-6 uppercase tracking-wider font-medium">
+                Stack tecnológico que dominarás
+              </p>
+              <div className="flex justify-center items-center gap-6 flex-wrap">
                 {[
                   { name: "React", logo: "/react-svg-logo.svg" },
                   { name: "Next.js", logo: "/nextjs-icon-svgrepo-com.svg" },
@@ -325,177 +344,69 @@ export default function GazellaVisionLanding() {
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{
-                      duration: 0.4,
-                      delay: 1.3 + index * 0.1,
+                      duration: 0.5,
+                      delay: 1.4 + index * 0.1,
                       type: "spring",
                       stiffness: 200
                     }}
                     whileHover={{ scale: 1.1 }}
                     className="group"
                   >
-                    <div className="w-10 h-10 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200 shadow-sm group-hover:shadow-md group-hover:border-primary/30 transition-all duration-300">
+                    <div className="w-16 h-16 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200 shadow-lg group-hover:shadow-xl group-hover:border-gv-blue-primary/30 transition-all duration-300">
                       <img
                         src={tech.logo}
                         alt={`${tech.name} logo`}
-                        className="w-6 h-6 object-contain group-hover:scale-110 transition-transform duration-300"
+                        className="w-8 h-8 object-contain group-hover:scale-110 transition-transform duration-300"
                       />
                     </div>
+                    <p className="text-xs font-medium text-muted-foreground mt-2 group-hover:text-gv-blue-primary transition-colors duration-300">
+                      {tech.name}
+                    </p>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
-          </div>
 
-          {/* Desktop Layout */}
-          <div className="hidden lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Features Badges */}
             <motion.div
-              className="space-y-8"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.6 }}
+              className="flex flex-wrap gap-4 justify-center pt-4"
             >
-              <div className="space-y-4">
-                <motion.h1
-                  className="font-heading text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                >
-                  Fullstack en 8 semanas: React + Supabase + Next.js
-                </motion.h1>
-                <motion.p
-                  className="text-lg sm:text-xl text-muted-foreground leading-relaxed"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                >
-                  Publica tu primer MVP SaaS en producción y compártelo en entrevistas o lánzalo como negocio.
-                </motion.p>
-              </div>
+              {[
+                { icon: Users, text: "Máximo 15 alumnos" },
+                { icon: Zap, text: "Clases en vivo" },
+                { icon: Target, text: "Proyecto real" },
+                { icon: Award, text: "MVP en producción" },
+                { icon: DiamondPlus, text: "Docentes con basta experiencia" }
 
-              <motion.div
-                className="flex flex-col sm:flex-row gap-4"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
+              ].map((badge, index) => (
                 <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  key={badge.text}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: 1.8 + index * 0.1,
+                    type: "spring",
+                    stiffness: 200
+                  }}
+                  whileHover={{ scale: 1.05 }}
+                  className="bg-white/80 backdrop-blur-sm border border-gv-blue-primary/10 rounded-full px-4 py-2 shadow-md hover:shadow-lg transition-all duration-300"
                 >
-                  <Button
-                    size="lg"
-                    className="bg-gv-blue-primary hover:bg-gv-blue-dark text-white text-lg px-8 py-4 w-full sm:w-auto transition-all duration-300 shadow-lg hover:shadow-xl"
-                    onClick={() => window.open(getWhatsAppLink("reservar"), '_blank')}
-                  >
-                    Reserva tu cupo
-                  </Button>
+                  <div className="flex items-center gap-2">
+                    <badge.icon className="w-4 h-4 text-gv-blue-primary" />
+                    <span className="text-sm font-medium text-gray-700">{badge.text}</span>
+                  </div>
                 </motion.div>
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-gv-blue-primary text-gv-blue-primary hover:bg-gv-blue-primary hover:text-white text-lg px-8 py-4 bg-transparent w-full sm:w-auto transition-all duration-300"
-                    onClick={downloadTemario}
-                  >
-                    Descargar temario (PDF)
-                  </Button>
-                </motion.div>
-              </motion.div>
-
-              <motion.div
-                className="flex flex-wrap gap-3"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                {[
-                  { icon: Users, text: "Clases limitadas a 15 alumnos" },
-                  { icon: Zap, text: "Clases en vivo" },
-                  { icon: Target, text: "Proyecto final publicado en Vercel" },
-                  { icon: Award, text: "Docentes de alto nivel" }
-                ].map((badge, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
-                  >
-                    <Badge variant="secondary" className="px-3 py-2 hover:scale-105 transition-transform">
-                      <badge.icon className="w-4 h-4 mr-2" />
-                      {badge.text}
-                    </Badge>
-                  </motion.div>
-                ))}
-              </motion.div>
-
-              {/* Tech Stack Preview - Desktop */}
-              <motion.div
-                className="mt-6"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.1 }}
-              >
-                <p className="text-sm text-muted-foreground mb-4">Stack que aprenderás:</p>
-                <div className="flex items-center gap-4">
-                  {[
-                    { name: "React", logo: "/react-svg-logo.svg" },
-                    { name: "Next.js", logo: "/nextjs-icon-svgrepo-com.svg" },
-                    { name: "Supabase", logo: "/supabase-logo-icon.svg" },
-                    { name: "Tailwind", logo: "/tailwindcss-logo.svg" },
-                    { name: "JavaScript", logo: "/js-logo.svg" }
-                  ].map((tech, index) => (
-                    <motion.div
-                      key={tech.name}
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        duration: 0.4,
-                        delay: 1.2 + index * 0.1,
-                        type: "spring",
-                        stiffness: 200
-                      }}
-                      whileHover={{ scale: 1.1 }}
-                      className="group"
-                    >
-                      <div className="w-12 h-12 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200 shadow-sm group-hover:shadow-md group-hover:border-primary/30 transition-all duration-300">
-                        <img
-                          src={tech.logo}
-                          alt={`${tech.name} logo`}
-                          className="w-7 h-7 object-contain group-hover:scale-110 transition-transform duration-300"
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
+              ))}
             </motion.div>
 
-            <motion.div
-              className="relative"
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <motion.div
-                className="relative"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                <img
-                  src="/modern-dashboard-mockup.png"
-                  alt="Dashboard MVP mockup showing a modern SaaS application interface"
-                  className="w-full h-auto rounded-2xl shadow-2xl"
-                />
-                {/* Removed blur overlay to keep image crisp */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent rounded-2xl" />
-              </motion.div>
-            </motion.div>
           </div>
         </div>
+
+
       </motion.section>
 
       {/* Features Section with Scroll Animations */}
@@ -1194,6 +1105,26 @@ export default function GazellaVisionLanding() {
             <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-4xl mx-auto">
               ¿Bootcamps de 3–6 meses a precios elevados? Olvídalo. Con Gazella Vision, en 8 semanas construyes y publicas tu MVP SaaS.
             </p>
+
+            {/* Banner de fecha destacado */}
+            <motion.div
+              className="bg-gradient-to-r from-gv-blue-primary to-gv-blue-dark text-white rounded-2xl p-6 max-w-2xl mx-auto mb-8 shadow-xl"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-center">
+                <div className="flex items-center justify-center gap-2 mb-3">
+                  <Calendar className="w-6 h-6" />
+                  <span className="text-sm font-semibold uppercase tracking-wider">Próximo Grupo</span>
+                </div>
+                <h3 className="text-2xl font-bold mb-2">Inicia el 1 de Septiembre 2025</h3>
+                <p className="text-gv-blue-light text-sm">
+                  ¡Solo quedan pocos cupos disponibles!
+                </p>
+              </div>
+            </motion.div>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">

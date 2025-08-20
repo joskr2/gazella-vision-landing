@@ -3,9 +3,11 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import { CheckCircle, Star, Users, Code, Zap, Target, MessageCircle, Menu, X, Award, Calendar, DiamondPlus } from "lucide-react"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
+import Autoplay from "embla-carousel-autoplay"
 
 export default function GazellaVisionLanding() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -569,147 +571,151 @@ export default function GazellaVisionLanding() {
             </p>
           </motion.div>
 
-          {/* Technology Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8">
-            {[
-              {
-                name: "React",
-                logo: "/react-svg-logo.svg",
-                description: "Biblioteca UI líder",
-                color: "from-gv-blue-primary to-gv-blue-light",
-                bgColor: "bg-gv-blue-light/10"
-              },
-              {
-                name: "Next.js",
-                logo: "/nextjs-icon-svgrepo-com.svg",
-                description: "Framework React",
-                color: "from-gray-700 to-gray-900",
-                bgColor: "bg-gray-50"
-              },
-              {
-                name: "JavaScript",
-                logo: "/js-logo.svg",
-                description: "Lenguaje fundamental",
-                color: "from-yellow-400 to-orange-500",
-                bgColor: "bg-yellow-50"
-              },
-              {
-                name: "Supabase",
-                logo: "/supabase-logo-icon.svg",
-                description: "Backend as a Service",
-                color: "from-green-400 to-emerald-500",
-                bgColor: "bg-green-50"
-              },
-              {
-                name: "Tailwind CSS",
-                logo: "/tailwindcss-logo.svg",
-                description: "Utility-first CSS",
-                color: "from-gv-blue-light to-gv-blue-primary",
-                bgColor: "bg-gv-blue-light/10"
-              },
-              {
-                name: "React Query",
-                logo: "/react-query-seeklogo.svg",
-                description: "State Management",
-                color: "from-red-400 to-pink-500",
-                bgColor: "bg-red-50"
-              }
-            ].map((tech, index) => (
-              <motion.div
-                key={tech.name}
-                initial={{ opacity: 0, y: 50, scale: 0.8 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.1,
-                  type: "spring",
-                  stiffness: 100
-                }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <Card className={`relative h-full border-2 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 overflow-hidden ${tech.bgColor}/50 backdrop-blur-sm`}>
-                  {/* Glassmorphism background */}
-                  <div className="absolute inset-0 bg-white/80 backdrop-blur-xl" />
-
-                  {/* Gradient overlay on hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-
-                  <CardContent className="relative z-10 p-6 text-center h-full flex flex-col justify-center">
-                    {/* Logo */}
+          {/* Technology Carousel */}
+          <div className="relative">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              plugins={[
+                Autoplay({
+                  delay: 5000,
+                  stopOnInteraction: false,
+                  stopOnMouseEnter: true,
+                }),
+              ]}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {[
+                  {
+                    name: "React",
+                    logo: "/react-svg-logo.svg",
+                    description: "Biblioteca UI líder",
+                    color: "from-gv-blue-primary to-gv-blue-light",
+                    bgColor: "bg-gv-blue-light/10"
+                  },
+                  {
+                    name: "Next.js",
+                    logo: "/nextjs-icon-svgrepo-com.svg",
+                    description: "Framework React",
+                    color: "from-gray-700 to-gray-900",
+                    bgColor: "bg-gray-50"
+                  },
+                  {
+                    name: "JavaScript",
+                    logo: "/js-logo.svg",
+                    description: "Lenguaje fundamental",
+                    color: "from-yellow-400 to-orange-500",
+                    bgColor: "bg-yellow-50"
+                  },
+                  {
+                    name: "Supabase",
+                    logo: "/supabase-logo-icon.svg",
+                    description: "Backend as a Service",
+                    color: "from-green-400 to-emerald-500",
+                    bgColor: "bg-green-50"
+                  },
+                  {
+                    name: "Tailwind CSS",
+                    logo: "/tailwindcss-logo.svg",
+                    description: "Utility-first CSS",
+                    color: "from-gv-blue-light to-gv-blue-primary",
+                    bgColor: "bg-gv-blue-light/10"
+                  },
+                  {
+                    name: "React Query",
+                    logo: "/react-query-seeklogo.svg",
+                    description: "State Management",
+                    color: "from-red-400 to-pink-500",
+                    bgColor: "bg-red-50"
+                  },
+                  {
+                    name: "Zustand",
+                    logo: "/zustand.svg",
+                    description: "State Management",
+                    color: "from-purple-400 to-indigo-500",
+                    bgColor: "bg-purple-50"
+                  },
+                  {
+                    name: "Vercel",
+                    logo: "/vercel-seeklogo.svg",
+                    description: "Deployment Platform",
+                    color: "from-gray-700 to-gray-900",
+                    bgColor: "bg-gray-50"
+                  }
+                ].map((tech, index) => (
+                  <CarouselItem key={tech.name} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
                     <motion.div
-                      className="mb-4 mx-auto"
-                      whileHover={{ scale: 1.2, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
+                      initial={{ opacity: 0, y: 50, scale: 0.8 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{
+                        duration: 0.6,
+                        delay: index * 0.1,
+                        type: "spring",
+                        stiffness: 100
+                      }}
+                      viewport={{ once: true }}
+                      className="group h-full"
                     >
-                      <div className="w-16 h-16 lg:w-20 lg:h-20 mx-auto flex items-center justify-center">
-                        <img
-                          src={tech.logo}
-                          alt={`${tech.name} logo`}
-                          className="w-full h-full object-contain group-hover:drop-shadow-lg transition-all duration-300"
-                        />
-                      </div>
+                      <Card className={`relative h-full border-2 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 overflow-hidden ${tech.bgColor}/50 backdrop-blur-sm`}>
+                        {/* Glassmorphism background */}
+                        <div className="absolute inset-0 bg-white/80 backdrop-blur-xl" />
+
+                        {/* Gradient overlay on hover */}
+                        <div className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+
+                        <CardContent className="relative z-10 p-6 text-center h-full flex flex-col justify-center">
+                          {/* Logo */}
+                          <motion.div
+                            className="mb-4 mx-auto"
+                            whileHover={{ scale: 1.2, rotate: 5 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                          >
+                            <div className="w-16 h-16 lg:w-20 lg:h-20 mx-auto flex items-center justify-center">
+                              <img
+                                src={tech.logo}
+                                alt={`${tech.name} logo`}
+                                className="w-full h-full object-contain group-hover:drop-shadow-lg transition-all duration-300"
+                              />
+                            </div>
+                          </motion.div>
+
+                          {/* Technology Name */}
+                          <h3 className="font-bold text-lg lg:text-xl mb-2 group-hover:text-primary transition-colors duration-300">
+                            {tech.name}
+                          </h3>
+
+                          {/* Description */}
+                          <p className="text-sm text-muted-foreground group-hover:text-gray-700 transition-colors duration-300">
+                            {tech.description}
+                          </p>
+
+                          {/* Progress bar on hover */}
+                          <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className={`h-1 bg-gradient-to-r ${tech.color} rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`} />
+                          </div>
+                        </CardContent>
+
+                        {/* Shine effect */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 translate-x-full group-hover:-translate-x-full transition-transform duration-1000" />
+                        </div>
+                      </Card>
                     </motion.div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
 
-                    {/* Technology Name */}
-                    <h3 className="font-bold text-lg lg:text-xl mb-2 group-hover:text-primary transition-colors duration-300">
-                      {tech.name}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-sm text-muted-foreground group-hover:text-gray-700 transition-colors duration-300">
-                      {tech.description}
-                    </p>
-
-                    {/* Progress bar on hover */}
-                    <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className={`h-1 bg-gradient-to-r ${tech.color} rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`} />
-                    </div>
-                  </CardContent>
-
-                  {/* Shine effect */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 translate-x-full group-hover:-translate-x-full transition-transform duration-1000" />
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Additional Technologies */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="mt-12 text-center"
-          >
-            <p className="text-muted-foreground mb-6">También aprenderás:</p>
-            <div className="flex flex-wrap justify-center gap-3">
-              {[
-                { name: "Zustand", logo: "/zustand.svg" },
-                { name: "Vercel", logo: "/vercel-seeklogo.svg" }
-              ].map((tool, index) => (
-                <motion.div
-                  key={tool.name}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-gray-200 hover:border-primary/30 hover:shadow-lg transition-all duration-300 group"
-                >
-                  <img
-                    src={tool.logo}
-                    alt={`${tool.name} logo`}
-                    className="w-5 h-5 group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <span className="text-sm font-medium text-gray-700 group-hover:text-primary transition-colors duration-300">
-                    {tool.name}
-                  </span>
-                </motion.div>
-              ))}
+            {/* Subtle indicator */}
+            <div className="text-center mt-6">
+              <p className="text-xs text-muted-foreground/60">
+                Tecnologías en movimiento • Pausa al hover
+              </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -1080,121 +1086,165 @@ export default function GazellaVisionLanding() {
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {[
-              {
-                quote: "En 8 semanas lancé mi app de reservas y la usé como carta de presentación en entrevistas. ¡Funcionó!",
-                name: "Fiorella R.",
-                role: "Frontend Jr.",
-                avatar: "/professional-woman-avatar.png",
-                rating: 5,
-                company: "Startup Tech",
-                gradient: "from-pink-500/10 to-purple-500/10"
-              },
-              {
-                quote: "La mentoría 1:1 marcó la diferencia. Pasé de ver tutoriales a tener un proyecto real publicado y funcionando.",
-                name: "Jorge M.",
-                role: "Dev en transición",
-                avatar: "/professional-man-avatar.png",
-                rating: 5,
-                company: "Freelance",
-                gradient: "from-gv-blue-primary/10 to-gv-blue-light/10"
-              },
-              {
-                quote: "El enfoque práctico me ayudó a entender React y Next.js desde el día uno. Ahora desarrollo con confianza.",
-                name: "Carla T.",
-                role: "Diseñadora → Dev",
-                avatar: "/professional-woman-designer-avatar.png",
-                rating: 5,
-                company: "Agencia Digital",
-                gradient: "from-green-500/10 to-emerald-500/10"
-              }
-            ].map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <Card className={`relative border-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 bg-gradient-to-br ${testimonial.gradient} backdrop-blur-sm h-full overflow-hidden hover:border-primary/30`}>
-                  {/* Glassmorphism background */}
-                  <div className="absolute inset-0 bg-white/90 backdrop-blur-xl border border-white/20" />
+          {/* Testimonials Carousel */}
+          <div className="relative">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              plugins={[
+                Autoplay({
+                  delay: 6000,
+                  stopOnInteraction: false,
+                  stopOnMouseEnter: true,
+                }),
+              ]}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {[
+                  {
+                    quote: "En 8 semanas lancé mi app de reservas y la usé como carta de presentación en entrevistas. ¡Funcionó!",
+                    name: "Fiorella R.",
+                    role: "Frontend Jr.",
+                    avatar: "/professional-woman-avatar.png",
+                    rating: 5,
+                    company: "Startup Tech",
+                    gradient: "from-pink-500/10 to-purple-500/10"
+                  },
+                  {
+                    quote: "La mentoría 1:1 marcó la diferencia. Pasé de ver tutoriales a tener un proyecto real publicado y funcionando.",
+                    name: "Jorge M.",
+                    role: "Dev en transición",
+                    avatar: "/professional-man-avatar.png",
+                    rating: 5,
+                    company: "Freelance",
+                    gradient: "from-gv-blue-primary/10 to-gv-blue-light/10"
+                  },
+                  {
+                    quote: "El enfoque práctico me ayudó a entender React y Next.js desde el día uno. Ahora desarrollo con confianza.",
+                    name: "Carla T.",
+                    role: "Diseñadora → Dev",
+                    avatar: "/professional-woman-designer-avatar.png",
+                    rating: 5,
+                    company: "Agencia Digital",
+                    gradient: "from-green-500/10 to-emerald-500/10"
+                  },
+                  {
+                    quote: "De cero conocimiento a tener mi primera app web publicada. El método paso a paso es perfecto para principiantes.",
+                    name: "Miguel S.",
+                    role: "Estudiante",
+                    avatar: "/professional-man-avatar.png",
+                    rating: 5,
+                    company: "Universidad",
+                    gradient: "from-blue-500/10 to-cyan-500/10"
+                  },
+                  {
+                    quote: "Los proyectos reales me dieron la experiencia práctica que necesitaba. Ahora trabajo como fullstack developer.",
+                    name: "Ana L.",
+                    role: "Fullstack Developer",
+                    avatar: "/professional-woman-designer-avatar.png",
+                    rating: 5,
+                    company: "Tech Company",
+                    gradient: "from-indigo-500/10 to-violet-500/10"
+                  }
+                ].map((testimonial, index) => (
+                  <CarouselItem key={index} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                    <motion.div
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="group h-full"
+                    >
+                      <Card className={`relative border-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 bg-gradient-to-br ${testimonial.gradient} backdrop-blur-sm h-full overflow-hidden hover:border-primary/30`}>
+                        {/* Glassmorphism background */}
+                        <div className="absolute inset-0 bg-white/90 backdrop-blur-xl border border-white/20" />
 
-                  {/* Floating orb decoration */}
-                  <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-sm group-hover:scale-150 transition-transform duration-700" />
+                        {/* Floating orb decoration */}
+                        <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-sm group-hover:scale-150 transition-transform duration-700" />
 
-                  <CardContent className="relative z-10 pt-6">
-                    {/* Rating Stars */}
-                    <div className="flex mb-4 justify-center">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ opacity: 0, scale: 0, rotate: -180 }}
-                          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                          transition={{
-                            delay: index * 0.1 + i * 0.1,
-                            type: "spring",
-                            stiffness: 200
-                          }}
-                        >
-                          <Star className="w-5 h-5 fill-yellow-400 text-yellow-400 mr-1" />
-                        </motion.div>
-                      ))}
-                    </div>
+                        <CardContent className="relative z-10 pt-6 h-full flex flex-col">
+                          {/* Rating Stars */}
+                          <div className="flex mb-4 justify-center">
+                            {[...Array(testimonial.rating)].map((_, i) => (
+                              <motion.div
+                                key={i}
+                                initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                                transition={{
+                                  delay: index * 0.1 + i * 0.1,
+                                  type: "spring",
+                                  stiffness: 200
+                                }}
+                              >
+                                <Star className="w-5 h-5 fill-yellow-400 text-yellow-400 mr-1" />
+                              </motion.div>
+                            ))}
+                          </div>
 
-                    {/* Quote with enhanced styling */}
-                    <div className="relative mb-6">
-                      <div className="absolute -top-2 -left-2 text-4xl text-primary/20 font-serif leading-none">"</div>
-                      <blockquote className="text-muted-foreground mb-4 text-sm sm:text-base leading-relaxed pl-6 italic">
-                        {testimonial.quote}
-                      </blockquote>
-                      <div className="absolute -bottom-2 -right-2 text-4xl text-primary/20 font-serif leading-none transform rotate-180">"</div>
-                    </div>
+                          {/* Quote with enhanced styling */}
+                          <div className="relative mb-6 flex-1">
+                            <div className="absolute -top-2 -left-2 text-4xl text-primary/20 font-serif leading-none">"</div>
+                            <blockquote className="text-muted-foreground mb-4 text-sm sm:text-base leading-relaxed pl-6 italic">
+                              {testimonial.quote}
+                            </blockquote>
+                            <div className="absolute -bottom-2 -right-2 text-4xl text-primary/20 font-serif leading-none transform rotate-180">"</div>
+                          </div>
 
-                    {/* Author info with enhanced design */}
-                    <div className="flex items-center gap-4">
-                      <div className="relative">
-                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-sm group-hover:scale-110 transition-transform duration-300" />
-                        <img
-                          src={testimonial.avatar}
-                          alt={testimonial.name}
-                          className="relative w-12 h-12 rounded-full object-cover border-2 border-white/50 group-hover:border-primary/50 transition-colors duration-300"
-                        />
+                          {/* Author info with enhanced design */}
+                          <div className="flex items-center gap-4 mt-auto">
+                            <div className="relative">
+                              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-sm group-hover:scale-110 transition-transform duration-300" />
+                              <img
+                                src={testimonial.avatar}
+                                alt={testimonial.name}
+                                className="relative w-12 h-12 rounded-full object-cover border-2 border-white/50 group-hover:border-primary/50 transition-colors duration-300"
+                              />
 
-                        {/* Online status indicator */}
-                        <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white" />
-                      </div>
+                              {/* Online status indicator */}
+                              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white" />
+                            </div>
 
-                      <div className="flex-1">
-                        <div className="font-semibold text-sm sm:text-base text-foreground group-hover:text-primary transition-colors duration-300">
-                          {testimonial.name}
+                            <div className="flex-1">
+                              <div className="font-semibold text-sm sm:text-base text-foreground group-hover:text-primary transition-colors duration-300">
+                                {testimonial.name}
+                              </div>
+                              <div className="text-xs sm:text-sm text-muted-foreground">
+                                {testimonial.role}
+                              </div>
+                              <div className="text-xs text-primary/70 font-medium">
+                                @ {testimonial.company}
+                              </div>
+                            </div>
+
+                            {/* Verification badge */}
+                            <div className="flex-shrink-0">
+                              <div className="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center">
+                                <CheckCircle className="w-4 h-4 text-green-600" />
+                              </div>
+                            </div>
+                          </div>
+                        </CardContent>
+
+                        {/* Animated border gradient */}
+                        <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                          <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/30 via-accent/30 to-primary/30 blur-sm animate-pulse" />
                         </div>
-                        <div className="text-xs sm:text-sm text-muted-foreground">
-                          {testimonial.role}
-                        </div>
-                        <div className="text-xs text-primary/70 font-medium">
-                          @ {testimonial.company}
-                        </div>
-                      </div>
+                      </Card>
+                    </motion.div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
 
-                      {/* Verification badge */}
-                      <div className="flex-shrink-0">
-                        <div className="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center">
-                          <CheckCircle className="w-4 h-4 text-green-600" />
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-
-                  {/* Animated border gradient */}
-                  <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                    <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/30 via-accent/30 to-primary/30 blur-sm animate-pulse" />
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
+            {/* Subtle indicator */}
+            <div className="text-center mt-8">
+              <p className="text-xs text-muted-foreground/60">
+                Testimonios reales • Desliza para ver más
+              </p>
+            </div>
           </div>
         </div>
       </section>

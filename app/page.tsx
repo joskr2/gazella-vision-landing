@@ -9,6 +9,7 @@ import { CheckCircle, Star, Users, Code, Zap, Target, MessageCircle, Menu, X, Aw
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
 import Autoplay from "embla-carousel-autoplay"
+import { ModeToggle } from "@/components/mode-toggle"
 
 export default function GazellaVisionLanding() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -147,7 +148,7 @@ export default function GazellaVisionLanding() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden transition-colors duration-300">
       {/* Floating WhatsApp Button */}
       <motion.div
         className="fixed bottom-6 right-6 z-50"
@@ -180,7 +181,7 @@ export default function GazellaVisionLanding() {
       </motion.div>
       {/* Enhanced Header with Glassmorphism */}
       <motion.header
-        className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-xl border-b border-white/20 shadow-lg"
+        className="fixed top-0 left-0 right-0 z-50 bg-white/10 dark:bg-black/30 backdrop-blur-xl border-b border-white/20 dark:border-gray-700/50 shadow-lg"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
@@ -225,34 +226,40 @@ export default function GazellaVisionLanding() {
               ))}
             </nav>
 
-            {/* Mobile Menu Button */}
-            <button
-              className="lg:hidden p-2 rounded-lg bg-white/20 backdrop-blur-sm"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            {/* Right side controls */}
+            <div className="flex items-center gap-3">
+              {/* Theme Toggle */}
+              <ModeToggle />
 
-            {/* Desktop CTA */}
-            <motion.div
-              className="hidden lg:block"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            >
-              <Button
-                className="btn-primary hover:scale-105 transition-transform"
-                onClick={() => window.open(getWhatsAppLink("postular"), '_blank')}
+              {/* Mobile Menu Button */}
+              <button
+                className="lg:hidden p-2 rounded-lg bg-white/20 dark:bg-gray-800/40 backdrop-blur-sm"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
-                Postula ahora
-              </Button>
-            </motion.div>
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+
+              {/* Desktop CTA */}
+              <motion.div
+                className="hidden lg:block"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+              >
+                <Button
+                  className="btn-primary hover:scale-105 transition-transform"
+                  onClick={() => window.open(getWhatsAppLink("postular"), '_blank')}
+                >
+                  Postula ahora
+                </Button>
+              </motion.div>
+            </div>
           </div>
         </div>
 
         {/* Mobile Menu */}
         <motion.div
-          className={`lg:hidden bg-white/95 backdrop-blur-xl border-t border-white/20 ${mobileMenuOpen ? "block" : "hidden"
+          className={`lg:hidden bg-white/95 dark:bg-black/95 backdrop-blur-xl border-t border-white/20 dark:border-gray-700/50 ${mobileMenuOpen ? "block" : "hidden"
             }`}
           initial={{ opacity: 0, height: 0 }}
           animate={{
@@ -292,7 +299,7 @@ export default function GazellaVisionLanding() {
       >
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/80 to-gv-blue-primary/10" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-50/80 to-gv-blue-primary/10 dark:from-black dark:via-gray-900/80 dark:to-gv-blue-primary/20" />
           <motion.div
             className="absolute inset-0 opacity-30"
             style={{ y: parallaxY }}
@@ -479,7 +486,7 @@ export default function GazellaVisionLanding() {
                     whileHover={{ scale: 1.1 }}
                     className="group"
                   >
-                    <div className="w-16 h-16 flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200 shadow-lg group-hover:shadow-xl group-hover:border-gv-blue-primary/30 transition-all duration-300">
+                    <div className="w-16 h-16 flex items-center justify-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-gray-600 shadow-lg group-hover:shadow-xl group-hover:border-gv-blue-primary/30 transition-all duration-300">
                       <Image
                         src={tech.logo}
                         alt={`${tech.name} logo`}
@@ -522,11 +529,11 @@ export default function GazellaVisionLanding() {
                     stiffness: 200
                   }}
                   whileHover={{ scale: 1.05 }}
-                  className="bg-white/80 backdrop-blur-sm border border-gv-blue-primary/10 rounded-full px-4 py-2 shadow-md hover:shadow-lg transition-all duration-300"
+                  className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gv-blue-primary/10 dark:border-gv-blue-primary/20 rounded-full px-4 py-2 shadow-md hover:shadow-lg transition-all duration-300"
                 >
                   <div className="flex items-center gap-2">
                     <badge.icon className="w-4 h-4 text-gv-blue-primary" />
-                    <span className="text-sm font-medium text-gray-700">{badge.text}</span>
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{badge.text}</span>
                   </div>
                 </motion.div>
               ))}
@@ -601,7 +608,7 @@ export default function GazellaVisionLanding() {
               >
                 <Card className={`relative border-2 hover:border-primary/30 transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 h-full overflow-hidden bg-gradient-to-br ${feature.gradient} backdrop-blur-sm`}>
                   {/* Glassmorphism background */}
-                  <div className="absolute inset-0 bg-white/80 backdrop-blur-xl" />
+                  <div className="absolute inset-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl" />
 
                   {/* Animated background element */}
                   <div className="absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br from-primary/10 to-accent/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
@@ -670,7 +677,7 @@ export default function GazellaVisionLanding() {
       </section>
 
       {/* Technology Stack Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-10 left-10 w-32 h-32 bg-gv-blue-light/10 rounded-full blur-3xl" />
@@ -690,7 +697,7 @@ export default function GazellaVisionLanding() {
               <Code className="w-4 h-4 mr-2" />
               Stack Tecnológico
             </Badge>
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-primary to-accent bg-clip-text text-transparent">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-primary to-accent dark:from-gray-100 dark:via-primary dark:to-accent bg-clip-text text-transparent">
               Tecnologías que <span className="text-accent">buscan las empresas</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -731,7 +738,7 @@ export default function GazellaVisionLanding() {
                     >
                       <Card className={`relative h-full border-2 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 overflow-hidden ${tech.bgColor}/50 backdrop-blur-sm`}>
                         {/* Glassmorphism background */}
-                        <div className="absolute inset-0 bg-white/80 backdrop-blur-xl" />
+                        <div className="absolute inset-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl" />
 
                         {/* Gradient overlay on hover */}
                         <div className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
@@ -760,7 +767,7 @@ export default function GazellaVisionLanding() {
                           </h3>
 
                           {/* Description */}
-                          <p className="text-sm text-muted-foreground group-hover:text-gray-700 transition-colors duration-300">
+                          <p className="text-sm text-muted-foreground group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300">
                             {tech.description}
                           </p>
 
@@ -772,7 +779,7 @@ export default function GazellaVisionLanding() {
 
                         {/* Shine effect */}
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 translate-x-full group-hover:-translate-x-full transition-transform duration-1000" />
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-gray-300/20 to-transparent transform -skew-x-12 translate-x-full group-hover:-translate-x-full transition-transform duration-1000" />
                         </div>
                       </Card>
                     </motion.div>
@@ -793,7 +800,7 @@ export default function GazellaVisionLanding() {
       </section>
 
       {/* Program Section with Enhanced Design */}
-      <section id="programa" className="section-padding bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
+      <section id="programa" className="section-padding bg-gradient-to-br from-gray-50 via-white to-blue-50/30 dark:from-gray-900 dark:via-black dark:to-gray-800/50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             className="text-center mb-16"
@@ -857,7 +864,7 @@ export default function GazellaVisionLanding() {
               >
                 <Card className={`relative border-2 ${week.borderColor} hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 bg-gradient-to-br ${week.gradient} backdrop-blur-sm overflow-hidden h-full`}>
                   {/* Glassmorphism background */}
-                  <div className="absolute inset-0 bg-white/90 backdrop-blur-xl" />
+                  <div className="absolute inset-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl" />
 
                   {/* Decorative element */}
                   <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-accent/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
@@ -865,7 +872,7 @@ export default function GazellaVisionLanding() {
                   <CardHeader className="relative z-10 pb-4">
                     {/* Week Badge */}
                     <div className="flex items-center justify-between mb-4">
-                      <Badge variant="outline" className="font-mono text-xs bg-white/80">
+                      <Badge variant="outline" className="font-mono text-xs bg-white/80 dark:bg-gray-700/80 dark:text-gray-200">
                         {week.weeks}
                       </Badge>
                       <div className="flex items-center gap-1">
@@ -876,7 +883,7 @@ export default function GazellaVisionLanding() {
                     </div>
 
                     {/* Technology Logos - Prominent Display */}
-                    <div className="flex items-center justify-center gap-4 mb-6 p-4 bg-white/50 rounded-xl border border-white/20">
+                    <div className="flex items-center justify-center gap-4 mb-6 p-4 bg-white/50 dark:bg-gray-700/50 rounded-xl border border-white/20 dark:border-gray-600/30">
                       {week.technologies.map((tech, techIndex) => (
                         <motion.div
                           key={techIndex}
@@ -1008,7 +1015,7 @@ export default function GazellaVisionLanding() {
               >
                 <Card className={`relative border-2 ${week.borderColor} hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 bg-gradient-to-br ${week.gradient} backdrop-blur-sm overflow-hidden h-full`}>
                   {/* Glassmorphism background */}
-                  <div className="absolute inset-0 bg-white/90 backdrop-blur-xl" />
+                  <div className="absolute inset-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl" />
 
                   {/* Decorative element */}
                   <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-accent/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
@@ -1016,7 +1023,7 @@ export default function GazellaVisionLanding() {
                   <CardHeader className="relative z-10 pb-4">
                     {/* Week Badge */}
                     <div className="flex items-center justify-between mb-4">
-                      <Badge variant="outline" className="font-mono text-xs bg-white/80">
+                      <Badge variant="outline" className="font-mono text-xs bg-white/80 dark:bg-gray-700/80 dark:text-gray-200">
                         {week.weeks}
                       </Badge>
                       <div className="flex items-center gap-1">
@@ -1027,7 +1034,7 @@ export default function GazellaVisionLanding() {
                     </div>
 
                     {/* Technology Logos - Prominent Display */}
-                    <div className="flex items-center justify-center gap-4 mb-6 p-4 bg-white/50 rounded-xl border border-white/20">
+                    <div className="flex items-center justify-center gap-4 mb-6 p-4 bg-white/50 dark:bg-gray-700/50 rounded-xl border border-white/20 dark:border-gray-600/30">
                       {week.technologies.map((tech, techIndex) => (
                         <motion.div
                           key={techIndex}
@@ -1191,7 +1198,7 @@ export default function GazellaVisionLanding() {
                     >
                       <Card className={`relative border-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 bg-gradient-to-br ${testimonial.gradient} backdrop-blur-sm h-full overflow-hidden hover:border-primary/30`}>
                         {/* Glassmorphism background */}
-                        <div className="absolute inset-0 bg-white/90 backdrop-blur-xl border border-white/20" />
+                        <div className="absolute inset-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl border border-white/20 dark:border-gray-600/30" />
 
                         {/* Floating orb decoration */}
                         <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-sm group-hover:scale-150 transition-transform duration-700" />
@@ -1284,7 +1291,7 @@ export default function GazellaVisionLanding() {
       </section>
 
       {/* Enhanced Pricing Section */}
-      <section id="precios" className="section-padding bg-gray-50">
+      <section id="precios" className="section-padding bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto">
           <motion.div
             className="text-center mb-16"
@@ -1505,7 +1512,7 @@ export default function GazellaVisionLanding() {
                 ].map((faq, index) => (
                   <motion.details
                     key={index}
-                    className="bg-white p-4 lg:p-6 rounded-lg shadow-sm border"
+                    className="bg-white dark:bg-gray-800 p-4 lg:p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700"
                     whileHover={{ scale: 1.01 }}
                   >
                     <summary className="font-medium cursor-pointer text-sm lg:text-base">{faq.question}</summary>
@@ -1520,11 +1527,13 @@ export default function GazellaVisionLanding() {
 
       {/* Final CTA with Parallax */}
       <section className="section-padding bg-gradient-to-r from-primary to-accent text-white relative overflow-hidden">
+        {/* Overlay oscuro solo en modo dark */}
+        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{ background: 'rgba(0,0,0,0.60)' }} />
         <motion.div
           className="absolute inset-0 opacity-20"
           style={{ y: parallaxY }}
         >
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/10 to-transparent" />
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/10 dark:from-gray-200/5 to-transparent" />
         </motion.div>
 
         <motion.div
@@ -1544,7 +1553,7 @@ export default function GazellaVisionLanding() {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
                 size="lg"
-                className="bg-white text-primary hover:bg-gray-100 px-8 py-4 text-lg w-full sm:w-auto"
+                className="bg-white dark:bg-gray-800 text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 px-8 py-4 text-lg w-full sm:w-auto"
                 onClick={() => window.open(getWhatsAppLink("postular"), '_blank')}
               >
                 Postula ahora
@@ -1554,7 +1563,7 @@ export default function GazellaVisionLanding() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-primary px-8 py-4 text-lg bg-transparent w-full sm:w-auto"
+                className="border-white dark:border-gray-300 text-white dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 hover:text-primary dark:hover:text-white px-8 py-4 text-lg bg-transparent w-full sm:w-auto"
                 onClick={() => window.open(getWhatsAppLink("consultar"), '_blank')}
               >
                 <Image src="/whatsapp-icon-seeklogo.svg" alt="WhatsApp" width={20} height={20} className="w-5 h-5 mr-2" />

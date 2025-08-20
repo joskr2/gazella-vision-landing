@@ -216,11 +216,11 @@ export default function GazellaVisionLanding() {
               className="space-y-4"
             >
               <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight max-w-5xl mx-auto">
-                Fullstack en
+                Desarrollador Web Completo en
                 <span className="bg-gradient-to-r from-gv-blue-primary to-gv-blue-dark bg-clip-text text-transparent"> 8 semanas</span>
               </h1>
               <p className="text-xl sm:text-2xl lg:text-3xl font-medium text-gv-blue-dark max-w-4xl mx-auto">
-                React + Supabase + Next.js
+                Frontend + Backend + Base de Datos
               </p>
             </motion.div>
 
@@ -231,7 +231,7 @@ export default function GazellaVisionLanding() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-lg sm:text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto"
             >
-              Publica tu primer MVP SaaS en producción y compártelo en entrevistas o lánzalo como negocio.
+              Lanza tu primera aplicación web profesional y úsala para conseguir trabajo o crear tu propio negocio.
             </motion.p>
 
             {/* Dashboard Image */}

@@ -18,6 +18,22 @@ export default function GazellaVisionLanding() {
 
   const parallaxY = useTransform(scrollYProgress, [0, 1], ["-50%", "50%"])
 
+  // Función para generar enlaces de WhatsApp con mensajes predeterminados
+  const getWhatsAppLink = (action: string) => {
+    const phoneNumber = "983765362"
+    const messages = {
+      "postular": "¡Hola! Me interesa postular al programa Gazella Vision de React + Next.js. ¿Podrían darme más información sobre el proceso de inscripción?",
+      "starter": "¡Hola! Me interesa el plan Starter de Gazella Vision. ¿Podrían darme más detalles sobre qué incluye y cómo comenzar?",
+      "reservar": "¡Hola! Quiero reservar mi cupo en el programa Lanzamiento de Gazella Vision. ¿Cuándo inicia la próxima cohorte?",
+      "premium": "¡Hola! Me interesa postular al plan Premium de Gazella Vision con mentoría 1:1. ¿Podrían darme más información?",
+      "temario": "¡Hola! Me interesa el programa de Gazella Vision. ¿Podrían enviarme el temario completo del curso?",
+      "consultar": "¡Hola! Tengo algunas preguntas sobre el programa Gazella Vision. ¿Podrían ayudarme con más información?"
+    }
+
+    const message = messages[action as keyof typeof messages] || messages.consultar
+    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+  }
+
   useEffect(() => {
     const updateScrollY = () => setScrollPosition(window.scrollY)
     window.addEventListener("scroll", updateScrollY)
@@ -82,7 +98,10 @@ export default function GazellaVisionLanding() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
             >
-              <Button className="btn-primary hover:scale-105 transition-transform">
+              <Button
+                className="btn-primary hover:scale-105 transition-transform"
+                onClick={() => window.open(getWhatsAppLink("postular"), '_blank')}
+              >
                 Postula ahora
               </Button>
             </motion.div>
@@ -111,7 +130,10 @@ export default function GazellaVisionLanding() {
                 {item}
               </a>
             ))}
-            <Button className="btn-primary w-full mt-4">
+            <Button
+              className="btn-primary w-full mt-4"
+              onClick={() => window.open(getWhatsAppLink("postular"), '_blank')}
+            >
               Postula ahora
             </Button>
           </div>
@@ -180,7 +202,12 @@ export default function GazellaVisionLanding() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <Button size="lg" variant="outline" className="btn-secondary text-lg px-8 py-4 bg-transparent w-full sm:w-auto">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="btn-secondary text-lg px-8 py-4 bg-transparent w-full sm:w-auto"
+                    onClick={() => window.open(getWhatsAppLink("temario"), '_blank')}
+                  >
                     Descargar temario (PDF)
                   </Button>
                 </motion.div>
@@ -193,7 +220,7 @@ export default function GazellaVisionLanding() {
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
                 {[
-                  { icon: Users, text: "Cohorte limitada a 15 alumnos" },
+                  { icon: Users, text: "Clases limitadas a 15 alumnos" },
                   { icon: Zap, text: "Clases en vivo" },
                   { icon: Target, text: "Proyecto final publicado en Vercel" }
                 ].map((badge, index) => (
@@ -259,26 +286,34 @@ export default function GazellaVisionLanding() {
               {
                 icon: Code,
                 title: "Aprende construyendo",
-                description: "Menos pizarra, más código. Cada semana un entregable real.",
-                color: "text-primary"
+                description: "Menos pizarra, más código. Cada semana un entregable real que puedes mostrar en entrevistas.",
+                color: "text-primary",
+                gradient: "from-blue-500/10 via-primary/5 to-transparent",
+                bgIcon: "bg-blue-500/10"
               },
               {
                 icon: Target,
                 title: "MVP en producción",
-                description: "Deploy a Vercel, base de datos y auth con Supabase. Nada simulado.",
-                color: "text-accent"
+                description: "Deploy a Vercel, base de datos real con Supabase y autenticación. Nada simulado, todo funcional.",
+                color: "text-accent",
+                gradient: "from-green-500/10 via-accent/5 to-transparent",
+                bgIcon: "bg-green-500/10"
               },
               {
                 icon: Users,
                 title: "Soporte cercano",
-                description: "Clases en vivo, comunidad privada y feedback en tu código.",
-                color: "text-primary"
+                description: "Clases en vivo, comunidad privada activa y feedback directo en tu código por parte de mentores.",
+                color: "text-primary",
+                gradient: "from-purple-500/10 via-primary/5 to-transparent",
+                bgIcon: "bg-purple-500/10"
               },
               {
                 icon: Zap,
                 title: "Stack empleable",
-                description: "React, Next.js, Supabase, React Query, Tailwind, Zustand.",
-                color: "text-accent"
+                description: "React, Next.js, Supabase, React Query, Tailwind, Zustand. Las tecnologías que buscan las empresas.",
+                color: "text-accent",
+                gradient: "from-orange-500/10 via-accent/5 to-transparent",
+                bgIcon: "bg-orange-500/10"
               }
             ].map((feature, index) => (
               <motion.div
@@ -287,20 +322,71 @@ export default function GazellaVisionLanding() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
+                className="group"
               >
-                <Card className="border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-lg group h-full">
-                  <CardHeader className="text-center">
+                <Card className={`relative border-2 hover:border-primary/30 transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 h-full overflow-hidden bg-gradient-to-br ${feature.gradient} backdrop-blur-sm`}>
+                  {/* Glassmorphism background */}
+                  <div className="absolute inset-0 bg-white/80 backdrop-blur-xl" />
+
+                  {/* Animated background element */}
+                  <div className="absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br from-primary/10 to-accent/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
+
+                  <CardHeader className="text-center relative z-10 pb-4">
                     <motion.div
+                      className="relative"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
-                      <feature.icon className={`w-12 h-12 ${feature.color} mb-4 mx-auto`} />
+                      <div className={`w-16 h-16 ${feature.bgIcon} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-shadow duration-300`}>
+                        <feature.icon className={`w-8 h-8 ${feature.color}`} />
+                      </div>
+
+                      {/* Floating particles effect */}
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        {[...Array(3)].map((_, i) => (
+                          <motion.div
+                            key={i}
+                            className="absolute w-1 h-1 bg-primary/40 rounded-full"
+                            initial={{ scale: 0, x: 0, y: 0 }}
+                            animate={{
+                              scale: [0, 1, 0],
+                              x: [0, Math.random() * 40 - 20],
+                              y: [0, Math.random() * 40 - 20],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              delay: i * 0.2,
+                            }}
+                            style={{
+                              left: "50%",
+                              top: "50%",
+                            }}
+                          />
+                        ))}
+                      </div>
                     </motion.div>
-                    <CardTitle className="font-heading text-lg lg:text-xl">{feature.title}</CardTitle>
+
+                    <CardTitle className="font-heading text-lg lg:text-xl group-hover:text-primary transition-colors duration-300">
+                      {feature.title}
+                    </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground text-center">{feature.description}</p>
+
+                  <CardContent className="relative z-10 text-center">
+                    <p className="text-muted-foreground leading-relaxed text-sm lg:text-base">
+                      {feature.description}
+                    </p>
+
+                    {/* Progress indicator */}
+                    <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="w-12 h-1 bg-gradient-to-r from-primary to-accent rounded-full mx-auto" />
+                    </div>
                   </CardContent>
+
+                  {/* Shine effect on hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-full group-hover:-translate-x-full transition-transform duration-1000" />
+                  </div>
                 </Card>
               </motion.div>
             ))}
@@ -324,37 +410,62 @@ export default function GazellaVisionLanding() {
             <p className="text-lg sm:text-xl text-muted-foreground">De fundamentos a MVP en producción</p>
           </motion.div>
 
-          <div className="space-y-4">
+          <div className="space-y-6">
             {[
               {
                 weeks: "Semana 1–2",
                 title: "Fundamentos de React + Tailwind",
                 subtitle: "To-Do App & Landing Page",
-                color: "border-primary"
+                description: "Aprende los componentes de React, hooks básicos, y estiliza con Tailwind CSS. Crea tu primera aplicación funcional.",
+                color: "border-primary",
+                gradient: "from-blue-500/10 to-primary/5",
+                icon: "⚛️",
+                skills: ["JSX", "useState", "useEffect", "Tailwind CSS"],
+                project: "To-Do App interactiva + Landing responsiva"
               },
               {
                 weeks: "Semana 3–4",
                 title: "Next.js, rutas y UI",
                 subtitle: "Dashboard MVP",
-                color: "border-accent"
+                description: "Domina Next.js App Router, navegación, layouts y componentes UI. Construye dashboards profesionales.",
+                color: "border-accent",
+                gradient: "from-green-500/10 to-accent/5",
+                icon: "🚀",
+                skills: ["App Router", "Layouts", "Componentes UI", "Server Components"],
+                project: "Dashboard MVP con navegación completa"
               },
               {
                 weeks: "Semana 5–6",
                 title: "Supabase (Auth + CRUD) + React Query",
                 subtitle: "Task Manager real",
-                color: "border-primary"
+                description: "Integra base de datos real, autenticación y gestión de estado. Tu app cobra vida con datos reales.",
+                color: "border-primary",
+                gradient: "from-purple-500/10 to-primary/5",
+                icon: "🗄️",
+                skills: ["Supabase Auth", "PostgreSQL", "React Query", "Estado global"],
+                project: "Task Manager con usuarios y persistencia"
               },
               {
                 weeks: "Semana 7",
                 title: "Zustand + validaciones + API Routes",
                 subtitle: "React Hook Form & estado global",
-                color: "border-accent"
+                description: "Optimiza la gestión de estado, validaciones robustas y APIs propias. Nivel profesional alcanzado.",
+                color: "border-accent",
+                gradient: "from-orange-500/10 to-accent/5",
+                icon: "⚡",
+                skills: ["Zustand", "React Hook Form", "Zod", "API Routes"],
+                project: "App completa con formularios y validaciones"
               },
               {
                 weeks: "Semana 8",
                 title: "Deploy en Vercel + Demo Day",
                 subtitle: "Proyecto final presentado",
-                color: "border-primary"
+                description: "Lleva tu MVP a producción con Vercel. Presenta tu proyecto y recibe feedback de la comunidad.",
+                color: "border-primary",
+                gradient: "from-indigo-500/10 to-primary/5",
+                icon: "🎯",
+                skills: ["Vercel Deploy", "Environment Variables", "Presentación", "Demo"],
+                project: "MVP SaaS funcionando en producción"
               }
             ].map((week, index) => (
               <motion.div
@@ -364,13 +475,68 @@ export default function GazellaVisionLanding() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.02, x: 10 }}
+                className="group"
               >
-                <div className={`bg-white p-4 sm:p-6 rounded-xl border-l-4 ${week.color} shadow-sm hover:shadow-md transition-shadow`}>
-                  <h3 className="font-heading font-semibold text-base sm:text-lg mb-2">
-                    {week.weeks}: {week.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm sm:text-base">{week.subtitle}</p>
-                </div>
+                <Card className={`bg-gradient-to-br ${week.gradient} backdrop-blur-sm border-l-4 ${week.color} hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 relative overflow-hidden`}>
+                  {/* Glassmorphism overlay */}
+                  <div className="absolute inset-0 bg-white/70 backdrop-blur-xl border border-white/20 rounded-lg" />
+
+                  {/* Content */}
+                  <CardContent className="relative z-10 p-6">
+                    <div className="flex items-start gap-4">
+                      {/* Icon & Week */}
+                      <div className="flex-shrink-0">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center text-2xl mb-2 group-hover:scale-110 transition-transform duration-300">
+                          {week.icon}
+                        </div>
+                        <Badge variant="outline" className="text-xs font-mono bg-white/80">
+                          {week.weeks}
+                        </Badge>
+                      </div>
+
+                      {/* Main Content */}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-heading font-bold text-lg sm:text-xl mb-2 text-foreground group-hover:text-primary transition-colors">
+                          {week.title}
+                        </h3>
+                        <p className="text-primary/80 font-medium text-sm sm:text-base mb-3">
+                          {week.subtitle}
+                        </p>
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                          {week.description}
+                        </p>
+
+                        {/* Skills Tags */}
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {week.skills.map((skill, skillIndex) => (
+                            <motion.span
+                              key={skillIndex}
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              whileInView={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: index * 0.1 + skillIndex * 0.05 }}
+                              className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-md font-medium hover:bg-primary/20 transition-colors"
+                            >
+                              {skill}
+                            </motion.span>
+                          ))}
+                        </div>
+
+                        {/* Project Outcome */}
+                        <div className="flex items-center gap-2 text-sm">
+                          <CheckCircle className="w-4 h-4 text-accent flex-shrink-0" />
+                          <span className="text-muted-foreground">
+                            <strong className="text-foreground">Proyecto:</strong> {week.project}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+
+                  {/* Animated border effect */}
+                  <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 blur-sm" />
+                  </div>
+                </Card>
               </motion.div>
             ))}
           </div>
@@ -403,22 +569,31 @@ export default function GazellaVisionLanding() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {[
               {
-                quote: "En 8 semanas lancé mi app de reservas y la usé como carta de presentación.",
+                quote: "En 8 semanas lancé mi app de reservas y la usé como carta de presentación en entrevistas. ¡Funcionó!",
                 name: "Fiorella R.",
                 role: "Frontend Jr.",
-                avatar: "/professional-woman-avatar.png"
+                avatar: "/professional-woman-avatar.png",
+                rating: 5,
+                company: "Startup Tech",
+                gradient: "from-pink-500/10 to-purple-500/10"
               },
               {
-                quote: "La mentoría 1:1 marcó la diferencia. Pasé de tutoriales a un proyecto publicable.",
+                quote: "La mentoría 1:1 marcó la diferencia. Pasé de ver tutoriales a tener un proyecto real publicado y funcionando.",
                 name: "Jorge M.",
                 role: "Dev en transición",
-                avatar: "/professional-man-avatar.png"
+                avatar: "/professional-man-avatar.png",
+                rating: 5,
+                company: "Freelance",
+                gradient: "from-blue-500/10 to-cyan-500/10"
               },
               {
-                quote: "El enfoque práctico me ayudó a entender React y Next.js desde el día uno.",
+                quote: "El enfoque práctico me ayudó a entender React y Next.js desde el día uno. Ahora desarrollo con confianza.",
                 name: "Carla T.",
                 role: "Diseñadora → Dev",
-                avatar: "/professional-woman-designer-avatar.png"
+                avatar: "/professional-woman-designer-avatar.png",
+                rating: 5,
+                company: "Agencia Digital",
+                gradient: "from-green-500/10 to-emerald-500/10"
               }
             ].map((testimonial, index) => (
               <motion.div
@@ -427,36 +602,82 @@ export default function GazellaVisionLanding() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
+                className="group"
               >
-                <Card className="border-2 hover:shadow-lg transition-all duration-300 bg-white/80 backdrop-blur-sm h-full">
-                  <CardContent className="pt-6">
-                    <div className="flex mb-4">
-                      {[...Array(5)].map((_, i) => (
+                <Card className={`relative border-2 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 bg-gradient-to-br ${testimonial.gradient} backdrop-blur-sm h-full overflow-hidden hover:border-primary/30`}>
+                  {/* Glassmorphism background */}
+                  <div className="absolute inset-0 bg-white/90 backdrop-blur-xl border border-white/20" />
+
+                  {/* Floating orb decoration */}
+                  <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-sm group-hover:scale-150 transition-transform duration-700" />
+
+                  <CardContent className="relative z-10 pt-6">
+                    {/* Rating Stars */}
+                    <div className="flex mb-4 justify-center">
+                      {[...Array(testimonial.rating)].map((_, i) => (
                         <motion.div
                           key={i}
-                          initial={{ opacity: 0, scale: 0 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: index * 0.1 + i * 0.1 }}
+                          initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                          transition={{
+                            delay: index * 0.1 + i * 0.1,
+                            type: "spring",
+                            stiffness: 200
+                          }}
                         >
-                          <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                          <Star className="w-5 h-5 fill-yellow-400 text-yellow-400 mr-1" />
                         </motion.div>
                       ))}
                     </div>
-                    <blockquote className="text-muted-foreground mb-4 text-sm sm:text-base">
-                      "{testimonial.quote}"
-                    </blockquote>
-                    <div className="flex items-center gap-3">
-                      <img
-                        src={testimonial.avatar}
-                        alt={testimonial.name}
-                        className="w-10 h-10 rounded-full object-cover"
-                      />
-                      <div>
-                        <div className="font-semibold text-sm sm:text-base">{testimonial.name}</div>
-                        <div className="text-xs sm:text-sm text-muted-foreground">{testimonial.role}</div>
+
+                    {/* Quote with enhanced styling */}
+                    <div className="relative mb-6">
+                      <div className="absolute -top-2 -left-2 text-4xl text-primary/20 font-serif leading-none">"</div>
+                      <blockquote className="text-muted-foreground mb-4 text-sm sm:text-base leading-relaxed pl-6 italic">
+                        {testimonial.quote}
+                      </blockquote>
+                      <div className="absolute -bottom-2 -right-2 text-4xl text-primary/20 font-serif leading-none transform rotate-180">"</div>
+                    </div>
+
+                    {/* Author info with enhanced design */}
+                    <div className="flex items-center gap-4">
+                      <div className="relative">
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-sm group-hover:scale-110 transition-transform duration-300" />
+                        <img
+                          src={testimonial.avatar}
+                          alt={testimonial.name}
+                          className="relative w-12 h-12 rounded-full object-cover border-2 border-white/50 group-hover:border-primary/50 transition-colors duration-300"
+                        />
+
+                        {/* Online status indicator */}
+                        <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white" />
+                      </div>
+
+                      <div className="flex-1">
+                        <div className="font-semibold text-sm sm:text-base text-foreground group-hover:text-primary transition-colors duration-300">
+                          {testimonial.name}
+                        </div>
+                        <div className="text-xs sm:text-sm text-muted-foreground">
+                          {testimonial.role}
+                        </div>
+                        <div className="text-xs text-primary/70 font-medium">
+                          @ {testimonial.company}
+                        </div>
+                      </div>
+
+                      {/* Verification badge */}
+                      <div className="flex-shrink-0">
+                        <div className="w-6 h-6 bg-green-500/20 rounded-full flex items-center justify-center">
+                          <CheckCircle className="w-4 h-4 text-green-600" />
+                        </div>
                       </div>
                     </div>
                   </CardContent>
+
+                  {/* Animated border gradient */}
+                  <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                    <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/30 via-accent/30 to-primary/30 blur-sm animate-pulse" />
+                  </div>
                 </Card>
               </motion.div>
             ))}
@@ -515,7 +736,12 @@ export default function GazellaVisionLanding() {
                     ))}
                   </div>
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                    <Button className="w-full btn-secondary mt-8">Empezar con Starter</Button>
+                    <Button
+                      className="w-full btn-secondary mt-8"
+                      onClick={() => window.open(getWhatsAppLink("starter"), '_blank')}
+                    >
+                      Empezar con Starter
+                    </Button>
                   </motion.div>
                 </CardContent>
               </Card>
@@ -535,7 +761,7 @@ export default function GazellaVisionLanding() {
                 <CardHeader className="text-center pb-8">
                   <CardTitle className="font-heading text-xl lg:text-2xl">Lanzamiento</CardTitle>
                   <div className="text-2xl lg:text-3xl font-bold text-foreground">S/ 990</div>
-                  <CardDescription>Cohorte en vivo (8 semanas)</CardDescription>
+                  <CardDescription>Clases en vivo (8 semanas)</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-3">
@@ -554,7 +780,12 @@ export default function GazellaVisionLanding() {
                     ))}
                   </div>
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                    <Button className="w-full btn-primary mt-8">Reservar mi cupo</Button>
+                    <Button
+                      className="w-full btn-primary mt-8"
+                      onClick={() => window.open(getWhatsAppLink("reservar"), '_blank')}
+                    >
+                      Reservar mi cupo
+                    </Button>
                   </motion.div>
                 </CardContent>
               </Card>
@@ -589,7 +820,12 @@ export default function GazellaVisionLanding() {
                     ))}
                   </div>
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                    <Button className="w-full btn-secondary mt-8">Postular a Premium</Button>
+                    <Button
+                      className="w-full btn-secondary mt-8"
+                      onClick={() => window.open(getWhatsAppLink("premium"), '_blank')}
+                    >
+                      Postular a Premium
+                    </Button>
                   </motion.div>
                 </CardContent>
               </Card>
@@ -660,11 +896,15 @@ export default function GazellaVisionLanding() {
             Tu app en producción en 8 semanas. ¿Listo/a?
           </h2>
           <p className="text-lg sm:text-xl mb-8 opacity-90">
-            Únete a la próxima cohorte y construye el MVP que cambiará tu carrera
+            Únete a la próxima clase y construye el MVP que cambiará tu carrera
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button size="lg" className="bg-white text-primary hover:bg-gray-100 px-8 py-4 text-lg w-full sm:w-auto">
+              <Button
+                size="lg"
+                className="bg-white text-primary hover:bg-gray-100 px-8 py-4 text-lg w-full sm:w-auto"
+                onClick={() => window.open(getWhatsAppLink("postular"), '_blank')}
+              >
                 Postula ahora
               </Button>
             </motion.div>
@@ -673,6 +913,7 @@ export default function GazellaVisionLanding() {
                 size="lg"
                 variant="outline"
                 className="border-white text-white hover:bg-white hover:text-primary px-8 py-4 text-lg bg-transparent w-full sm:w-auto"
+                onClick={() => window.open(getWhatsAppLink("consultar"), '_blank')}
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
                 Hablar por WhatsApp

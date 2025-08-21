@@ -180,6 +180,99 @@ export default function GazellaVisionLanding() {
     return () => window.removeEventListener("scroll", updateScrollY)
   }, [])
 
+  // Roadmap comercial del bootcamp
+  const roadmapWeeks = [
+    {
+      weeks: "Semana 1",
+      title: "Tu primera versión visible",
+      subtitle: "Next.js + React + TailwindCSS",
+      description: "Montamos la página base con inicio, catálogo y detalle de servicio. Ya tienes algo real para mostrar.",
+      technologies: [
+        { name: "Next.js", logo: "/nextjs-icon-svgrepo-com.svg" },
+        { name: "React", logo: "/react-svg-logo.svg" },
+        { name: "TailwindCSS", logo: "/tailwindcss-logo.svg" }
+      ],
+      project: "Landing y catálogo funcional"
+    },
+    {
+      weeks: "Semana 2",
+      title: "Conecta datos reales",
+      subtitle: "React Query",
+      description: "El catálogo deja de ser ficticio. Estados de carga, error y listo. Tu web comienza a sentirse viva.",
+      technologies: [
+        { name: "React Query", logo: "/react-query-seeklogo.svg" }
+      ],
+      project: "Catálogo con datos reales"
+    },
+    {
+      weeks: "Semana 3",
+      title: "Usuarios y contenido propio",
+      subtitle: "Supabase Auth + Database",
+      description: "Registro, login y panel para publicar y editar servicios. Cada usuario ve y gestiona lo suyo.",
+      technologies: [
+        { name: "Supabase Auth", logo: "/supabase-logo-icon.svg" },
+        { name: "Supabase Database", logo: "/supabase-logo-icon.svg" },
+        { name: "React Query", logo: "/react-query-seeklogo.svg" }
+      ],
+      project: "Panel de usuario y servicios"
+    },
+    {
+      weeks: "Semana 4",
+      title: "Reservas y publicación online",
+      subtitle: "Supabase Storage + Vercel Deploy",
+      description: "Reservas, subida de imágenes y publicación del MVP en internet. Listo para compartir.",
+      technologies: [
+        { name: "Supabase Storage", logo: "/supabase-logo-icon.svg" },
+        { name: "Vercel", logo: "/vercel-seeklogo.svg" }
+      ],
+      project: "MVP online y compartible"
+    },
+    {
+      weeks: "Semana 5",
+      title: "Motor profesional detrás (API)",
+      subtitle: "Java 17 + Spring Boot 3 + JPA",
+      description: "Creamos backend robusto para reglas de negocio (precios, horarios, estados). Base preparada para crecer.",
+      technologies: [
+        { name: "Java", logo: "/java-svg.svg" },
+        { name: "Spring Boot", logo: "/spring-boot-svg.svg" }
+      ],
+      project: "API profesional y escalable"
+    },
+    {
+      weeks: "Semana 6",
+      title: "Seguridad y velocidad en serio",
+      subtitle: "Spring Security + API REST",
+      description: "Accesos protegidos, sesiones seguras y listados rápidos con filtros. La app es ahora un servicio serio.",
+      technologies: [
+        { name: "Spring Security", logo: "/spring-boot-svg.svg" },
+        { name: "Java", logo: "/java-svg.svg" }
+      ],
+      project: "App segura y optimizada"
+    },
+    {
+      weeks: "Semana 7",
+      title: "Confiabilidad y cuidado del sistema",
+      subtitle: "JUnit + Spring Boot Actuator + Scheduler",
+      description: "Pruebas, indicadores, registros y recordatorios automáticos. Tu producto ahora aguanta el día a día.",
+      technologies: [
+        { name: "JUnit", logo: "/java-svg.svg" },
+        { name: "Spring Boot", logo: "/spring-boot-svg.svg" }
+      ],
+      project: "Sistema robusto y confiable"
+    },
+    {
+      weeks: "Semana 8",
+      title: "Lanzamiento completo y checklist final",
+      subtitle: "Deploy a Railway/Fly/Render",
+      description: "Publicamos backend y frontend conectados, últimos ajustes y presentación. Producto final listo para vender o mostrar.",
+      technologies: [
+        { name: "Railway", logo: "/vercel-seeklogo.svg" },
+        { name: "AWS", logo: "/aws-logo-svg.svg" }
+      ],
+      project: "Producto final en producción"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden transition-colors duration-300">
       {/* Floating WhatsApp Button */}
@@ -767,7 +860,7 @@ export default function GazellaVisionLanding() {
                       viewport={{ once: true }}
                       className="group h-full"
                     >
-                      <Card className={`relative h-full border-2 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 overflow-hidden ${tech.bgColor}/50 backdrop-blur-sm`}>
+                      <Card className={`relative h-full border-2 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 overflow-hidden ${tech.bgColor}/50 backdrop-blur-sm dark:border-gray-600`}>
                         {/* Glassmorphism background */}
                         <div className="absolute inset-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl" />
 
@@ -845,7 +938,7 @@ export default function GazellaVisionLanding() {
               Programa Intensivo
             </Badge>
             <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-6">
-              8 Semanas • 5 Tecnologías • 1 MVP Real
+              8 Semanas • 10 Tecnologías • 1 MVP Real
             </h2>
             <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
               De fundamentos a producción. Cada semana dominas nuevas tecnologías y construyes proyectos reales.
@@ -853,38 +946,8 @@ export default function GazellaVisionLanding() {
           </motion.div>
 
           {/* Primera fila: 2 elementos */}
-          <div className="grid lg:grid-cols-2 gap-8 mb-8">
-            {[
-              {
-                weeks: "Semanas 1-2",
-                title: "Fundamentos Sólidos",
-                subtitle: "React + Tailwind CSS",
-                description: "Domina los componentes de React, hooks esenciales, y crea interfaces modernas con Tailwind CSS. Tu primera app funcional lista.",
-                technologies: [
-                  { name: "React", logo: "/react-svg-logo.svg", color: "text-gv-blue-primary" },
-                  { name: "Tailwind CSS", logo: "/tailwindcss-logo.svg", color: "text-gv-blue-light" },
-                  { name: "JavaScript", logo: "/js-logo.svg", color: "text-yellow-500" }
-                ],
-                skills: ["Componentes", "Hooks", "Estado", "Estilos"],
-                project: "To-Do App + Landing Page",
-                gradient: "from-gv-blue-primary/5 via-gv-blue-light/5 to-gv-blue-primary/5",
-                borderColor: "border-gv-blue-primary/20"
-              },
-              {
-                weeks: "Semanas 3-4",
-                title: "Framework Profesional",
-                subtitle: "Next.js App Router",
-                description: "Construye aplicaciones de nivel empresarial con Next.js. Rutas, layouts, componentes server y client. Dashboard completo.",
-                technologies: [
-                  { name: "Next.js", logo: "/nextjs-icon-svgrepo-com.svg", color: "text-gray-800" },
-                  { name: "React", logo: "/react-svg-logo.svg", color: "text-gv-blue-primary" }
-                ],
-                skills: ["App Router", "Layouts", "SSR", "Componentes UI"],
-                project: "Dashboard MVP Profesional",
-                gradient: "from-gray-500/5 via-gv-blue-primary/5 to-gray-500/5",
-                borderColor: "border-gray-500/20"
-              }
-            ].map((week, index) => (
+          <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-8 mb-8">
+            {roadmapWeeks.map((week, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
@@ -893,24 +956,18 @@ export default function GazellaVisionLanding() {
                 viewport={{ once: true }}
                 className="group"
               >
-                <Card className={`relative border-2 ${week.borderColor} hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 bg-gradient-to-br ${week.gradient} backdrop-blur-sm overflow-hidden h-full`}>
+                <Card className={`relative border-2 hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 bg-gradient-to-br backdrop-blur-sm overflow-hidden h-full`}>
                   {/* Glassmorphism background */}
                   <div className="absolute inset-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl" />
 
-                  {/* Decorative element */}
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-accent/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
 
-                  <CardHeader className="relative z-10 pb-4">
+
+                  <CardHeader className="relative z-10 pb-4 min-h-40 md:min-h-80 flex flex-col justify-between ">
                     {/* Week Badge */}
                     <div className="flex items-center justify-between mb-4">
                       <Badge variant="outline" className="font-mono text-xs bg-white/80 dark:bg-gray-700/80 dark:text-gray-200">
                         {week.weeks}
                       </Badge>
-                      <div className="flex items-center gap-1">
-                        {week.technologies.map((tech, techIndex) => (
-                          <div key={techIndex} className="w-2 h-2 rounded-full bg-primary/20" />
-                        ))}
-                      </div>
                     </div>
 
                     {/* Technology Logos - Prominent Display */}
@@ -949,29 +1006,30 @@ export default function GazellaVisionLanding() {
                     </CardDescription>
                   </CardHeader>
 
-                  <CardContent className="relative z-10 space-y-4">
-                    <p className="text-muted-foreground leading-relaxed">
-                      {week.description}
-                    </p>
-
-                    {/* Skills Grid */}
-                    <div className="grid grid-cols-2 gap-2">
-                      {week.skills.map((skill, skillIndex) => (
-                        <motion.div
-                          key={skillIndex}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: index * 0.1 + skillIndex * 0.05 }}
-                          className="flex items-center gap-2 p-2 bg-primary/5 rounded-lg hover:bg-primary/10 transition-colors"
-                        >
-                          <CheckCircle className="w-3 h-3 text-accent flex-shrink-0" />
-                          <span className="text-xs lg:text-sm font-medium">{skill}</span>
-                        </motion.div>
-                      ))}
+                  <CardContent className="relative z-10 space-y-4 max-h-60 overflow-y-auto">
+                    <div className="min-h-[120px] flex flex-col justify-between">
+                      <p className="text-muted-foreground leading-relaxed">
+                        {week.description}
+                      </p>
+                      {/* Skills Grid */}
+                      <div className="grid grid-cols-2 gap-2">
+                        {/* {week.skills.map((skill, skillIndex) => (
+                          <motion.div
+                            key={skillIndex}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: index * 0.1 + skillIndex * 0.05 }}
+                            className="flex items-center gap-2 p-2 bg-primary/5 rounded-lg hover:bg-primary/10 transition-colors"
+                          >
+                            <CheckCircle className="w-3 h-3 text-accent flex-shrink-0" />
+                            <span className="text-xs lg:text-sm font-medium">{skill}</span>
+                          </motion.div>
+                        ))} */}
+                      </div>
                     </div>
                   </CardContent>
 
-                  <CardFooter className="relative z-10 pt-4">
+                  <CardFooter className="relative z-10 pt-4 bottom-0">
                     <div className="w-full p-3 bg-accent/10 rounded-lg border border-accent/20">
                       <div className="flex items-center gap-2">
                         <Target className="w-4 h-4 text-accent flex-shrink-0" />
@@ -993,155 +1051,7 @@ export default function GazellaVisionLanding() {
           </div>
 
           {/* Segunda fila: 3 elementos */}
-          <div className="grid lg:grid-cols-3 gap-8">
-            {[
-              {
-                weeks: "Semanas 5-6",
-                title: "Backend & Estado",
-                subtitle: "Supabase + React Query",
-                description: "Integra base de datos real, autenticación segura y gestión de estado avanzada. Tu app cobra vida con datos reales.",
-                technologies: [
-                  { name: "Supabase", logo: "/supabase-logo-icon.svg", color: "text-green-500" },
-                  { name: "React Query", logo: "/react-query-seeklogo.svg", color: "text-red-500" }
-                ],
-                skills: ["PostgreSQL", "Auth", "Queries", "Caché"],
-                project: "Task Manager con Usuarios",
-                gradient: "from-green-500/5 via-emerald-500/5 to-green-500/5",
-                borderColor: "border-green-500/20"
-              },
-              {
-                weeks: "Semana 7",
-                title: "Estado Global",
-                subtitle: "Zustand + Validaciones",
-                description: "Optimiza el estado global, implementa validaciones robustas y APIs propias. Nivel profesional alcanzado.",
-                technologies: [
-                  { name: "Zustand", logo: "/zustand.svg", color: "text-orange-500" }
-                ],
-                skills: ["Estado Global", "React Hook Form", "Zod", "API Routes"],
-                project: "App con Formularios Avanzados",
-                gradient: "from-orange-500/5 via-amber-500/5 to-orange-500/5",
-                borderColor: "border-orange-500/20"
-              },
-              {
-                weeks: "Semana 8",
-                title: "Producción & Demo",
-                subtitle: "Deploy en Vercel",
-                description: "Lleva tu MVP a producción con Vercel. Configura dominios, variables de entorno y presenta tu proyecto al mundo.",
-                technologies: [
-                  { name: "Vercel", logo: "/vercel-seeklogo.svg", color: "text-gray-800" }
-                ],
-                skills: ["Deploy", "Dominios", "ENV Variables", "Presentación"],
-                project: "MVP SaaS en Producción",
-                gradient: "from-purple-500/5 via-indigo-500/5 to-purple-500/5",
-                borderColor: "border-purple-500/20"
-              }
-            ].map((week, index) => (
-              <motion.div
-                key={index + 2} // Offset index for second row
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: (index + 2) * 0.1 }}
-                viewport={{ once: true }}
-                className="group"
-              >
-                <Card className={`relative border-2 ${week.borderColor} hover:border-primary/40 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 bg-gradient-to-br ${week.gradient} backdrop-blur-sm overflow-hidden h-full`}>
-                  {/* Glassmorphism background */}
-                  <div className="absolute inset-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl" />
 
-                  {/* Decorative element */}
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/5 to-accent/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700" />
-
-                  <CardHeader className="relative z-10 pb-4">
-                    {/* Week Badge */}
-                    <div className="flex items-center justify-between mb-4">
-                      <Badge variant="outline" className="font-mono text-xs bg-white/80 dark:bg-gray-700/80 dark:text-gray-200">
-                        {week.weeks}
-                      </Badge>
-                      <div className="flex items-center gap-1">
-                        {week.technologies.map((tech, techIndex) => (
-                          <div key={techIndex} className="w-2 h-2 rounded-full bg-primary/20" />
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Technology Logos - Prominent Display */}
-                    <div className="flex items-center justify-center gap-4 mb-6 p-4 bg-white/50 dark:bg-gray-700/50 rounded-xl border border-white/20 dark:border-gray-600/30">
-                      {week.technologies.map((tech, techIndex) => (
-                        <motion.div
-                          key={techIndex}
-                          className="group/tech"
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                          transition={{ type: "spring", stiffness: 300 }}
-                        >
-                          <div className="relative">
-                            <Image
-                              src={tech.logo}
-                              width={64}
-                              height={64}
-                              alt={tech.name}
-                              className="w-12 h-12 lg:w-16 lg:h-16 object-contain group-hover/tech:drop-shadow-lg transition-all duration-300"
-                            />
-                            {/* Tech name tooltip */}
-                            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover/tech:opacity-100 transition-opacity">
-                              <div className="bg-gray-800 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
-                                {tech.name}
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      ))}
-                    </div>
-
-                    <CardTitle className="font-heading text-xl lg:text-2xl mb-2 group-hover:text-primary transition-colors">
-                      {week.title}
-                    </CardTitle>
-                    <CardDescription className="text-primary font-semibold text-base mb-3">
-                      {week.subtitle}
-                    </CardDescription>
-                  </CardHeader>
-
-                  <CardContent className="relative z-10 space-y-4">
-                    <p className="text-muted-foreground leading-relaxed">
-                      {week.description}
-                    </p>
-
-                    {/* Skills Grid */}
-                    <div className="grid grid-cols-2 gap-2">
-                      {week.skills.map((skill, skillIndex) => (
-                        <motion.div
-                          key={skillIndex}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: (index + 2) * 0.1 + skillIndex * 0.05 }}
-                          className="flex items-center gap-2 p-2 bg-primary/5 rounded-lg hover:bg-primary/10 transition-colors"
-                        >
-                          <CheckCircle className="w-3 h-3 text-accent flex-shrink-0" />
-                          <span className="text-xs lg:text-sm font-medium">{skill}</span>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </CardContent>
-
-                  <CardFooter className="relative z-10 pt-4">
-                    <div className="w-full p-3 bg-accent/10 rounded-lg border border-accent/20">
-                      <div className="flex items-center gap-2">
-                        <Target className="w-4 h-4 text-accent flex-shrink-0" />
-                        <div>
-                          <p className="text-xs text-muted-foreground">Proyecto Final:</p>
-                          <p className="text-sm font-semibold text-foreground">{week.project}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </CardFooter>
-
-                  {/* Shine effect */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-full group-hover:-translate-x-full transition-transform duration-1000" />
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
 
           {/* Final CTA for Program Section */}
           <motion.div

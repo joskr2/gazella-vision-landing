@@ -43,12 +43,14 @@ export function TechCarousel() {
         <div className="relative">
           <Carousel
             opts={{
-              align: "start",
+              align: "center",
               loop: true,
+              dragFree: true,
+              containScroll: "trimSnaps",
             }}
             plugins={[
               Autoplay({
-                delay: 5000,
+                delay: 3000,
                 stopOnInteraction: false,
                 stopOnMouseEnter: true,
               }),
@@ -57,7 +59,7 @@ export function TechCarousel() {
           >
             <CarouselContent className="-ml-2 md:-ml-4">
               {technologies.map((tech, index) => (
-                <CarouselItem key={tech.name} className="pl-2 md:pl-4 basis-1/2 md:basis-1/3 lg:basis-1/4">
+                <CarouselItem key={tech.name} className="pl-2 md:pl-4 basis-2/3 sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                   <motion.div
                     initial={{ opacity: 0, y: 50, scale: 0.8 }}
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -70,50 +72,50 @@ export function TechCarousel() {
                     viewport={{ once: true }}
                     className="group h-full"
                   >
-                    <Card className={`relative h-full border-2 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 overflow-hidden ${tech.bgColor}/50 backdrop-blur-sm dark:border-gray-600`}>
+                    <Card className={`relative h-full border-2 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 overflow-hidden ${tech.bgColor}/50 backdrop-blur-sm dark:border-gray-600 group/card`}>
                       {/* Glassmorphism background */}
                       <div className="absolute inset-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl" />
 
                       {/* Gradient overlay on hover */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                      <div className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 group-hover/card:opacity-10 transition-opacity duration-500`} />
 
-                      <CardContent className="relative z-10 p-6 text-center h-full flex flex-col justify-center">
+                      <CardContent className="relative z-10 p-4 sm:p-6 text-center h-full flex flex-col justify-center">
                         {/* Logo */}
                         <motion.div
-                          className="mb-4 mx-auto"
+                          className="mb-3 sm:mb-4 mx-auto"
                           whileHover={{ scale: 1.2, rotate: 5 }}
                           transition={{ type: "spring", stiffness: 300 }}
                         >
-                          <div className="w-16 h-16 lg:w-20 lg:h-20 mx-auto flex items-center justify-center">
+                          <div className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 mx-auto flex items-center justify-center">
                             <Image
                               src={tech.logo}
                               alt={`${tech.name} logo`}
-                              width={80}
-                              height={80}
-                              className="object-contain group-hover:drop-shadow-lg transition-all duration-300"
+                              width={64}
+                              height={64}
+                              className="object-contain group-hover/card:drop-shadow-lg transition-all duration-300"
                             />
                           </div>
                         </motion.div>
 
                         {/* Technology Name */}
-                        <h3 className="font-bold text-lg lg:text-xl mb-2 group-hover:text-primary transition-colors duration-300">
+                        <h3 className="font-bold text-sm sm:text-lg lg:text-xl mb-1 sm:mb-2 group-hover/card:text-primary transition-colors duration-300">
                           {tech.name}
                         </h3>
 
                         {/* Description */}
-                        <p className="text-sm text-muted-foreground group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors duration-300">
+                        <p className="text-xs sm:text-sm text-muted-foreground group-hover/card:text-gray-700 dark:group-hover/card:text-gray-300 transition-colors duration-300 line-clamp-2">
                           {tech.description}
                         </p>
 
                         {/* Progress bar on hover */}
-                        <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className={`h-1 bg-gradient-to-r ${tech.color} rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500`} />
+                        <div className="mt-2 sm:mt-4 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
+                          <div className={`h-1 bg-gradient-to-r ${tech.color} rounded-full transform scale-x-0 group-hover/card:scale-x-100 transition-transform duration-500`} />
                         </div>
                       </CardContent>
 
                       {/* Shine effect */}
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-gray-300/20 to-transparent transform -skew-x-12 translate-x-full group-hover:-translate-x-full transition-transform duration-1000" />
+                      <div className="absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500">
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-gray-300/20 to-transparent transform -skew-x-12 translate-x-full group-hover/card:-translate-x-full transition-transform duration-1000" />
                       </div>
                     </Card>
                   </motion.div>
@@ -122,12 +124,6 @@ export function TechCarousel() {
             </CarouselContent>
           </Carousel>
 
-          {/* Subtle indicator */}
-          <div className="text-center mt-6">
-            <p className="text-xs text-muted-foreground/60">
-              Tecnologías en movimiento • Pausa al hover
-            </p>
-          </div>
         </div>
       </div>
     </section>

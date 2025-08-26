@@ -6,7 +6,10 @@ import { DashboardImage } from "@/components/molecules/DashboardImage"
 import { TechIcon } from "@/components/atoms/TechIcon"
 import { FeatureBadge } from "@/components/atoms/FeatureBadge"
 import TypingAnimation from "@/components/molecules/typing-animation"
+import { TechStackCarousel } from "@/components/molecules/TechStackCarousel"
+import { FeaturesCarousel } from "@/components/molecules/FeaturesCarousel"
 import { heroTechStack, heroFeatures, siteConfig } from "@/data"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 interface HeroSectionProps {
   onReservar: () => void
@@ -16,6 +19,7 @@ interface HeroSectionProps {
 export function HeroSection({ onReservar, onDownloadTemario }: HeroSectionProps) {
   const [isMounted, setIsMounted] = useState(false)
   const targetRef = useRef<HTMLDivElement>(null)
+  const isMobile = useIsMobile()
 
   const { scrollYProgress } = useScroll({
     target: isMounted ? targetRef : undefined,
@@ -74,7 +78,7 @@ export function HeroSection({ onReservar, onDownloadTemario }: HeroSectionProps)
           {/* Dashboard Image with CTAs */}
           <DashboardImage onReservar={onReservar} onDownloadTemario={onDownloadTemario} />
 
-          {/* Tech Stack */}
+          {/* Tech Stack - Responsive */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -84,23 +88,36 @@ export function HeroSection({ onReservar, onDownloadTemario }: HeroSectionProps)
             <p className="text-xs text-muted-foreground mb-3 sm:mb-4 uppercase tracking-wider font-medium">
               Stack tecnológico que dominarás
             </p>
-            <div className="grid grid-cols-3 xs:grid-cols-4 sm:flex sm:justify-center sm:items-center gap-3 sm:gap-4 md:gap-5 max-w-2xl mx-auto px-2">
-              {heroTechStack.map((tech, index) => (
-                <TechIcon key={tech.name} {...tech} index={index} />
-              ))}
-            </div>
+            
+            {/* Mobile: Carousel, Desktop: Grid */}
+            {isMobile ? (
+              <TechStackCarousel />
+            ) : (
+              <div className="grid grid-cols-3 xs:grid-cols-4 sm:flex sm:justify-center sm:items-center gap-3 sm:gap-4 md:gap-5 max-w-2xl mx-auto px-2">
+                {heroTechStack.map((tech, index) => (
+                  <TechIcon key={tech.name} {...tech} index={index} />
+                ))}
+              </div>
+            )}
           </motion.div>
 
-          {/* Features Badges */}
+          {/* Features Badges - Responsive */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.6 }}
-            className="grid grid-cols-2 xs:grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-3 justify-center pt-2 sm:pt-3 max-w-xl mx-auto px-4"
+            className="pt-2 sm:pt-3"
           >
-            {heroFeatures.map((feature, index) => (
-              <FeatureBadge key={feature.text} {...feature} index={index} />
-            ))}
+            {/* Mobile: Carousel, Desktop: Grid */}
+            {isMobile ? (
+              <FeaturesCarousel />
+            ) : (
+              <div className="grid grid-cols-2 xs:grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-3 justify-center max-w-xl mx-auto px-4">
+                {heroFeatures.map((feature, index) => (
+                  <FeatureBadge key={feature.text} {...feature} index={index} />
+                ))}
+              </div>
+            )}
           </motion.div>
         </div>
       </div>

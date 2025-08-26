@@ -29,7 +29,7 @@ export const heroFeatures = [
   { icon: Zap, text: "Clases en vivo" },
   { icon: Target, text: "Proyecto real" },
   { icon: Award, text: "MVP en producción" },
-  { icon: DiamondPlus, text: "Docentes con basta experiencia" }
+  { icon: DiamondPlus, text: "Docentes expertos" }
 ]
 
 // Features principales para la sección de características

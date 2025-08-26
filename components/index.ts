@@ -8,6 +8,8 @@ export { FloatingWhatsApp } from "./molecules/FloatingWhatsApp";
 export { DashboardImage } from "./molecules/DashboardImage";
 export { NavigationMenu } from "./molecules/NavigationMenu";
 export { TechCarousel } from "./molecules/TechCarousel";
+export { TechStackCarousel } from "./molecules/TechStackCarousel";
+export { FeaturesCarousel } from "./molecules/FeaturesCarousel";
 export { TestimonialCard } from "./molecules/TestimonialCard";
 export { PricingCard } from "./molecules/PricingCard";
 export { RoadmapWeekCard } from "./molecules/RoadmapWeekCard";

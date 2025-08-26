@@ -63,12 +63,6 @@ export function TestimonialsSection() {
             </CarouselContent>
           </Carousel>
 
-          {/* Subtle indicator */}
-          <div className="text-center mt-8">
-            <p className="text-xs text-muted-foreground/60">
-              Testimonios reales • Desliza para ver más
-            </p>
-          </div>
         </div>
       </div>
     </section>

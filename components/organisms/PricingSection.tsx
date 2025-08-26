@@ -24,7 +24,7 @@ export function PricingSection({ onAction }: PricingSectionProps) {
             Planes de estudio
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed">
-            ¿Bootcamps de 3–6 meses a precios elevados? Olvídalo. Con Gazella Vision, en 8 semanas construyes y publicas tu MVP SaaS.
+             ¿Programas que duran mas de 24 semanas a precios elevados? Olvídalo. Con Gazella Vision, en 8 semanas construyes y publicas tu Producto Minimo Viable.
           </p>
 
           {/* Banner de fecha destacado */}
@@ -42,14 +42,14 @@ export function PricingSection({ onAction }: PricingSectionProps) {
               </div>
               <h3 className="text-xl sm:text-2xl font-bold mb-2">Inicia el {siteConfig.nextGroupDate}</h3>
               <p className="text-gv-blue-light text-xs sm:text-sm">
-                ¡Solo quedan pocos cupos disponibles!
+                ¡Solo quedan <span className="text-white">4</span> cupos disponibles!
               </p>
             </div>
           </motion.div>
         </motion.div>
 
         {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto px-4 sm:px-0">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto px-4 sm:px-0">
           {pricingPlans.map((plan, index) => (
             <PricingCard
               key={plan.name}

@@ -1,59 +1,47 @@
 export const pricingPlans = [
   {
-    name: "Starter",
-    price: "S/ 390",
-    originalPrice: "S/ 550",
-    description: "Para autodidactas",
+    name: "Full MVP",
+    price: "S/ 690",
+    originalPrice: "S/ 1,000",
+    description:
+      "Clases en vivo (8 semanas). A producción en dos meses, NextJS + Java con Spring Boot y AWS",
     features: [
-      { 
-        included: true, 
-        text: "2 clases semanales en vivo", 
-        schedule: "(Mar-Jue 7-8PM • Sáb 1-3PM)" 
+      {
+        text: "6 clases semanales en vivo",
+        schedule: "(Lun-Vie 7-10PM • Sáb 8AM-11AM)",
       },
-      { included: true, text: "Acceso a clases grabadas" },
-      { included: true, text: "Comunidad privada" },
-      { included: true, text: "Actualizaciones del curso" },
-      { included: false, text: "Sin feedback 1:1 personalizado" }
-    ],
-    action: "starter",
-    buttonText: "Empezar con Starter",
-    buttonVariant: "secondary" as const,
-    highlighted: false
-  },
-  {
-    name: "Lanzamiento", 
-    price: "S/ 990",
-    originalPrice: "S/ 1,500",
-    description: "Clases en vivo (8 semanas)",
-    features: [
-      { text: "5 clases semanales en vivo", schedule: "(Lun-Vie 7-9PM • Sáb 8AM-1PM)" },
       "Proyectos semanales guiados",
-      "Feedback grupal de código", 
-      "Proyecto final publicado en Vercel",
+      "Feedback grupal de código",
+      "Proyecto final publicado en Vercel + AWS",
       "Certificado de finalización",
-      "Cupos limitados a 15"
+      "Cupos limitados a 15",
     ],
     action: "reservar",
     buttonText: "Reservar mi cupo",
     buttonVariant: "primary" as const,
     highlighted: true,
-    badge: "Recomendado"
+    badge: "Recomendado",
   },
   {
-    name: "Premium",
-    price: "S/ 1,500", 
-    originalPrice: "S/ 2,000",
-    description: "Mentoría cercana",
+    name: "Fast MVP - Starter",
+    price: "S/ 500",
+    originalPrice: "S/ 850",
+    description:
+      "Clases en vivo (4 semanas). A producción en un mes, NextJS + Supabase",
     features: [
-      "Todo lo del plan Lanzamiento",
-      "4 sesiones 1:1 (15–20 min)",
-      "Revisión de CV/LinkedIn",
-      "Simulacro de entrevista técnica",
-      "Soporte prioritario"
+      {
+        text: "6 clases semanales en vivo",
+        schedule: "(Lun-Vie 7-10PM • Sáb 8AM-11AM)",
+      },
+      "Proyectos semanales guiados",
+      "Feedback grupal de código",
+      "Proyecto final publicado en Vercel + Supabase Cloud",
+      "Certificado de finalización",
+      "Cupos limitados a 15",
     ],
-    action: "premium",
-    buttonText: "Postular a Premium",
+    action: "starter",
+    buttonText: "Empezar con Starter",
     buttonVariant: "secondary" as const,
-    highlighted: false
+    highlighted: false,
   }
-]
+];

@@ -65,7 +65,7 @@ export function HeroSection({ onReservar, onDownloadTemario }: HeroSectionProps)
           >
             <h1 className="font-heading text-2xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight max-w-4xl mx-auto px-2">
               {siteConfig.title}
-              <span className="bg-gradient-to-r from-gv-blue-primary to-gv-blue-dark bg-clip-text text-transparent block mt-2">8 semanas</span>
+              <span className="bg-gradient-to-r from-gv-blue-primary to-gv-blue-dark bg-clip-text text-transparent mt-2"> 8 semanas</span>
             </h1>
             <p className="text-xs xs:text-sm sm:text-base md:text-lg text-gv-blue-dark max-w-3xl mx-auto px-4 leading-relaxed">
               {siteConfig.subtitle}

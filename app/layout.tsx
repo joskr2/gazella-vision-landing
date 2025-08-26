@@ -2,6 +2,10 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Roboto, Roboto_Slab } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Header } from "@/components/organisms/Header"
+import { Footer } from "@/components/organisms/Footer"
+import { FloatingWhatsApp } from "@/components/molecules/FloatingWhatsApp"
+import { WhatsAppProvider } from "@/components/providers/WhatsAppProvider"
 import "./globals.css"
 
 const roboto = Roboto({
@@ -43,7 +47,21 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <WhatsAppProvider>
+            {/* Floating WhatsApp Button */}
+            <FloatingWhatsApp />
+
+            {/* Header */}
+            <Header />
+
+            {/* Main Content */}
+            <main>
+              {children}
+            </main>
+
+            {/* Footer */}
+            <Footer />
+          </WhatsAppProvider>
         </ThemeProvider>
       </body>
     </html>

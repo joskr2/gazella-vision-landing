@@ -2,12 +2,10 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { useWhatsAppContext } from '@/components/providers/WhatsAppProvider'
 
-interface FloatingWhatsAppProps {
-  onClick: () => void
-}
-
-export function FloatingWhatsApp({ onClick }: FloatingWhatsAppProps) {
+export function FloatingWhatsApp() {
+  const { openWhatsApp } = useWhatsAppContext()
   return (
     <motion.div
       className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50"
@@ -18,7 +16,7 @@ export function FloatingWhatsApp({ onClick }: FloatingWhatsAppProps) {
       whileTap={{ scale: 0.9 }}
     >
       <button
-        onClick={onClick}
+        onClick={() => openWhatsApp("consultar")}
         className="bg-green-500 hover:bg-green-600 text-white p-3 sm:p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group min-h-[56px] min-w-[56px] sm:min-h-[64px] sm:min-w-[64px] flex items-center justify-center"
       >
         <Image

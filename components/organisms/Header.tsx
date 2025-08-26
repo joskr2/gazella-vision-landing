@@ -4,12 +4,10 @@ import { motion } from "framer-motion"
 import { useState } from "react"
 import { NavigationMenu } from "@/components/molecules/NavigationMenu"
 import Image from "next/image"
+import { useWhatsAppContext } from "@/components/providers/WhatsAppProvider"
 
-interface HeaderProps {
-  onPostular: () => void
-}
-
-export function Header({ onPostular }: HeaderProps) {
+export function Header() {
+  const { openWhatsApp } = useWhatsAppContext()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
@@ -39,7 +37,7 @@ export function Header({ onPostular }: HeaderProps) {
           <NavigationMenu
             mobileMenuOpen={mobileMenuOpen}
             setMobileMenuOpen={setMobileMenuOpen}
-            onPostular={onPostular}
+            onPostular={() => openWhatsApp("postular")}
           />
         </div>
       </div>

@@ -6,7 +6,7 @@ import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 export default function TypingWithMotionRotatorTwoLines() {
   // Texto fijo (typing lento)
   const mainText =
-    "Lanza tu primera aplicación web profesional y úsala para conseguir trabajo o...";
+    "Lanza tu primera aplicación web profesional y úsala para conseguir trabajo o ";
 
   const [typed, setTyped] = useState("");
   const [typingDone, setTypingDone] = useState(false);

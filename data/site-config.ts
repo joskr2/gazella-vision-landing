@@ -3,7 +3,7 @@ import { Users, Zap, Target, Award, DiamondPlus, Code } from "lucide-react"
 // Configuración del sitio web
 export const siteConfig = {
   name: "Gazella Vision",
-  title: "Desarrollador Web Fullstack en 8 semanas",
+  title: "Desarrollador Web Fullstack en",
   subtitle: "Frontend + Backend + Base de Datos", 
   description: "Lanza tu primera aplicación web profesional y úsala para conseguir trabajo o crear tu propio negocio.",
   nextGroupDate: "1 Sept 2025",

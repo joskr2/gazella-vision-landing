@@ -179,6 +179,33 @@
     .section-padding {
       @apply py-12 px-4;
     }
+    
+    /* Enhanced mobile typography */
+    .mobile-text-sm {
+      @apply text-xs;
+    }
+    
+    .mobile-text-base {
+      @apply text-sm;
+    }
+    
+    .mobile-text-lg {
+      @apply text-base;
+    }
+    
+    /* Improved touch targets */
+    .touch-target {
+      @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+    }
+    
+    /* Reduced spacing for mobile */
+    .mobile-space-y-4 > * + * {
+      margin-top: 1rem;
+    }
+    
+    .mobile-space-y-6 > * + * {
+      margin-top: 1.5rem;
+    }
   }
 
   /* Enhanced Glassmorphism Effects */

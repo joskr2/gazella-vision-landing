@@ -32,36 +32,36 @@ export function PricingCard({ plan, index, onAction }: PricingCardProps) {
       viewport={{ once: true }}
       className="relative"
     >
-      <Card className={`${plan.highlighted ? 'border-2 border-primary' : 'border-2'} hover:shadow-lg transition-all duration-300 h-full ${plan.highlighted ? 'hover:shadow-xl' : ''}`}>
+      <Card className={`${plan.highlighted ? 'border-2 border-primary' : 'border-2'} hover:shadow-lg transition-all duration-300 h-full ${plan.highlighted ? 'hover:shadow-xl' : ''} ${plan.highlighted ? 'md:col-span-2 lg:col-span-1' : ''}`}>
         {plan.badge && (
           <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
             <Badge className="bg-primary text-primary-foreground px-4 py-1">{plan.badge}</Badge>
           </div>
         )}
         
-        <CardHeader className="text-center pb-8">
-          <CardTitle className="font-heading text-xl lg:text-2xl">{plan.name}</CardTitle>
-          <div className="flex items-center justify-center gap-3">
-            <div className="text-2xl lg:text-3xl font-bold text-foreground">{plan.price}</div>
-            <div className="text-lg text-gray-400 line-through">{plan.originalPrice}</div>
+        <CardHeader className="text-center pb-4 sm:pb-6">
+          <CardTitle className="font-heading text-base sm:text-lg lg:text-xl">{plan.name}</CardTitle>
+          <div className="flex items-center justify-center gap-2 sm:gap-3">
+            <div className="text-lg sm:text-xl lg:text-2xl font-bold text-foreground">{plan.price}</div>
+            <div className="text-sm sm:text-base text-gray-400 line-through">{plan.originalPrice}</div>
           </div>
           <div className="text-xs text-gray-400 mt-1">*Facilidades de pago</div>
-          <CardDescription>{plan.description}</CardDescription>
+          <CardDescription className="text-xs sm:text-sm">{plan.description}</CardDescription>
         </CardHeader>
 
-        <CardContent className="space-y-4">
-          <div className="space-y-3">
+        <CardContent className="space-y-3">
+          <div className="space-y-2">
             {plan.features.map((feature, featureIndex) => (
-              <div key={featureIndex} className="flex items-center gap-3">
+              <div key={featureIndex} className="flex items-center gap-2">
                 {typeof feature === 'object' && 'included' in feature ? (
                   <>
                     {feature.included ? (
-                      <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-accent flex-shrink-0" />
                     ) : (
-                      <span className="w-5 h-5 text-center flex-shrink-0 text-muted-foreground">✗</span>
+                      <span className="w-4 h-4 sm:w-5 sm:h-5 text-center flex-shrink-0 text-muted-foreground text-xs">✗</span>
                     )}
                     <div className="flex flex-col">
-                      <span className={feature.included ? "" : "text-muted-foreground text-sm"}>
+                      <span className={feature.included ? "text-xs sm:text-sm" : "text-muted-foreground text-xs sm:text-sm"}>
                         {feature.text}
                       </span>
                       {feature.schedule && (
@@ -71,12 +71,12 @@ export function PricingCard({ plan, index, onAction }: PricingCardProps) {
                   </>
                 ) : (
                   <>
-                    <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
+                    <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-accent flex-shrink-0" />
                     {typeof feature === 'string' ? (
-                      <span className="text-sm lg:text-base">{feature}</span>
+                      <span className="text-xs sm:text-sm">{feature}</span>
                     ) : (
                       <div className="flex flex-col">
-                        <span className="text-sm lg:text-base">{feature.text}</span>
+                        <span className="text-xs sm:text-sm">{feature.text}</span>
                         {feature.schedule && (
                           <span className="text-xs text-gray-500">{feature.schedule}</span>
                         )}
@@ -96,7 +96,7 @@ export function PricingCard({ plan, index, onAction }: PricingCardProps) {
             className="w-full"
           >
             <Button
-              className={`w-full mt-8 ${plan.buttonVariant === 'primary' ? 'btn-primary' : 'btn-secondary'}`}
+              className={`w-full mt-4 sm:mt-6 ${plan.buttonVariant === 'primary' ? 'btn-primary' : 'btn-secondary'} text-sm sm:text-base py-3 sm:py-4 min-h-[44px] sm:min-h-[48px]`}
               onClick={() => onAction(plan.action)}
             >
               {plan.buttonText}

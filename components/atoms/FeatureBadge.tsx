@@ -21,11 +21,11 @@ export function FeatureBadge({ icon: Icon, text, index = 0 }: FeatureBadgeProps)
         stiffness: 200
       }}
       whileHover={{ scale: 1.05 }}
-      className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-gv-blue-primary/10 dark:border-gv-blue-light/20 rounded-full px-4 py-2 shadow-md hover:shadow-lg transition-all duration-300"
+      className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm border border-gv-blue-primary/20 dark:border-gv-blue-light/30 rounded-full px-4 py-3 sm:px-4 sm:py-2 shadow-md hover:shadow-lg transition-all duration-300 min-h-[48px] flex items-center justify-center"
     >
-      <div className="flex items-center gap-2">
-        <Icon className="w-4 h-4 text-gv-blue-primary" />
-        <span className="text-sm font-medium text-foreground">{text}</span>
+      <div className="flex items-center gap-2 sm:gap-2">
+        <Icon className="w-4 h-4 sm:w-4 sm:h-4 text-gv-blue-primary flex-shrink-0" />
+        <span className="text-xs sm:text-sm font-medium text-foreground text-center leading-tight">{text}</span>
       </div>
     </motion.div>
   )

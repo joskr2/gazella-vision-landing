@@ -23,16 +23,16 @@ export function TechIcon({ name, logo, index = 0 }: TechIconProps) {
       whileHover={{ scale: 1.1 }}
       className="group"
     >
-      <div className="w-16 h-16 flex items-center justify-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg group-hover:shadow-xl group-hover:border-gv-blue-primary/30 transition-all duration-300">
+      <div className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-gray-200 dark:border-gray-700 shadow-lg group-hover:shadow-xl group-hover:border-gv-blue-primary/30 transition-all duration-300 min-h-[56px] min-w-[56px] sm:min-h-[64px] sm:min-w-[64px]">
         <Image
           src={logo}
           alt={`${name} logo`}
-          width={32}
-          height={32}
-          className="w-8 h-8 object-contain group-hover:scale-110 transition-transform duration-300"
+          width={28}
+          height={28}
+          className="w-7 h-7 sm:w-8 sm:h-8 object-contain group-hover:scale-110 transition-transform duration-300"
         />
       </div>
-      <p className="text-xs font-medium text-muted-foreground mt-2 group-hover:text-gv-blue-primary transition-colors duration-300">
+      <p className="text-xs font-medium text-muted-foreground mt-2 sm:mt-2 group-hover:text-gv-blue-primary transition-colors duration-300 text-center px-1">
         {name}
       </p>
     </motion.div>

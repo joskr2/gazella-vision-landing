@@ -19,19 +19,19 @@ export function DashboardImage({ onReservar, onDownloadTemario }: DashboardImage
       transition={{ duration: 1, delay: 0.6 }}
       className="relative max-w-4xl mx-auto space-y-4"
     >
-      {/* Date Banner - Above image on mobile, overlay on desktop */}
+      {/* Date Banner - Sticky on mobile, overlay on desktop */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, delay: 0.8 }}
-        className="block sm:absolute sm:top-4 sm:right-4 sm:z-10"
+        className="sticky top-16 z-20 sm:absolute sm:top-4 sm:right-4 sm:z-10"
       >
         <div className="bg-gradient-to-r from-gv-blue-primary to-gv-blue-dark backdrop-blur-sm text-white rounded-lg sm:rounded-xl px-4 py-3 sm:px-6 sm:py-3 shadow-xl border border-gv-blue-primary/30 w-full sm:w-auto">
           <div className="flex items-center justify-center sm:justify-start gap-3">
-            <Calendar className="w-5 h-5 text-white flex-shrink-0" />
+            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />
             <div className="text-center sm:text-left">
-              <span className="font-medium opacity-90 text-sm mr-4">Próximo Grupo</span>
-              <span className="font-bold text-white text-base">{siteConfig.nextGroupDate}</span>
+              <span className="font-medium opacity-90 text-xs sm:text-sm mr-2 sm:mr-4">Próximo Grupo</span>
+              <span className="font-bold text-white text-sm sm:text-base">{siteConfig.nextGroupDate}</span>
             </div>
           </div>
         </div>
@@ -43,12 +43,12 @@ export function DashboardImage({ onReservar, onDownloadTemario }: DashboardImage
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         className="relative"
       >
-        <div className="w-full aspect-[16/9] relative">
+        <div className="w-full aspect-[3/2] sm:aspect-[16/9] relative">
           <Image
             src="/modern-dashboard-mockup.png"
             alt="Dashboard MVP mockup showing a modern SaaS application interface"
             fill
-            className="object-cover rounded-2xl shadow-2xl border border-white/20"
+            className="object-cover rounded-xl sm:rounded-2xl shadow-2xl border border-white/20"
             sizes="(min-width: 1024px) 1200px, 100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent rounded-2xl" />
@@ -95,7 +95,7 @@ export function DashboardImage({ onReservar, onDownloadTemario }: DashboardImage
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1 }}
-        className="flex sm:hidden flex-col gap-3 w-full"
+        className="flex sm:hidden flex-col gap-3 w-full px-2"
       >
         <motion.div
           whileHover={{ scale: 1.02 }}
@@ -103,7 +103,7 @@ export function DashboardImage({ onReservar, onDownloadTemario }: DashboardImage
         >
           <Button
             size="lg"
-            className="bg-gv-blue-primary hover:bg-gv-blue-dark text-white text-lg font-semibold px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 w-full"
+            className="bg-gv-blue-primary hover:bg-gv-blue-dark text-white text-base font-semibold px-6 py-4 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 w-full min-h-[52px]"
             onClick={onReservar}
           >
             <Users className="w-5 h-5 mr-3" />
@@ -118,7 +118,7 @@ export function DashboardImage({ onReservar, onDownloadTemario }: DashboardImage
           <Button
             size="lg"
             variant="outline"
-            className="border-2 border-gv-blue-primary text-gv-blue-primary hover:bg-gv-blue-primary hover:text-white text-lg font-semibold px-8 py-4 rounded-xl transition-all duration-300 w-full"
+            className="border-2 border-gv-blue-primary text-gv-blue-primary hover:bg-gv-blue-primary hover:text-white text-base font-semibold px-6 py-4 rounded-xl transition-all duration-300 w-full min-h-[52px]"
             onClick={onDownloadTemario}
           >
             <BookOpen className="w-5 h-5 mr-3" />

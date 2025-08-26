@@ -50,20 +50,20 @@ export function HeroSection({ onReservar, onDownloadTemario }: HeroSectionProps)
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-12">
-        <div className="text-center space-y-8">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-8 sm:pt-32 sm:pb-12">
+        <div className="text-center space-y-6 sm:space-y-8">
           {/* Title */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-4"
+            className="space-y-3 sm:space-y-4"
           >
-            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight max-w-5xl mx-auto">
+            <h1 className="font-heading text-2xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight max-w-4xl mx-auto px-2">
               {siteConfig.title}
-              <span className="bg-gradient-to-r from-gv-blue-primary to-gv-blue-dark bg-clip-text text-transparent"> 8 semanas</span>
+              <span className="bg-gradient-to-r from-gv-blue-primary to-gv-blue-dark bg-clip-text text-transparent block mt-2">8 semanas</span>
             </h1>
-            <p className="text-md sm:text-lg lg:text-xl text-gv-blue-dark max-w-4xl mx-auto">
+            <p className="text-xs xs:text-sm sm:text-base md:text-lg text-gv-blue-dark max-w-3xl mx-auto px-4 leading-relaxed">
               {siteConfig.subtitle}
             </p>
           </motion.div>
@@ -79,12 +79,12 @@ export function HeroSection({ onReservar, onDownloadTemario }: HeroSectionProps)
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
-            className="pt-8"
+            className="pt-4 sm:pt-6"
           >
-            <p className="text-sm text-muted-foreground mb-6 uppercase tracking-wider font-medium">
+            <p className="text-xs text-muted-foreground mb-3 sm:mb-4 uppercase tracking-wider font-medium">
               Stack tecnológico que dominarás
             </p>
-            <div className="flex justify-center items-center gap-6 flex-wrap">
+            <div className="grid grid-cols-3 xs:grid-cols-4 sm:flex sm:justify-center sm:items-center gap-3 sm:gap-4 md:gap-5 max-w-2xl mx-auto px-2">
               {heroTechStack.map((tech, index) => (
                 <TechIcon key={tech.name} {...tech} index={index} />
               ))}
@@ -96,7 +96,7 @@ export function HeroSection({ onReservar, onDownloadTemario }: HeroSectionProps)
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.6 }}
-            className="flex flex-wrap gap-4 justify-center pt-4"
+            className="grid grid-cols-2 xs:grid-cols-2 sm:flex sm:flex-wrap gap-2 sm:gap-3 justify-center pt-2 sm:pt-3 max-w-xl mx-auto px-4"
           >
             {heroFeatures.map((feature, index) => (
               <FeatureBadge key={feature.text} {...feature} index={index} />

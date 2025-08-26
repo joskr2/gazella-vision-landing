@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
@@ -68,69 +68,56 @@ export function NavigationMenu({ mobileMenuOpen, setMobileMenuOpen, onPostular }
         </motion.div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            className="lg:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Mobile Menu Content */}
       <motion.div
-        className={`lg:hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm ${mobileMenuOpen ? "block" : "hidden"}`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: mobileMenuOpen ? 1 : 0 }}
-        transition={{ duration: 0.2 }}
-        onClick={() => setMobileMenuOpen(false)}
+        className={`lg:hidden fixed inset-x-0 top-16 sm:top-20 bg-white dark:bg-gray-900 backdrop-blur-xl border-t border-gray-200 dark:border-gray-700 shadow-2xl z-50 ${mobileMenuOpen ? "block" : "hidden"}`}
+        initial={{ opacity: 0, height: 0 }}
+        animate={{
+          opacity: mobileMenuOpen ? 1 : 0,
+          height: mobileMenuOpen ? "auto" : 0
+        }}
+        transition={{ duration: 0.3 }}
       >
-        <motion.div
-          className="absolute right-0 top-0 h-full w-80 max-w-[90vw] bg-white dark:bg-gray-900 shadow-2xl border-l border-gray-200 dark:border-gray-700 overflow-y-auto"
-          initial={{ x: "100%" }}
-          animate={{ x: mobileMenuOpen ? 0 : "100%" }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="p-6 space-y-4">
-            {/* Close button */}
-            <button
-              className="absolute top-4 right-4 p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+        <div className="px-6 py-6 space-y-6">
+          {navigationItems.map((item, index) => (
+            <motion.a
+              key={item}
+              href={`#${item.toLowerCase().replace("í", "i")}`}
+              className="block text-gray-900 dark:text-white hover:text-gv-blue-primary transition-colors py-3 text-lg font-medium border-b border-gray-200 dark:border-gray-700 last:border-b-0 min-h-[48px] flex items-center"
               onClick={() => setMobileMenuOpen(false)}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1 }}
             >
-              <X className="w-6 h-6" />
-            </button>
-
-            {/* Menu items with icons */}
-            <div className="space-y-2 pt-12">
-              {navigationItems.map((item, index) => (
-                <motion.a
-                  key={item}
-                  href={`#${item.toLowerCase().replace("í", "i")}`}
-                  className="flex items-center gap-3 text-foreground hover:text-gv-blue-primary hover:bg-gray-50 dark:hover:bg-gray-800 transition-all rounded-lg px-4 py-3 text-base font-medium min-h-[48px]"
-                  onClick={() => setMobileMenuOpen(false)}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <div className="w-5 h-5 bg-gv-blue-primary/20 rounded flex items-center justify-center">
-                    <div className="w-2 h-2 bg-gv-blue-primary rounded-full" />
-                  </div>
-                  {item}
-                </motion.a>
-              ))}
-            </div>
-
-            {/* CTA Button */}
-            <motion.div
-              className="pt-6 border-t border-gray-200 dark:border-gray-700"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
+              {item}
+            </motion.a>
+          ))}
+          <div className="pt-4">
+            <Button
+              className="btn-primary w-full text-lg py-4 min-h-[48px]"
+              onClick={() => {
+                onPostular()
+                setMobileMenuOpen(false)
+              }}
             >
-              <Button
-                className="btn-primary w-full text-base py-4 min-h-[48px] font-semibold"
-                onClick={() => {
-                  onPostular()
-                  setMobileMenuOpen(false)
-                }}
-              >
-                🚀 Postula ahora
-              </Button>
-            </motion.div>
+              Postula ahora
+            </Button>
           </div>
-        </motion.div>
+        </div>
       </motion.div>
     </>
   )

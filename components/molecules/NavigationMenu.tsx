@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
@@ -68,21 +68,7 @@ export function NavigationMenu({ mobileMenuOpen, setMobileMenuOpen, onPostular }
         </motion.div>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            className="lg:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={() => setMobileMenuOpen(false)}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Mobile Menu Content */}
+      {/* Mobile Menu */}
       <motion.div
         className={`lg:hidden fixed inset-x-0 top-16 sm:top-20 bg-white dark:bg-gray-900 backdrop-blur-xl border-t border-gray-200 dark:border-gray-700 shadow-2xl z-50 ${mobileMenuOpen ? "block" : "hidden"}`}
         initial={{ opacity: 0, height: 0 }}
@@ -97,7 +83,7 @@ export function NavigationMenu({ mobileMenuOpen, setMobileMenuOpen, onPostular }
             <motion.a
               key={item}
               href={`#${item.toLowerCase().replace("í", "i")}`}
-              className="block text-gray-900 dark:text-white hover:text-gv-blue-primary transition-colors py-3 text-lg font-medium border-b border-gray-200 dark:border-gray-700 last:border-b-0 min-h-[48px] flex items-center"
+              className="flex items-center text-gray-900 dark:text-white hover:text-gv-blue-primary transition-colors py-3 text-lg font-medium border-b border-gray-200 dark:border-gray-700 last:border-b-0 min-h-[48px]"
               onClick={() => setMobileMenuOpen(false)}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}

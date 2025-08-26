@@ -42,12 +42,20 @@ export const technologies = [
     bgColor: "bg-green-50"
   },
   {
-    name: "Zustand",
-    description: "Gestión de estado simple y poderosa",
+    name: "TypeScript",
+    description: "JavaScript tipado para aplicaciones más robustas",
     icon: Star,
-    logo: "/zustand.svg",
-    color: "from-purple-500 to-purple-600",
-    bgColor: "bg-purple-50"
+    logo: "/typescript-svg.svg",
+    color: "from-blue-500 to-blue-600",
+    bgColor: "bg-blue-50"
+  },
+  {
+    name: "React Context API",
+    description: "Gestión de estado nativa de React",
+    icon: Users,
+    logo: "/react-svg-logo.svg",
+    color: "from-cyan-500 to-cyan-600",
+    bgColor: "bg-cyan-50"
   },
   {
     name: "Java",
@@ -87,7 +95,7 @@ export const technologies = [
 export const heroTechStack = [
   { name: "React", logo: "/react-svg-logo.svg" },
   { name: "JavaScript", logo: "/js-logo.svg" },
-  { name: "Zustand", logo: "/zustand.svg" },
+  { name: "TypeScript", logo: "/typescript-svg.svg" },
   { name: "Next.js", logo: "/nextjs-icon-svgrepo-com.svg" },
   { name: "Supabase", logo: "/supabase-logo-icon.svg" },
   { name: "Tailwind", logo: "/tailwindcss-logo.svg" },

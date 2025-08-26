@@ -3,7 +3,7 @@ import { Users, Zap, Target, Award, DiamondPlus, Code } from "lucide-react"
 // Configuración del sitio web
 export const siteConfig = {
   name: "Gazella Vision",
-  title: "Desarrollador Web Completo en 8 semanas",
+  title: "Desarrollador Web Fullstack en 8 semanas",
   subtitle: "Frontend + Backend + Base de Datos", 
   description: "Lanza tu primera aplicación web profesional y úsala para conseguir trabajo o crear tu propio negocio.",
   nextGroupDate: "1 Sept 2025",
@@ -25,7 +25,7 @@ export const whatsappMessages = {
 
 // Features badges para el hero section
 export const heroFeatures = [
-  { icon: Users, text: "Máximo 15 alumnos" },
+  { icon: Users, text: "Pocos alumnos por grupo" },
   { icon: Zap, text: "Clases en vivo" },
   { icon: Target, text: "Proyecto real" },
   { icon: Award, text: "MVP en producción" },

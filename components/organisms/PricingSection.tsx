@@ -42,7 +42,7 @@ export function PricingSection({ onAction }: PricingSectionProps) {
               </div>
               <h3 className="text-xl sm:text-2xl font-bold mb-2">Inicia el {siteConfig.nextGroupDate}</h3>
               <p className="text-gv-blue-light text-xs sm:text-sm">
-                ¡Solo quedan <span className="text-white">4</span> cupos disponibles!
+                ¡Solo quedan <span className="text-white">15</span> cupos disponibles!
               </p>
             </div>
           </motion.div>

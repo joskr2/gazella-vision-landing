@@ -13,8 +13,7 @@ export const pricingPlans = [
       "Proyectos semanales guiados",
       "Feedback grupal de código",
       "Proyecto final publicado en Vercel + AWS",
-      "Certificado de finalización",
-      "Cupos limitados a 15",
+      "Certificado de finalización"
     ],
     action: "reservar",
     buttonText: "Reservar mi cupo",
@@ -36,8 +35,7 @@ export const pricingPlans = [
       "Proyectos semanales guiados",
       "Feedback grupal de código",
       "Proyecto final publicado en Vercel + Supabase Cloud",
-      "Certificado de finalización",
-      "Cupos limitados a 15",
+      "Certificado de finalización"
     ],
     action: "starter",
     buttonText: "Empezar con Starter",

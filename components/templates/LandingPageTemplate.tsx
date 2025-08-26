@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react"
 import { Header } from "@/components/organisms/Header"
 import { HeroSection } from "@/components/organisms/HeroSection"
 import { FeaturesSection } from "@/components/organisms/FeaturesSection"
@@ -17,7 +16,6 @@ export function
   LandingPageTemplate() {
   const { openWhatsApp } = useWhatsApp()
   const { downloadTemario } = useDownload()
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden transition-colors duration-300">

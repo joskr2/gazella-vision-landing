@@ -21,7 +21,7 @@ const robotoSlab = Roboto_Slab({
 export const metadata: Metadata = {
   title: "Gazella Vision - Fullstack en 8 semanas: React + Supabase + Next.js",
   description:
-    "Publica tu primer MVP SaaS en producción y compártelo en entrevistas o lánzalo como negocio. Clases limitadas a 15 alumnos.",
+    "Publica tu primer MVP  en producción y compártelo en entrevistas o lánzalo como negocio. Clases limitadas de pocos alumnos.",
   icons: {
     icon: "/favicon-gazella-vision.svg",
     shortcut: "/favicon-gazella-vision.svg",

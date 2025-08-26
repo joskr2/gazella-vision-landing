@@ -2,10 +2,18 @@
 
 import { Header } from "@/components/organisms/Header"
 import { HeroSection } from "@/components/organisms/HeroSection"
+import { FeaturesSection } from "@/components/organisms/FeaturesSection"
+import { TechnologySection } from "@/components/organisms/TechnologySection"
+import { ProgramSection } from "@/components/organisms/ProgramSection"
+import { TestimonialsSection } from "@/components/organisms/TestimonialsSection"
+import { PricingSection } from "@/components/organisms/PricingSection"
+import { CTASection } from "@/components/organisms/CTASection"
+import { Footer } from "@/components/organisms/Footer"
 import { FloatingWhatsApp } from "@/components/molecules/FloatingWhatsApp"
 import { useWhatsApp, useDownload } from "@/hooks/business/useActions"
 
-export function LandingPageTemplate() {
+export function
+  LandingPageTemplate() {
   const { openWhatsApp } = useWhatsApp()
   const { downloadTemario } = useDownload()
 
@@ -23,14 +31,32 @@ export function LandingPageTemplate() {
         onDownloadTemario={downloadTemario}
       />
 
-      {/* TODO: Agregar las demás secciones aquí */}
-      {/* <FeaturesSection />
+      {/* Features Section */}
+      <FeaturesSection />
+
+      {/* Technology Section */}
       <TechnologySection />
-      <ProgramSection />
+
+      {/* Program Section */}
+      <ProgramSection
+        onReservar={() => openWhatsApp("reservar")}
+        onDownloadTemario={downloadTemario}
+      />
+
+      {/* Testimonials Section */}
       <TestimonialsSection />
-      <PricingSection />
-      <CTASection />
-      <Footer /> */}
+
+      {/* Pricing Section */}
+      <PricingSection onAction={openWhatsApp} />
+
+      {/* CTA Section */}
+      <CTASection
+        onPostular={() => openWhatsApp("postular")}
+        onConsultar={() => openWhatsApp("consultar")}
+      />
+
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }

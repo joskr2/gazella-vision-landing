@@ -32,7 +32,7 @@ export function TechIcon({ name, logo, index = 0 }: TechIconProps) {
           className="w-7 h-7 sm:w-8 sm:h-8 object-contain group-hover:scale-110 transition-transform duration-300"
         />
       </div>
-      <p className="text-xs font-medium text-muted-foreground mt-2 sm:mt-2 group-hover:text-gv-blue-primary transition-colors duration-300 text-center px-1">
+      <p className="text-xs font-small text-muted-foreground mt-2 sm:mt-2 group-hover:text-gv-blue-primary transition-colors duration-300 text-center px-1 whitespace-nowrap">
         {name}
       </p>
     </motion.div>

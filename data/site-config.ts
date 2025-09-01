@@ -6,7 +6,7 @@ export const siteConfig = {
   title: "Desarrollador Web Fullstack en",
   subtitle: "Frontend + Backend + Base de Datos", 
   description: "Lanza tu primera aplicación web profesional y úsala para conseguir trabajo o crear tu propio negocio.",
-  nextGroupDate: "1 Sept 2025",
+  nextGroupDate: "11 Sept 2025",
   phoneNumber: "51983765362",
   urls: {
     website: "https://josue-patricio.vercel.app",

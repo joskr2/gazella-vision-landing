@@ -10,6 +10,7 @@ import { TechStackCarousel } from "@/components/molecules/TechStackCarousel"
 import { FeaturesCarousel } from "@/components/molecules/FeaturesCarousel"
 import { heroTechStack, heroFeatures, siteConfig } from "@/data"
 import { useIsMobile } from "@/hooks/use-mobile"
+// También disponible: import { useIsMobile, useBreakpoint } from "@/hooks/use-media-query"
 
 interface HeroSectionProps {
   onReservar: () => void

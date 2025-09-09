@@ -6,6 +6,7 @@ import { Header } from "@/components/organisms/Header"
 import { Footer } from "@/components/organisms/Footer"
 import { FloatingWhatsApp } from "@/components/molecules/FloatingWhatsApp"
 import { WhatsAppProvider } from "@/components/providers/WhatsAppProvider"
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 
 const roboto = Roboto({
@@ -63,6 +64,9 @@ export default function RootLayout({
             <Footer />
           </WhatsAppProvider>
         </ThemeProvider>
+        
+        {/* Vercel Analytics */}
+        <Analytics />
       </body>
     </html>
   )

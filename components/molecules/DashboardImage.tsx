@@ -5,6 +5,7 @@ import { Calendar, Users, BookOpen } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { siteConfig } from "@/data"
+import { useTheme } from "next-themes"
 
 interface DashboardImageProps {
   onReservar: () => void
@@ -12,6 +13,12 @@ interface DashboardImageProps {
 }
 
 export function DashboardImage({ onReservar, onDownloadTemario }: DashboardImageProps) {
+  const { theme } = useTheme()
+  
+  const bannerImage = theme === "dark" 
+    ? "/banner_modo_oscuro.webp" 
+    : "/banner_modo_claro.webp"
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -45,8 +52,8 @@ export function DashboardImage({ onReservar, onDownloadTemario }: DashboardImage
       >
         <div className="w-full aspect-[3/2] sm:aspect-[16/9] relative">
           <Image
-            src="/modern-dashboard-mockup.png"
-            alt="Dashboard MVP mockup showing a modern SaaS application interface"
+            src={bannerImage}
+            alt="Gazella Vision - Fullstack Development Program"
             fill
             className="object-cover rounded-xl sm:rounded-2xl shadow-2xl border border-white/20"
             sizes="(min-width: 1024px) 1200px, 100vw"

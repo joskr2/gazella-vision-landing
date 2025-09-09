@@ -28,3 +28,4 @@ next-env.d.ts
 CLAUDE.md
 .gitignore
 docs/react-responsive-implementation.md
+claude.json

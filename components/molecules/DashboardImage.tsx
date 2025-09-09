@@ -16,8 +16,8 @@ export function DashboardImage({ onReservar, onDownloadTemario }: DashboardImage
   const { theme } = useTheme()
   
   const bannerImage = theme === "dark" 
-    ? "/banner_modo_oscuro.webp" 
-    : "/banner_modo_claro.webp"
+    ? "/banner_modo_oscuro.png" 
+    : "/banner_modo_claro.png"
   
   return (
     <motion.div

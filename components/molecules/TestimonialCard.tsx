@@ -55,11 +55,11 @@ export function TestimonialCard({ testimonial, index }: TestimonialCardProps) {
 
           {/* Quote with enhanced styling */}
           <div className="relative mb-6 flex-1">
-            <div className="absolute -top-2 -left-2 text-4xl text-primary/20 font-serif leading-none">"</div>
+            <div className="absolute -top-2 -left-2 text-4xl text-primary/20 font-serif leading-none">&ldquo;</div>
             <blockquote className="text-muted-foreground mb-4 text-sm sm:text-base leading-relaxed pl-6 italic">
               {testimonial.quote}
             </blockquote>
-            <div className="absolute -bottom-2 -right-2 text-4xl text-primary/20 font-serif leading-none transform rotate-180">"</div>
+            <div className="absolute -bottom-2 -right-2 text-4xl text-primary/20 font-serif leading-none transform rotate-180">&rdquo;</div>
           </div>
 
           {/* Author info with enhanced design */}

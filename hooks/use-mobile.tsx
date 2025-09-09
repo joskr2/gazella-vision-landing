@@ -1,55 +1,166 @@
-import * as React from "react"
-
-const MOBILE_BREAKPOINT = 768
+import { useMediaQuery } from 'react-responsive'
+import { useState, useEffect } from 'react'
 
 /**
- * Hook para detectar si el dispositivo es móvil de forma SSR-safe
- * 
- * Sigue el patrón recomendado por React para evitar hydration mismatches:
- * - Retorna `false` consistentemente en servidor y cliente inicial
- * - Solo actualiza después de la hidratación para evitar layout shift
- * - Usa matchMedia para mejor rendimiento y precisión
+ * Breakpoints estándar para consistencia en toda la app
  */
-export function useIsMobile() {
-  // Estado para trackear si el componente ya se montó (hidratación completa)
-  const [hasMounted, setHasMounted] = React.useState(false)
-  
-  // Estado para el valor real de isMobile
-  const [isMobile, setIsMobile] = React.useState(false)
+export const BREAKPOINTS = {
+  mobile: 767,
+  tablet: 1023,
+  desktop: 1024,
+  largeDesktop: 1280,
+} as const
 
-  // Handler optimizado con useCallback para evitar re-renders innecesarios
-  const updateIsMobile = React.useCallback((mediaQuery: MediaQueryList) => {
-    setIsMobile(mediaQuery.matches)
+/**
+ * Hook para detectar dispositivos móviles usando react-responsive
+ * 
+ * Ventajas de react-responsive:
+ * - Librería bien mantenida y probada en producción
+ * - SSR support built-in con configuración adecuada
+ * - Performance optimizado
+ * - API rica y flexible
+ * - Menos código custom para mantener
+ */
+export function useIsMobile(): boolean {
+  const [hasMounted, setHasMounted] = useState(false)
+  
+  // react-responsive con configuración SSR-safe
+  const isMobileQuery = useMediaQuery(
+    { maxWidth: BREAKPOINTS.mobile },
+    undefined, // serverMediaQuery - undefined para consistencia SSR
+  )
+
+  useEffect(() => {
+    setHasMounted(true)
   }, [])
 
-  React.useEffect(() => {
-    // Marcar como montado para habilitar detección móvil
+  // Solo retornar el valor real después de la hidratación
+  // Esto evita hydration mismatches
+  return hasMounted ? isMobileQuery : false
+}
+
+/**
+ * Hook para detectar tablets
+ */
+export function useIsTablet(): boolean {
+  const [hasMounted, setHasMounted] = useState(false)
+  
+  const isTabletQuery = useMediaQuery({
+    minWidth: BREAKPOINTS.mobile + 1,
+    maxWidth: BREAKPOINTS.tablet,
+  })
+
+  useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
+  return hasMounted ? isTabletQuery : false
+}
+
+/**
+ * Hook para detectar desktop
+ */
+export function useIsDesktop(): boolean {
+  const [hasMounted, setHasMounted] = useState(false)
+  
+  const isDesktopQuery = useMediaQuery({
+    minWidth: BREAKPOINTS.desktop,
+  })
+
+  useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
+  return hasMounted ? isDesktopQuery : false
+}
+
+/**
+ * Hook completo para todos los breakpoints
+ * Más eficiente que usar múltiples hooks individuales
+ */
+export function useBreakpoint() {
+  const [hasMounted, setHasMounted] = useState(false)
+  
+  const isMobile = useMediaQuery({ maxWidth: BREAKPOINTS.mobile })
+  const isTablet = useMediaQuery({
+    minWidth: BREAKPOINTS.mobile + 1,
+    maxWidth: BREAKPOINTS.tablet,
+  })
+  const isDesktop = useMediaQuery({ minWidth: BREAKPOINTS.desktop })
+  const isLargeDesktop = useMediaQuery({ minWidth: BREAKPOINTS.largeDesktop })
+
+  useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
+  if (!hasMounted) {
+    return {
+      isMobile: false,
+      isTablet: false,
+      isDesktop: false,
+      isLargeDesktop: false,
+      // Aliases útiles
+      isSmall: false,
+      isMedium: false,
+      isLarge: false,
+    }
+  }
+
+  return {
+    isMobile,
+    isTablet,
+    isDesktop,
+    isLargeDesktop,
+    // Aliases útiles
+    isSmall: isMobile,
+    isMedium: isTablet,
+    isLarge: isDesktop || isLargeDesktop,
+  }
+}
+
+
+/**
+ * Hooks adicionales para casos de uso comunes
+ * Usando implementación manual para mayor compatibilidad
+ */
+export function useIsRetina(): boolean {
+  return useMediaQuerySSR('(min-resolution: 2dppx)')
+}
+
+export function useIsLandscape(): boolean {
+  return useMediaQuerySSR('(orientation: landscape)')
+}
+
+export function usePrefersReducedMotion(): boolean {
+  return useMediaQuerySSR('(prefers-reduced-motion: reduce)')
+}
+
+export function usePrefersDarkMode(): boolean {
+  return useMediaQuerySSR('(prefers-color-scheme: dark)')
+}
+
+/**
+ * Hook helper para media queries con implementación manual SSR-safe
+ */
+function useMediaQuerySSR(query: string, serverDefault: boolean = false): boolean {
+  const [hasMounted, setHasMounted] = useState(false)
+  const [matches, setMatches] = useState(serverDefault)
+
+  useEffect(() => {
     setHasMounted(true)
 
-    // Verificar si matchMedia está disponible (puede no estar en algunos entornos)
     if (typeof window === 'undefined' || !window.matchMedia) {
       return
     }
 
-    // Usar matchMedia para detección precisa y eficiente
-    const mediaQuery = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
+    const mediaQuery = window.matchMedia(query)
+    const updateMatches = () => setMatches(mediaQuery.matches)
     
-    // Handler que usa el callback optimizado
-    const handleChange = (mq: MediaQueryListEvent) => updateIsMobile(mq.target as MediaQueryList)
+    updateMatches()
+    mediaQuery.addEventListener('change', updateMatches)
     
-    // Establecer valor inicial
-    updateIsMobile(mediaQuery)
-    
-    // Escuchar cambios
-    mediaQuery.addEventListener('change', handleChange)
-    
-    // Cleanup
-    return () => {
-      mediaQuery.removeEventListener('change', handleChange)
-    }
-  }, [updateIsMobile])
+    return () => mediaQuery.removeEventListener('change', updateMatches)
+  }, [query])
 
-  // Solo retornar el valor real después de la hidratación
-  // Esto garantiza consistencia servidor/cliente y evita hydration mismatch
-  return hasMounted ? isMobile : false
+  return hasMounted ? matches : serverDefault
 }

@@ -6,6 +6,7 @@ import { TechnologySection } from "@/components/organisms/TechnologySection"
 import { ProgramSection } from "@/components/organisms/ProgramSection"
 import { TestimonialsSection } from "@/components/organisms/TestimonialsSection"
 import { PricingSection } from "@/components/organisms/PricingSection"
+import { ContactSection } from "@/components/organisms/ContactSection"
 import { CTASection } from "@/components/organisms/CTASection"
 import { useWhatsApp, useDownload } from "@/hooks/business/useActions"
 
@@ -39,6 +40,9 @@ export function
 
       {/* Pricing Section */}
       <PricingSection onAction={openWhatsApp} />
+
+      {/* Contact Section */}
+      <ContactSection formspreeEndpoint={process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT} />
 
       {/* CTA Section */}
       <CTASection

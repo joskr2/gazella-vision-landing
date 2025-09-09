@@ -22,6 +22,8 @@ export { TechnologySection } from "./organisms/TechnologySection";
 export { ProgramSection } from "./organisms/ProgramSection";
 export { TestimonialsSection } from "./organisms/TestimonialsSection";
 export { PricingSection } from "./organisms/PricingSection";
+export { ContactForm } from "./organisms/ContactForm";
+export { ContactSection } from "./organisms/ContactSection";
 export { CTASection } from "./organisms/CTASection";
 export { Footer } from "./organisms/Footer";
 
